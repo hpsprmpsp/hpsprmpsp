@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>loading...</title>
+    <style>
+        * {
+            box-sizing:border-box;
+        }
+        #div-outer {
+            position: absolute;
+            top: 10%;
+            left: 40%;
+            background-color: transparent;
+            border-radius: 50%;
+            border: 2px solid black;
+            /*-webkit-transition: transform 3s ease-in-out;
+            transition: transform 3s ease-in-out;*/
+        }
+        /* #div-outer:hover {
+                -webkit-animation: rol 3s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-timing-function: linear;
+                animation: rol 3s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }*/
+        #div_inner-noborder {
+            width:80%;
+            height:80%;
+            background-color:transparent;
+            border-radius:50%;
+            position:absolute;
+            top:10%;
+            left:10%;
+            cursor:pointer;
+            -webkit-transition:transform 3s ease-in-out;
+            transition:transform 3s ease-in-out;
+             -webkit-animation:rot 3s;
+                -webkit-animation-iteration-count:infinite;
+                -webkit-animation-timing-function:linear;
+                
+                animation:rot 3s;
+                animation-iteration-count:infinite;
+                animation-timing-function:linear;
+        }
+            #div_inner-noborder:hover {
+               
+            }
+        @-webkit-keyframes rot {
+                from {
+                -webkit-transform:rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(1080deg);
+            }
+        }
+        @keyframes rot {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(1080deg);
+            }
+        }
+        @-webkit-keyframes rol {
+            from {
+                -webkit-transform: rotateY(0deg) rotateX(0deg);
+            }
+            to {
+                -webkit-transform: rotateY(1080deg) rotateX(1080deg);
+            }
+        }
+        @keyframes rol {
+            from {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            to {
+                transform: rotateY(1080deg) rotateX(1080deg);
+            }
+        }
+        #d1,#d2,#d3,#d4,#d5 {
+            position:absolute;
+            
+            width:20%;
+            height:20%;
+            border-radius:50%;
+            background-color:black;
+            
+        }
+        #d1 {
+            top: 0%;
+            left: 40%;
+        }
+        #d2 {
+            top: 40%;
+            left: 0%;
+        }
+        #d3 {
+            top: 40%;
+            left: 80%;
+        }
+        #d4 {
+            top: 80%;
+            left: 40%;
+        }
+        #d5 {
+            top: 40%;
+            left: 40%;
+        }
+        
+        
+    </style>
+    <script>
+        var r = false;
+        window.onload = function () {
+            var a = document.getElementById("div-outer");
+            
+            a.style.width = document.body.clientWidth / 5 + "px";
+            a.style.height = document.body.clientWidth / 5 + "px";
+            window.addEventListener("resize", function () {
+                
+                
+                a.style.width = document.body.clientWidth / 10 + "px";
+                a.style.height = document.body.clientWidth / 10 + "px";
+            });
+        };
+        
+        
+    </script>
+</head>
+<body>
+    
+    <div id="div-outer">
+        <div id="div_inner-noborder" >
+            <div id="d1"></div>
+            <div id="d2"></div>
+            <div id="d5"></div>
+            <div id="d3"></div>
+            <div id="d4"></div>
+        </div>
+    </div>
+    
+</body>
+</html>

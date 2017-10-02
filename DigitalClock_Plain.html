@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html>
+    <!-- Copy-Paste in a HTML editor, save it, and then run for proper allignment-->
+	<head>
+        <meta charset="utf-8"/>
+		<title></title>
+		<link rel="icon" type="" href="http://previews.123rf.com/images/toots77/toots771109/toots77110900002/10597026-Digital-stopwatch-in-modern-oval-style-set-in-a-gold-case-with-a-black-and-brown-clock-face-Isolated-Stock-Vector.jpg"/>
+		<style>
+			body{background:black;}
+			
+			ul{
+				list-style-type: none;
+				cursor:pointer;
+			}
+			li{
+				float:left;
+				padding:2px;
+				border:10px solid black;
+				cursor:pointer;
+				
+			}
+			.digit{
+				width:180px;
+				height:140px;
+				border:10px solid #eed60a;
+				color:#eed60a;
+				font-size:700%;
+				font-weight:900;
+				text-align: center;
+				cursor:pointer;	
+				transition:transform 1s;
+
+			}
+				.digit:hover{
+					color:black;
+					background-color:#eed60a;
+					transform:scaleX(1.2);
+				}
+				.digit:hover+h2{
+					transform:scaleX(1.2);
+					background-color:black;
+					color:#eed60a;
+				}
+			#divMain{
+				position:fixed;
+				top:50px;
+				left:200px;
+				cursor:pointer;
+				z-index: 1;
+				
+			}
+
+			h2{
+				text-align: center;
+				background-color:#eed60a;
+				color:black;
+				cursor:pointer;
+				transition: transform 1s;
+
+			}
+
+			#div_day{
+				position:fixed;
+				top:350px;
+				left:0px;
+				color:#eed60a;
+				border:2px solid #eed60a;
+				font-size:250%;
+				font-weight:900;
+				width:100%;
+				text-align:center;
+				cursor:pointer;
+				border-left:none;
+				border-right:none;
+				transition: transform 1s;
+			}
+				#div_day:hover{
+					color:black;
+					background-color:#eed60a;
+					transform: scaleY(1.5);
+				}
+			#divTimeZone{
+				position:fixed;
+				top:450px;
+				left:0px;
+				color:#eed60a;
+				border:2px solid #eed60a;
+				font-size:250%;
+				font-weight:900;
+				width:100%;
+				text-align:center;
+				cursor:pointer;
+				border-left:none;
+				border-right:none;
+				transition:transform 1s;
+			}
+				#divTimeZone:hover{
+					color:black;
+					background-color:#eed60a;
+					transform:scaleY(1.5);
+				}
+		</style>
+		<script></script>
+	</head>
+	<body>
+	<script>
+			
+
+			window.onload=function(){
+				var d=new Date();
+				var a=d.toString();
+				var c=a.split("(");
+				var e=c[0].split(" ")
+				document.getElementById("divTimeZone").innerHTML=e[5]+"("+c[1];
+				document.getElementById("div_day").innerHTML=e[0]+" "+e[1]+" "+e[2]+" "+e[3];
+				var t=e[4].split(":");
+				var x=Number(t[0])-12;
+				if(x>0){
+					if(String(x).length==1)
+					{
+						document.getElementById("divHr").innerHTML="0"+ String(x);
+						document.title="0"+String(x)+":"+t[1]+":"+t[2]+" PM"
+					}
+					else
+					{
+						document.getElementById("divHr").innerHTML=x;
+						document.title=String(x)+":"+t[1]+":"+t[2]+" PM"
+					}
+					
+					document.getElementById("divAMPM").innerHTML="PM";
+				}
+				else if(x==(-12)){
+					document.getElementById("divHr").innerHTML="12";
+					document.title="12"+":"+t[1]+":"+t[2]+" AM"
+					document.getElementById("divAMPM").innerHTML="AM";
+				}
+				else{
+					document.getElementById("divHr").innerHTML=t[0];
+					document.title=t[0]+":"+t[1]+":"+t[2]+" AM"
+					document.getElementById("divAMPM").innerHTML="AM";
+				}
+
+
+				document.getElementById("divMin").innerHTML=t[1];
+				document.getElementById("divSec").innerHTML=t[2];
+				
+				window.setInterval(function(){loadDetail();},1000);
+			};
+			function loadDetail(){
+				var d=new Date();
+				var a=d.toString();
+				var c=a.split("(");
+				var e=c[0].split(" ")
+				
+				var t=e[4].split(":");
+				var x=Number(t[0])-12;
+
+				if(x>0){
+					if(String(x).length==1)
+					{
+						document.getElementById("divHr").innerHTML="0"+ String(x);
+						document.title="0"+String(x)+":"+t[1]+":"+t[2]+" PM"
+					}
+					else
+					{
+						document.getElementById("divHr").innerHTML=x;
+						document.title=String(x)+":"+t[1]+":"+t[2]+" PM"
+					}
+					
+					document.getElementById("divAMPM").innerHTML="PM";
+				}
+				else if(x==(-12)){
+					document.getElementById("divHr").innerHTML="12";
+					document.title="12"+":"+t[1]+":"+t[2]+" AM"
+					document.getElementById("divAMPM").innerHTML="AM";
+				}
+				else{
+					document.getElementById("divHr").innerHTML=t[0];
+					document.title=t[0]+":"+t[1]+":"+t[2]+" AM"
+					document.getElementById("divAMPM").innerHTML="AM";
+				}
+
+				//document.getElementById("divHr").innerHTML=t[0];
+				document.getElementById("divMin").innerHTML=t[1];
+				document.getElementById("divSec").innerHTML=t[2];
+
+			}
+
+	</script>
+	
+		<div id="divMain">
+			<div id="div_out_border">
+				<div id="div_inn_cont">
+					<div id="div_list">
+						<ul>
+							<li>
+								<div id="divHr" class="digit">00</div>
+								<h2>Hour</h2>
+							</li>
+							<li>
+								<div id="divMin" class="digit">00</div>
+								<h2>Minute</h2>
+							</li>
+							<li>
+								<div id="divSec" class="digit">00</div>
+								<h2>Second</h2>
+							</li>
+							<li>
+								<div id="divAMPM" class="digit" >AM</div>
+								<h2>AM/PM</h2>
+							</li>
+						</ul>
+					</div>
+					<div id="div_day"></div>
+				</div>
+			</div>
+			<div id="divTimeZone"></div>
+		</div>
+		
+	</body>
+</html>

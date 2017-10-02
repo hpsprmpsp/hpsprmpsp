@@ -1,0 +1,49 @@
+[{
+		"Var": "Who Said It",
+		"cont": [{
+                "Number":"1",
+				"Q": "Give me Blood, I will Give You freedom",
+				"O1": "Subash Chandra Bose",
+				"O2": "Mahatma Gandhi",
+				"O3": "Chandrasekhar Ajad",
+				"O4": "Bhagat Singh",
+				"A": "Subash Chandra Bose",
+				"D": "No Description required"
+			},
+			{
+				"Number":"2",
+				"Q": "With great power comes a great responsibility",
+				"O1": "Superman",
+				"O2": "Uncle Ben",
+				"O3": "Tony Stark",
+				"O4": "Spiderman",
+				"A": "Uncle Ben",
+				"D": "Uncle Ben said so to Peter Parker when he was having doubts"
+			}
+		]
+	},
+	{
+		"Var": "Capitals",
+		"cont": [{
+				"Number":"1",
+				"Q": "India",
+				"O1": "Mumbai",
+				"O2": "Chennai",
+				"O3": "New Delhi",
+				"O4": "Kolkata",
+				"A": "New Delhi",
+				"D": "No Description required."
+			},
+			{
+				"Number":"2",
+				"Q": "Japan",
+				"O1": "Tokyo",
+				"O2": "Islamabad",
+				"O3": "Kochin",
+				"O4": "Japan doesn't have a capital",
+				"A": "Tokyo",
+				"D": "No Desc req"
+			}
+		]
+	}
+]
