@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="application-name" content="Calculator" />
+        <meta name="author" content="hpsprmpsp@gmail.com" />
+        <title>Calculator</title>
+        <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            
+            div#main{
+              position: absolute;
+                top:10px;
+                width:400px;
+                height:400px;
+                left:calc(50% - 200px);
+                border:1px solid black;
+                background-color: rgba(0,0,0,0.4);
+            }
+            div#displayPanel{
+                position: absolute;
+                left:5px;
+                top:5px;
+                width:387.5px;
+                height:100px;
+                background-color: rgba(170,170,10,1);
+                font-family: 'Aldrich';
+            }
+            div#displayPanel div#dispMemory{
+                position: absolute;
+                top:0px;
+                left:0px;
+                width:100%;
+                height:40px;
+                line-height: 40px;
+                padding-top:2.5px;
+                padding-bottom: 2.5px;
+                color:black;
+                text-align: right;
+                text-overflow: ellipsis;
+                overflow:hidden;
+                padding-right:5px;
+                
+            }
+            div#displayPanel div#dispShow{
+                position: absolute;
+                top:35px;
+                left:0px;
+                width:100%;
+                height:60px;
+                line-height: 60px;
+                padding-top:2.5px;
+                padding-bottom: 2.5px;
+                color:black;
+                font-size: xx-large;
+                text-align: right;
+                font-weight: 900;
+                padding-right: 5px;
+                text-overflow: ellipsis;
+                overflow:hidden;
+            }
+            div#ctrlPanel1{
+                position: absolute;
+                left:245px;
+                top:105px;
+                width:145px;
+                height: 300px;
+                
+            }
+            div#numPannel{
+                position: absolute;
+                left:5px;
+                top:105px;
+                width:230px;
+                height: 300px;
+               
+            }
+            div#ctrlPanel2{
+                position: absolute;
+                left:5px;
+                top:420px;
+                width:390px;
+                height: 170px;
+               
+            }
+            .numberButton{
+                position: relative;
+                width:60px;
+                height:60px;
+                background-color: black;
+                text-align: center;
+                line-height: 60px;
+                color:white;
+                font-weight: 900;
+                font-size: x-large;
+                margin:5px;
+                border:1px solid transparent;
+                border-radius: 5%;
+                box-shadow:0px 0px 2px 0px rgba(0,0,0,0.4);
+                    
+            }
+            .numberButton:active{
+                background-color: coral;
+            }
+            .setbuttonAnimation{
+                animation-name: buttonAnimation;
+                animation-duration: 0.5s;
+                animation-timing-function: linear;
+            }
+            @keyframes buttonAnimation{
+                from{
+                    background-image: repeating-linear-gradient(90deg,coral,coral 0%, coral 10%,white 10%,white 100%);
+                }
+                to{
+                    background-image: repeating-linear-gradient(90deg,white,white 0%, white 90%,coral 10%,coral 100%);
+                }
+            }
+            .firstonRow{
+                margin-left:10px;
+            }
+            .zeroButton{
+                width:210px;
+            }
+            .ctrlBtn{
+                position: relative;
+                width:105px;
+                height:45px;
+                background-color: black;
+                text-align: center;
+                line-height: 45px;
+                color:white;
+                font-weight: 900;
+                font-size: x-large;
+                margin:5px;
+                margin-left:20px;
+                border:1px solid transparent;
+                border-radius: 5%;
+                box-shadow:0px 0px 2px 0px rgba(0,0,0,0.4)
+            }
+            .ctrlBtn:active{
+                background-color: coral;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div id="displayPanel">
+                <div id="dispMemory">0</div>
+                <div id="dispShow">0</div>
+            </div>
+            <div id="numPannel">
+                <button id="num1" class="numberButton firstonRow">1</button>
+                <button id="num2" class="numberButton">2</button>
+                <button id="num3" class="numberButton">3</button>
+                <button id="num4" class="numberButton firstonRow">4</button>
+                <button id="num5" class="numberButton">5</button>
+                <button id="num6" class="numberButton">6</button>
+                <button id="num7" class="numberButton firstonRow">7</button>
+                <button id="num8" class="numberButton">8</button>
+                <button id="num9" class="numberButton">9</button>
+                <button id="num0" class="numberButton firstonRow">0</button >
+                <button id="numdot" class="numberButton">.</button>
+                <button id="numClr" class="numberButton" onclick="clickOperator(this)">=</button>
+            </div>
+            <div id="ctrlPanel1">
+                <button id="oprtPlus" class="ctrlBtn" onclick="clickOperator(this)">+</button>
+                <button id="oprtmin" class="ctrlBtn" onclick="clickOperator(this)">-</button>
+                <button id="oprtmul" class="ctrlBtn" onclick="clickOperator(this)">*</button>
+                <button id="oprtdiv" class="ctrlBtn" onclick="clickOperator(this)">/</button>
+                <button id="oprtmod" class="ctrlBtn" onclick="clickOperator(this)">%</button>
+            </div>
+           
+        </div>
+        <script>
+            var dmem=document.getElementById("dispMemory");
+            var dshw=document.getElementById("dispShow");
+            var fres=0;
+            var tval1=0;
+            var tval2=0;
+            var startEV=true;
+            var oprtr="";
+            var oprtAfterClick=false;
+            
+            document.body.onkeyup=function(e){
+                var a=e.keyCode;
+                if(a==49 || a==97){
+                    displayAppend(document.getElementById('num1'));
+                }
+                else if(a==50 || a==98){
+                    displayAppend(document.getElementById('num2'));
+                }
+                else if(a==51 || a==99){
+                    displayAppend(document.getElementById('num3'));
+                }
+                else if(a==52 || a==100){
+                    displayAppend(document.getElementById('num4'));
+                }
+                else if(a==53 || a==101){
+                    displayAppend(document.getElementById('num5'));
+                }
+                else if(a==54 || a==102){
+                    displayAppend(document.getElementById('num6'));
+                }
+                else if(a==55 || a==103){
+                    displayAppend(document.getElementById('num7'));
+                }
+                else if(a==56 || a==104){
+                    displayAppend(document.getElementById('num8'));
+                }
+                else if(a==57 || a==105){
+                    displayAppend(document.getElementById('num9'));
+                }
+                else if(a==48 || a==96){
+                    displayAppend(document.getElementById('num0'));
+                }
+                else if(a==110 || a==190){
+                    displayAppend(document.getElementById('numdot'));
+                }
+                else if(a==107){
+                    clickOperator(document.getElementById('oprtPlus'));
+                }
+                else if(a==13){
+                    clickOperator(document.getElementById('numClr'));
+                }
+                else if(a==109){
+                    clickOperator(document.getElementById('oprtmin'));
+                }
+                else if(a==106){
+                    clickOperator(document.getElementById('oprtmul'));
+                }
+                else if(a==111){
+                    clickOperator(document.getElementById('oprtdiv'));
+                }
+                else if(a==77){
+                    clickOperator(document.getElementById('oprtmod'));
+                }
+                else if(a==27){
+                    clearAll();
+                }
+            };
+            
+            document.getElementById("numPannel").addEventListener("click",function(e){
+                try{
+                    var tg=e.target;
+                
+                    var val=tg.innerHTML;
+                
+                    if((Number(val)>=0 && Number(val)<=9) || val=="."){
+                        displayAppend(tg);
+                    }
+                    else if(val=="C"){
+                        clearAll();
+                    }
+                }
+                catch(e){
+                    dshw.innerHTML="Error";
+                    dmem.innerHTML="Error";
+                }
+            });
+            
+            function displayAppend(elem){
+                try{
+                    if(startEV){
+                    if(oprtr==""){
+                        dshw.innerHTML=elem.innerHTML;
+                        dmem.innerHTML=elem.innerHTML;
+                    }
+                    else{
+                        dshw.innerHTML=elem.innerHTML;
+                        dmem.innerHTML+=elem.innerHTML;
+                    }
+                    startEV=false;
+                }else{
+                   if(oprtr==""){
+                        
+                        dshw.innerHTML+=elem.innerHTML;
+                        dmem.innerHTML+=elem.innerHTML;
+                   }else{
+                       if(oprtAfterClick){
+                           dshw.innerHTML+=elem.innerHTML;
+                           dmem.innerHTML+=elem.innerHTML;
+                       }else{
+                            dshw.innerHTML=elem.innerHTML;
+                            dmem.innerHTML+=elem.innerHTML;
+                           oprtAfterClick=true;
+                       }
+                       
+                   }
+                }
+                }
+                catch(e){
+                    dshw.innerHTML="Error";
+                    dmem.innerHTML="Error";
+                }
+                
+                
+            }
+            function clearAll(){
+                tval1=0;
+                tval2=0;
+                fres=0;
+                dshw.innerHTML="0";
+                dmem.innerHTML="0";
+                startEV=true;
+                oprtr="";
+            }
+            function clickOperator(ele){
+                try{
+                    if(oprtr==""){
+                    oprtr=ele.innerHTML;
+                    dmem.innerHTML +=ele.innerHTML;
+                    if(dshw.innerHTML=="."){
+                        tval1=0;
+                    }else{
+                        tval1=Number(dshw.innerHTML);
+                    }
+                    
+                }else{
+                    if(dshw.innerHTML=="."){
+                        tval2=0;
+                    }else{
+                        tval2=Number(dshw.innerHTML);
+                    }
+                     
+                    if(ele.innerHTML=="="){
+                        var op=calc(tval1,tval2,oprtr);
+                        dmem.innerHTML += " = " +op;
+                        dshw.innerHTML=op;
+                        tval1=0;
+                        tval2=0;
+                        oprtr="";
+                        startEV=true;
+                    }else{
+                        dmem.innerHTML+=ele.innerHTML;
+                        
+                        dshw.innerHTML=calc(tval1,tval2,oprtr);
+                        if(dshw.innerHTML=="."){
+                            tval1=0;
+                        }else{
+                            tval1=Number(dshw.innerHTML);
+                        }
+                        oprtr=ele.innerHTML;
+                    }
+                    
+                    
+                }
+                
+                oprtAfterClick=false;
+                }
+                catch(e){
+                    dmem.innerHTML="Error";
+                    dshw.innerHTML="Error";
+                }
+            }
+            
+            function calc(val1,val2,oper){
+                
+                try{
+                    if(oper=="+"){
+                        return String(val1+val2);
+                    }
+                    else if(oper=="-"){
+                        return String(val1-val2);
+                    }
+                    else if(oper=="*"){
+                        return String(val1*val2);
+                    }
+                    else if(oper=="/"){
+                        return String(val1/val2);
+                    }
+                    else if(oper=="%"){
+                        return String(val1%val2);
+                    }
+                }
+                
+                catch(err){
+                    return 'some error';
+                }
+            }
+            
+        </script>
+    </body>
+</html>

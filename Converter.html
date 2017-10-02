@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Convert</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            input[name="number"]{
+                position: absolute;
+                top:10px;
+                left:100px;
+                height:50px;
+                width:450px;
+                border:1px solid cornflowerblue;
+                color:cornflowerblue;
+                font-size: large;
+                font-weight: 900;
+                line-height: 50px;
+                padding-left:10px;
+                padding-right: 110px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            button[name="btnGo"]{
+                position: absolute;
+                top:10px;
+                left:450px;
+                height:50px;
+                width:100px;
+                border:1px solid cornflowerblue;
+                color:white;
+                font-size: large;
+                font-weight: 900;
+                line-height: 50px;
+                text-align: center;
+                background-color: cornflowerblue;
+            }
+            .error{
+                position: absolute;
+                top:80px;
+                left:100px;
+                height:50px;
+                min-width:450px;
+                border:1px solid transparent;
+                color:red;
+                font-size: x-large;
+                font-weight: 900;
+                line-height: 50px;
+                text-align: center;
+                background-color: transparent;
+            }
+            svg{
+                position: absolute;
+                top:210px;
+                padding-left:20px;
+                padding-right:20px;
+            }
+            path{
+                stroke:gray;
+                fill:none;
+                stroke-width:20;
+            }
+            .output{
+                position: absolute;
+                
+                left:100px;
+                height:100px;
+                min-width:450px;
+                border:1px solid transparent;
+                color:gray;
+                font-size: 5em;
+                font-weight: 900;
+                line-height: 100px;
+                padding-left:10px;
+                padding-right: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+                box-shadow: 0px 0px 10px 0px lightgray;
+                cursor: pointer;
+            }
+            .roman{
+                top:130px;
+            }
+            .binary{
+                top:250px;
+            }
+            .ascii{
+                top:370px;
+            }
+            .hexa{
+                top:490px;
+            }
+            .tags{
+                position: absolute;
+                height: 100px;
+                width:85px;
+                color:cornflowerblue;
+                font-size: large;
+                line-height: 100px;
+                text-align: right;
+                font-weight: 900;
+            }
+            .copyButton{
+                position: absolute;
+                left:100px;
+                height:30px;
+                width:50px;
+                border:1px solid transparent;
+                color:white;
+                background-color: gray;
+                font-weight: 900;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        
+        
+        
+        <input name="number"placeholder="Number only" value="0" /><button name="btnGo" onclick="convert()">Go</button>
+            <span class="error"></span>
+       
+       <div id="roman" name="cont" class="output roman">Roman did not have zero</div>
+       <div id="binary" name="cont" class="output binary">00000000</div>
+       <div id='ascii' name="cont" class="output ascii">048</div>
+       <div id="hexa" name="cont" class="output hexa">000000</div>
+        <div class="tags roman">Roman</div>
+        <div class="tags binary">Binary</div>
+        <div class="tags ascii">ASCII</div>
+        <div class="tags hexa">Hex</div>
+        <button id="copyRom" class="copyButton" style="top:215px;" onclick="copy(document.getElementById('roman'))">Copy</button>
+        <button id="copyBin" class="copyButton" style="top:335px;" onclick="copy(document.getElementById('binary'))">Copy</button>
+        <button id="copyAsc" class="copyButton" style="top:455px;" onclick="copy(document.getElementById('ascii'))">Copy</button>
+        <button id="copyHex" class="copyButton" style="top:575px;" onclick="copy(document.getElementById('hexa'))">Copy</button>
+        
+        <script>
+            
+            var op="";
+            var s=document.getElementsByTagName("svg")[0];
+            document.getElementsByName('number')[0].onkeyup=function(e){
+                if(e.keyCode==13){
+                    convert();
+                }
+            };
+            function copy(ele){
+                
+                if(document.selection){
+                    var rng=document.body.createTextRange();
+                    rng.moveToElementText(ele);
+                    rng.select().createTextRange();
+                    document.execCommand('copy');
+                }else if(window.getSelection){
+                    var rng=document.createRange();
+                    rng.selectNode(ele);
+                    window.getSelection().addRange(rng);
+                    document.execCommand('copy');
+                    window.getSelection().removeAllRanges();
+                }
+            }
+            function convert(){
+                var nm=document.getElementsByName('number')[0].value;
+                if(/^\d+$/.test(String(nm))){
+                    if(nm==0){
+                        document.getElementById("roman").innerHTML="Roman did not have zero";
+                        document.getElementById("roman").title="Roman did not have zero";
+                        document.getElementById("ascii").innerHTML="048";
+                        document.getElementById("ascii").title="048";
+                        document.getElementById('binary').innerHTML="00000000";
+                        document.getElementById('binary').title="00000000";
+                        document.getElementById("hexa").innerHTML="000000";
+                        document.getElementById("hexa").title="000000";
+                        document.querySelector(".error").innerHTML="";
+                        
+                    }else{
+                        document.querySelector(".error").innerHTML="";
+                        convertToRoman();
+                        convertToASCII();
+                        convertToBinary();
+                        convertToHexa();
+                    }
+                    
+                    
+                }else{
+                        document.querySelector(".error").innerHTML="Invalid Data :"+document.getElementsByName('number')[0].value+". Resetting to 0.";
+                        document.getElementsByName('number')[0].value="0";
+                        document.getElementById("roman").innerHTML="Roman did not have zero";
+                        document.getElementById("roman").title="Roman did not have zero";
+                        document.getElementById("ascii").innerHTML="048";
+                        document.getElementById("ascii").title="048";
+                        document.getElementById('binary').innerHTML="00000000";
+                        document.getElementById('binary').title="00000000";
+                        document.getElementById("hexa").innerHTML="000000";
+                        document.getElementById("hexa").title="000000";
+                    
+                }
+            }
+            
+            function convertToRoman(){
+                var nm=document.getElementsByName('number')[0].value;
+                
+                    if(nm===0){
+                        document.getElementById("roman").innerHTML="Roman did not have zero";
+                        document.getElementById("roman").title="Roman did not have zero";
+                        return;
+                    }
+                    var rom=["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+                    var dec=[1000,900,500,400,100,90,50,40,10,9,5,4,1];
+                    var otp="";
+                    for(i=0;i<13;i++){
+                        while(nm>=dec[i]){
+                            nm=nm-dec[i];
+                            otp+=rom[i];
+                        }
+                    }
+                     //var s=document.getElementsByTagName("svg")[0];
+                    var op=otp;
+                    if(op!=""){
+                        document.getElementById("roman").innerHTML=op;
+                        document.getElementById("roman").title=op;
+                        /*var l=op.length;
+                        var x=0;
+                        var y=0;
+                        clearSvg();
+                        for(i=0;i<l;i++){
+                            x=(i*120);
+                            y=180;
+                            drawNum(x,op[i],x,y);
+                            document
+                        }*/
+                    }
+                    document.querySelector(".error").innerHTML="";
+                
+                
+           
+               
+        }
+        function convertToASCII(){
+            var x, y, z, a, b, c, i, j, m;
+            z = "";
+            x = String(document.getElementsByName('number')[0].value);
+            c = x.length;
+
+            for (i = 0; i < c; i++) {
+                m = ""
+                y = x.substr(i, 1);
+
+                m = String(y.charCodeAt(0));
+                a = m.length;
+                b = 3 - a;
+                for (j = 0; j < b; j++) {
+                    m = "0" + m;
+                }
+                z = z + m;
+
+            }
+
+            document.getElementById("ascii").innerHTML=String(z);
+            document.getElementById("ascii").title=String(z);
+        }
+        function convertToBinary(){
+            var x, y, z, a, b, i;
+            x = document.getElementsByName('number')[0].value;
+    
+            if (x == 0){
+                a = '0';
+            }
+            else if (x == 1) {
+                a = '1';
+            }
+    
+            else {
+                z = "";
+                while (x > 1) {
+                    y = x % 2;
+            
+                    if (y == 0) {
+                        x = x / 2;
+                    }
+                    else {
+                        x = (x - 1) / 2;
+                    }
+            
+            
+                    z = y + z;
+                
+           
+                }
+        
+                a = "1" + z;
+            }
+            b = 8-(a.length);
+            if(b>0){
+                for (i = 1;i<=b;i++){
+                a = "0" + a;
+                }
+            }
+            
+    
+            document.getElementById('binary').innerHTML=String(a);
+            document.getElementById('binary').title=String(a);
+        }
+        function convertToHexa(){
+            var nm=document.getElementsByName('number')[0].value;
+            var a=['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+            var r=0;
+            var op="";
+            while(nm>15){
+                r=nm%16;
+                nm=Math.floor(nm/16);
+                op=a[r]+op;
+                
+            }
+            op=a[nm]+op;
+            var l=6-(op.length);
+            if(l>0){
+               for(i=0;i<l;i++){
+                op="0"+op;
+                } 
+            }
+            
+            document.getElementById("hexa").innerHTML=op;
+            document.getElementById("hexa").title=op;
+        }
+            
+            function drawNum(svg,val,x,y){
+                var d="M"+x+" "+y;
+                var p=document.createElementNS('http://www.w3.org/2000/svg',"path");
+                if(val.toUpperCase()=="X"){
+                    d+=" l100 -100 m-100 0 l100 100";
+                }
+                else if(val.toUpperCase()=="M"){
+                    d+="m 0 10 l0 -100 l 50 50 l50 -50 l0 100";
+                }
+                else if(val.toUpperCase()=="C"){
+                    d+=" m 100 0 c-130 0 -130 -100 0 -100";
+                }
+                else if(val.toUpperCase()=="D"){
+                    d+=" l0 -100 c130 00 130 100 -10 100";
+                }
+                else if(val.toUpperCase()=="I"){
+                    d+=" l100 0 m-50 0 l0 -100 m-50 0 l100 0";
+                }
+                else if(val.toUpperCase()=="V"){
+                    d+=" m0 -100 l50 100 l50 -100";
+                }
+                else if(val.toUpperCase()=="L"){
+                    d+=" l0 -100 m-10 100 l100 0";
+                }
+                p.setAttribute("d",d);
+                s.appendChild(p);
+            }
+            function clearSvg(){
+                s.innerHTML="";
+            }
+            
+        </script>
+    </body>
+</html>
