@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Roll a Dice!!!</title>
+    <link rel="icon" type="image/x-icon" href="https://image.freepik.com/free-icon/dice-with-five-dots_318-60136.jpg">
+    <link rel="stylesheet" type="text/css" href="roll_css.css" />
+   <style>
+        .dice {
+            height:40px;
+            width:40px;
+            background-color:black;
+            border:1px solid black;
+            position:absolute;
+            top:30px;
+        }
+
+        #div_main {
+            position: fixed;
+            top: 10px;
+            left: 190px;
+            border: 10px solid black;
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            cursor: pointer;
+            -webkit-transition: transform 3s ease-in-out;
+            transition: transform 3s ease-in-out;
+            transform-style: preserve-3d;
+            text-align: center;
+        }
+        #roll_a_dice {
+            position: fixed;
+            top: 350px;
+            left: 200px;
+            border: 2px solid black;
+            width: 300px;
+            height: 50px;
+            color:black;
+            font-family:'Times New Roman';
+            font-size:xx-large;
+            font-weight:900;
+            cursor: pointer;
+            background-color:transparent;
+           
+        }
+        #btnAssign{
+        	position: fixed;
+            top: 405px;
+            left: 200px;
+            border: 2px solid black;
+            width: 300px;
+            height: 50px;
+            color:black;
+            font-family:'Times New Roman';
+            font-size:xx-large;
+            font-weight:900;
+            cursor: pointer;
+            background-color:transparent;
+        }
+        #btnCheckCond {
+            position: fixed;
+            top: 455px;
+            left: 200px;
+            border: 2px solid black;
+            width: 300px;
+            height: 50px;
+            color: black;
+            font-family: 'Times New Roman';
+            font-size: xx-large;
+            font-weight: 900;
+            cursor: pointer;
+            background-color: transparent;
+        }
+        #div-row1 {
+            position: absolute;
+            top: 0px;
+            width: 300px;
+            height: 100px;
+        }
+        #div-row2 {
+            position: absolute;
+            top: 100px;
+            width: 300px;
+            height: 100px;
+        }
+        #div-row3 {
+            position: absolute;
+            top: 200px;
+            width: 300px;
+            height: 100px;
+        }
+        @-webkit-keyframes lol {
+            0% {color: red;}
+            10% {
+                color: purple;
+            }
+            20% {
+                color: orange;
+            }
+            30% {
+                color: brown;
+            }
+            40% {
+                color: fuchsia;
+            }
+            50% {
+                color: gold;
+            }
+            60% {
+                color: rosybrown;
+            }
+            70% {
+                color: magenta;
+            }
+            80% {
+                color: green;
+            }
+            90% {
+                color: maroon;
+            }
+            100% {
+                color: red;
+            }
+        }
+        @keyframes lol {
+            0% {
+                color: red;
+            }
+
+            10% {
+                color: purple;
+            }
+
+            20% {
+                color: orange;
+            }
+
+            30% {
+                color: brown;
+            }
+
+            40% {
+                color: fuchsia;
+            }
+
+            50% {
+                color: gold;
+            }
+
+            60% {
+                color: rosybrown;
+            }
+
+            70% {
+                color: magenta;
+            }
+
+            80% {
+                color: green;
+            }
+
+            90% {
+                color: maroon;
+            }
+
+            100% {
+                color: red;
+            }
+        }
+        ul{
+        	list-style-type: none;
+        }
+        li{
+        	padding:5px;
+            color:black;
+            font-family:Calibri;
+            font-weight:900;
+        }
+        .inp_ass{
+        	width:300px;
+        	height:25px;
+        	border:1px solid black;
+        }
+        	.inp_ass:focus{
+        		border:1px solid blue;
+        	}
+        .spn_cond {
+            width:300px;
+            height:25px;
+            background-color:transparent;
+            color:blue;
+            font-weight:900;
+            border:1px solid transparent;
+            
+        }
+        .mod_pop_1 {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 1;
+            background-color: rgba(0, 0, 0,0.3);
+            cursor: not-allowed;
+            overflow: auto;
+            padding: 40px;
+            
+        }
+        .mod_pop_2 {
+            position: absolute;
+            top: 25px;
+            width: 500px;
+            background-color: rgba(255,255,255,1);
+            cursor: default;
+            left: 380px;
+            border: 2px solid black;
+            
+        }
+        .btn_pop {
+            border:1px solid black;
+            height:25px;
+            width:100px;
+            color:black;
+            font-family:'Times New Roman';
+            font-size:large;
+            font-weight:900;
+            background-color:transparent;
+        }
+        #inp_num, #inp_cond {
+            width: 1000px;
+            height: 55px;
+            background-color: transparent;
+            color: black;
+            font-size:xx-large;
+            font-weight: 900;
+            border: 1px solid transparent;
+            text-align:center;
+           
+        }
+        .warn {
+            position:absolute;
+            bottom:0px;
+            color:red;
+            left:0px;
+            -webkit-animation-name:lol;
+            -webkit-animation-duration:5s;
+            -webkit-animation-iteration-count:infinite;
+            animation-name:lol;
+            animation-duration:5s;
+            animation-iteration-count:infinite;
+        }
+        #div_mod_result_2 {
+            width: 1100px;
+            left: 100px;
+            
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            -webkit-transition: transform 1s ease-in-out;
+            transition: transform 1s ease-in-out;
+        }
+.inner_circle {
+    height:60%;
+    width:60%;
+    border-radius:50%;
+    position:absolute;
+    top:20%;
+    left:20%;
+    background-color:white;
+}
+    </style>
+</head>
+<body>
+    
+    <div style="width:100%;">
+    	<div id="div_main">
+        				<div id="div-row1">
+            				<div id="div_pt1" class="dice" style="left:45px;">
+                                <div class="inner_circle"></div>
+                            </div>
+            				<div id="div_pt2" class="dice" style="left:130px;"><div class="inner_circle"></div></div>
+            				<div id="div_pt3" class="dice" style="left:215px;"><div class="inner_circle"></div></div>
+        				</div>
+        				<div id="div-row2">
+            				<div id="div_pt4" class="dice" style="left:45px;"><div class="inner_circle"></div></div>
+            				<div id="div_pt5" class="dice" style="left:130px;"><div class="inner_circle"></div></div>
+            				<div id="div_pt6" class="dice" style="left:215px;"><div class="inner_circle"></div></div>
+        				</div>
+        				<div id="div-row3">
+            				<div id="div_pt7" class="dice" style="left:45px;"><div class="inner_circle"></div></div>
+            				<div id="div_pt8" class="dice" style="left:130px;"><div class="inner_circle"></div></div>
+            				<div id="div_pt9" class="dice" style="left:215px;"><div class="inner_circle"></div></div>
+        				</div>
+    				</div>
+    	<button id="roll_a_dice" onclick="dice_btn()">Roll Dice</button>
+    	<button id="btnAssign" onclick="showPop()">Assign</button>
+        <button id="btnCheckCond" onclick="document.getElementById('div-mod_pop-cond').style.display = 'block'">Conditions</button>
+    </div>
+
+    <div id="div-mod_pop-main" align="center" class="mod_pop_1">
+    	<div id="div-mod-pop-sec" class="mod_pop_2">
+            
+    		<ul >
+                
+    			<li> Dice:1
+    				<input id="ass_1" class="inp_ass"/>
+    			</li>
+    			<li> Dice:2
+    				<input id="ass_2" class="inp_ass"/>
+    			</li>
+    			<li> Dice:3
+    				<input id="ass_3" class="inp_ass"/>
+    			</li>
+    			<li> Dice:4
+    				<input id="ass_4" class="inp_ass"/>
+    			</li>
+    			<li> Dice:5
+    				<input id="ass_5" class="inp_ass"/>
+    			</li>
+    			<li> Dice:6
+    				<input id="ass_6" class="inp_ass"/>
+    			</li>
+    			<li> Dice:7
+    				<input id="ass_7" class="inp_ass"/>
+    			</li>
+    			<li> Dice:8
+    				<input id="ass_8" class="inp_ass"/>
+    			</li>
+    			<li> Dice:9
+    				<input id="ass_9" class="inp_ass"/>
+    			</li>
+    			<li> 
+                    <button id="btnAss" class="btn_pop" onclick="pop_done_Button()">Done</button>
+                    <button  class="btn_pop" onclick="getPrev()">Get Prev</button>
+                    <button class="btn_pop" onclick="clearAssign()">Clear</button>
+                    <button class="btn_pop" onclick="document.getElementById('div-mod_pop-main').style.display='none'">Cancel</button>
+                    
+    			</li>
+
+    		</ul>
+    	</div>
+    </div>
+
+    <div id="div-mod_pop-cond" align="center" class="mod_pop_1">
+        <div id="div-mod-pop-cond_2" class="mod_pop_2">
+
+            <ul>
+                <li>
+                    Dice1:<input id="cond_1" class="spn_cond" readonly/>
+                </li>
+                <li>
+                    Dice2: <input id="cond_2" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice3: <input id="cond_3" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice4: <input id="cond_4" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice5: <input id="cond_5" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice6: <input id="cond_6" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice7: <input id="cond_7" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice8: <input id="cond_8" class="spn_cond" readonly />
+                </li>
+                <li>
+                    Dice9: <input id="cond_9" class="spn_cond" readonly />
+                </li>
+                <li>
+                    <button id="btnAss" class="btn_pop" onclick="editCond()" >Edit</button>
+                    <button  class="btn_pop" onclick="clearCond()">Clear</button>
+                    <button class="btn_pop" onclick="document.getElementById('div-mod_pop-cond').style.display = 'none'">Cancel</button>
+
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="div_mod_result_1" class="mod_pop_1">
+        <div id="div_mod_result_2" class="mod_pop_2"  align="center">
+            <table>
+                <tr><td><input id="inp_num" value="The number is " readonly /></td></tr>
+                <tr><td><input id="inp_cond" value="Condition is " readonly /></td></tr>
+                <tr><td align="center"><button class="btn_pop" onclick="result_trans_2(); setTimeout(function () { document.getElementById('div_mod_result_1').style.display = 'none' }, 1000);">Close</button></td></tr>
+            </table>
+            <span id="spn-warn" class="warn">This Pop-Up will be closed in 10s. </span>
+        </div>
+    </div>
+    <script>
+        // JavaScript source code
+// Soumya Padhee
+var r = false;
+function dice_btn() {
+    var k;
+    var z = false;
+    for (var i = 1; i <= 9; i++) {
+        k = document.getElementById("cond_" + i);
+        if (!k.value == "") {
+            z = true;
+        }
+        else { z = false; }
+    }
+
+    if (z) {
+        var a = document.getElementById("div_main");
+        var d = r ? 0 : 8640;
+        var s = r ? -100 : 100;
+        a.style.webkitTransform = 'rotate(' + d + 'deg)';
+        a.style.transform = 'rotate(' + d + 'deg)';
+        r = !r;
+        setTimeout(function () {
+            RollDice();
+        }, 3000);
+    }
+    else {
+
+        alert("No Conditions are provided yet.");
+    }
+
+}
+function RollDice() {
+
+    var a1 = document.getElementById("div_pt1");
+    var a2 = document.getElementById("div_pt2");
+    var a3 = document.getElementById("div_pt3");
+    var a4 = document.getElementById("div_pt4");
+    var a5 = document.getElementById("div_pt5");
+    var a6 = document.getElementById("div_pt6");
+    var a7 = document.getElementById("div_pt7");
+    var a8 = document.getElementById("div_pt8");
+    var a9 = document.getElementById("div_pt9");
+
+    var rn = Math.floor((Math.random() * 9) + 1);
+
+
+
+
+
+
+    if (rn == 1) {
+        a1.style.display = "none";
+        a2.style.display = "none";
+        a3.style.display = "none";
+        a4.style.display = "none";
+        a5.style.display = "block";
+        a6.style.display = "none";
+        a7.style.display = "none";
+        a8.style.display = "none";
+        a9.style.display = "none";
+    }
+    else if (rn == 2) {
+        a1.style.display = "none";
+        a2.style.display = "none";
+        a3.style.display = "none";
+        a4.style.display = "block";
+        a5.style.display = "none";
+        a6.style.display = "block";
+        a7.style.display = "none";
+        a8.style.display = "none";
+        a9.style.display = "none";
+    }
+    else if (rn == 3) {
+        a1.style.display = "none";
+        a2.style.display = "none";
+        a3.style.display = "none";
+        a4.style.display = "block";
+        a5.style.display = "block";
+        a6.style.display = "block";
+        a7.style.display = "none";
+        a8.style.display = "none";
+        a9.style.display = "none";
+    }
+    else if (rn == 4) {
+        a1.style.display = "block";
+        a2.style.display = "none";
+        a3.style.display = "block";
+        a4.style.display = "none";
+        a5.style.display = "none";
+        a6.style.display = "none";
+        a7.style.display = "block";
+        a8.style.display = "none";
+        a9.style.display = "block";
+    }
+    else if (rn == 5) {
+        a1.style.display = "block";
+        a2.style.display = "none";
+        a3.style.display = "block";
+        a4.style.display = "none";
+        a5.style.display = "block";
+        a6.style.display = "none";
+        a7.style.display = "block";
+        a8.style.display = "none";
+        a9.style.display = "block";
+    }
+    else if (rn == 6) {
+        a1.style.display = "block";
+        a2.style.display = "none";
+        a3.style.display = "block";
+        a4.style.display = "block";
+        a5.style.display = "none";
+        a6.style.display = "block";
+        a7.style.display = "block";
+        a8.style.display = "none";
+        a9.style.display = "block";
+    }
+    else if (rn == 7) {
+        a1.style.display = "block";
+        a2.style.display = "none";
+        a3.style.display = "block";
+        a4.style.display = "block";
+        a5.style.display = "block";
+        a6.style.display = "block";
+        a7.style.display = "block";
+        a8.style.display = "none";
+        a9.style.display = "block";
+    }
+    else if (rn == 8) {
+        a1.style.display = "block";
+        a2.style.display = "block";
+        a3.style.display = "block";
+        a4.style.display = "block";
+        a5.style.display = "none";
+        a6.style.display = "block";
+        a7.style.display = "block";
+        a8.style.display = "block";
+        a9.style.display = "block";
+    }
+    else {
+        a1.style.display = "block";
+        a2.style.display = "block";
+        a3.style.display = "block";
+        a4.style.display = "block";
+        a5.style.display = "block";
+        a6.style.display = "block";
+        a7.style.display = "block";
+        a8.style.display = "block";
+        a9.style.display = "block";
+    }
+    setTimeout(function () { getRes(rn); }, 500);
+
+}
+function showPop() {
+    var k;
+    for (var i = 1; i <= 9; i++) {
+        k = document.getElementById("ass_" + i);
+        k.value = "";
+    }
+    //clearCond();
+    var a = document.getElementById("div-mod_pop-main");
+    a.style.display = "block";
+
+
+}
+function closePop() {
+    var k;
+    var t = false;
+    for (var i = 1; i <= 9; i++) {
+        k = document.getElementById("ass_" + i);
+        if (!k.value == "") {
+            k = true;
+        }
+        else {
+            k = false;
+        }
+    }
+    if (k == true) {
+        var a = document.getElementById("div-mod_pop-main");
+        a.style.display = "none";
+    } else {
+        alert("Fuck You, Bitch!!!");
+    }
+
+
+}
+function pop_done_Button() {
+    var k;
+    var t = false;
+    for (var i = 1; i <= 9; i++) {
+        k = document.getElementById("ass_" + i);
+        if (!k.value == "") {
+            k = true;
+        }
+        else {
+            k = false;
+        }
+    }
+    if (k == true) {
+        assignCond();
+        document.getElementById("div-mod_pop-main").style.display = "none";
+    } else {
+        alert("Fuck You, Bitch!!!");
+    }
+}
+function assignCond() {
+    var a;
+    var b;
+    for (var i = 1; i <= 9; i++) {
+        a = document.getElementById("ass_" + i);
+        b = document.getElementById("cond_" + i);
+
+        b.value = a.value;
+    }
+}
+function clearCond() {
+    var b;
+
+    for (var i = 1; i <= 9; i++) {
+
+        b = document.getElementById("cond_" + i);
+
+        b.value = "";
+    }
+}
+function getPrev() {
+    var b;
+    var a;
+    for (var i = 1; i <= 9; i++) {
+        a = document.getElementById("cond_" + i);
+        b = document.getElementById("ass_" + i);
+
+        b.value = a.value;
+    }
+}
+function clearAssign() {
+    for (var i = 1; i <= 9; i++) {
+
+        b = document.getElementById("ass_" + i);
+
+        b.value = "";
+    }
+}
+function getRes(num) {
+    var a = document.getElementById("cond_" + String(num)).value;
+    document.getElementById("inp_num").value = "The number is " + num + ".";
+    document.getElementById("inp_cond").value = "Condition is \"" + a + "\"."
+    var b = document.getElementById("div_mod_result_1");
+    b.style.display = "block";
+    warnScene();
+    setTimeout(function () { result_trans_1(); }, 100);
+    setTimeout(function () { result_trans_2(); }, 10000);
+    setTimeout(function () {
+        b.style.display = "none";
+    }, 11000);
+    setTimeout(function () { clearInterval(w_m); }, 11100)
+}
+function editCond() {
+    document.getElementById("div-mod_pop-cond").style.display = 'none';
+    getPrev();
+    document.getElementById("div-mod_pop-main").style.display = 'block';
+}
+function result_trans_1() {
+    var a = document.getElementById("div_mod_result_2");
+    a.style.webkitTransform = 'scale(1)';
+    a.style.transform = 'scale(1)';
+}
+function result_trans_2() {
+    var a = document.getElementById("div_mod_result_2");
+    a.style.webkitTransform = 'scale(0)';
+    a.style.transform = 'scale(0)';
+}
+function transO(a) {
+
+    a.style.webkitTransform = 'scale(1)';
+    a.style.transform = 'scale(1)';
+}
+function transC(a) {
+    a.style.webkitTransform = 'scale(0)';
+    a.style.transform = 'scale(0)';
+}
+var spc = 10;
+var w_m;
+function warnScene() {
+    if (spc < 10) {
+        spc = 10;
+    }
+
+    var a = document.getElementById("spn-warn");
+    w_m = setInterval(function () {
+        spc = spc - 1;
+        a.innerHTML = "This Pop-Up will be closed in " + spc + "s."
+    }, 1000)
+
+}
+
+    </script>
+</body>
+</html>
