@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Artifika' rel='stylesheet'>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <style>
+            *{
+                font-family: 'Artifika';
+                font-weight: 700;
+            }
+            .head_text{
+                font-weight: 900;
+                font-family: 'Artifika';
+                padding-left: 20px;
+            }
+            .btn{
+                
+            }
+            .icons{
+                font-size: 24px;
+                padding:2px;
+                border-width: 1px;
+                color:white;
+            }
+            .icons:hover{
+                color:yellow;
+            }
+            .page-header{
+                background-color: blueviolet;
+                color: white;
+                margin-top:-10px;
+            }
+            .popover-title{
+                background-color: blueviolet;
+            }
+            .popover-content{
+                color:blueviolet;
+            }
+            a:hover{
+                text-decoration: none!important;
+            }
+           @media (min-width:768px){
+                .collapse{
+                    display:block!important;
+                }
+                button[data-toggle="collapse"]{
+                    display: none!important;
+                }
+            }
+        </style>
+    </head>
+    <body ng-app="myApp" ng-controller="controller">
+         <div class="page-header">
+            <div class="row">
+                <div class="col-sm-5"><h1 class="head_text">Point Tracker</h1></div>
+                <div class="col-sm-7">
+                    <div style="float:right;margin-right:30px;margin-top:30px;">
+                        <a href="#" class="fa fa-vcard-o icons" data-toggle="popover" title="About Author" data-content="{{author}}" data-trigger="hover" data-html="true" data-placement="bottom"></a>
+                        <a href="mailto:hpsprmpsp@gmail.com?Subject=Point%20Tracker%20App%20realated" class="fa fa-envelope icons" title="Mail to developer" data-toggle="tooltip" target="_blank" data-placement="bottom"></a>
+                        <a href="https://www.500px.com/hpsprmpsp" class="fa fa-500px icons" title="Follow me on 500px" data-toggle="tooltip" target="_blank" data-placement="bottom"></a>
+                        <a href="https://www.facebook.com/hpsprmpsp" class="fa fa-facebook-official icons" title="Follow me on Facebook" data-toggle="tooltip" target="_blank" data-placement="bottom"></a>
+                        <a href="https://twitter.com/hpsprmpsp" class="fa fa-twitter icons" title="Follow me on Twitter" data-toggle="tooltip" target="_blank" data-placement="bottom"></a>
+                        <a href="https://www.instagram.com/hpsprmpsp" class="fa fa-instagram icons" title="Follow me on Instagram" data-toggle="tooltip" target="_blank" data-placement="bottom"></a>
+                        <a href="https://hpsprmpsp.wordpress.com/" class="fa fa-wordpress icons" title="Follow me on Wordpress" data-toggle="tooltip" target="_blank" data-placement="bottom"></a>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <!--<div class="well">
+            <a href="#" data-toggle="popover" title="Instructions" data-content="{{instruction}}" data-trigger="hover" data-html="true">Hover to get instructions</a> 
+        </div>-->
+        <div class="container-fluid">
+            <div class="row">
+               
+                <div class="col-sm-3">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                Contendors
+                            </div>
+                            <div class="col-xs-3">
+                                <button type="button"  data-toggle="collapse" data-target="#div_contd" style="float:right" title="Click to expand" ng-init="stat=true" ng-click="stat=!stat" class="btn">
+                                    <span class="glyphicon glyphicon-chevron-down" ng-show="stat"></span>
+                                    <span class="glyphicon glyphicon-chevron-up" ng-hide="stat"></span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div id="div_contd" class="collapse">
+                        <form class="form" ng-submit="addCont(user)" >
+                            <div class="form-group">
+                                <input type="text" maxlength="20" ng-model="user" class="form-control" required placeholder="Contender's Name">
+                            </div>
+                            <button type="submit" class="btn btn-info btn-block">
+                                <b>Add Contender</b>
+                            </button>
+                        </form>
+                        <hr>
+                        <ul class="list-group">
+                            <li ng-repeat="x in contds track by $index" class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-9">{{x}}</div>
+                                    <div class="col-xs-3">
+                                        <span class="label label-default" ng-click="removeMe($index)" style="float:right">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div class="col-sm-9" ng-show="contds|isNotEmpty">
+                    <form class="form" ng-submit="addNewScoreRow();">
+                    <table class="table table-bordered" >
+                        <tr class="info">
+                            <th>
+                                Contendors
+                            </th>
+                            <th ng-repeat="x in contds track by $index">{{x}}</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Enter points here
+                            </td>
+                            <td ng-repeat="x in contds track by $index">
+                                
+                                    <input ng-model="val"  type="number" id="inp_{{$index}}" class="form-control" ng-change="addToCurrScore($index,val)"  required>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="{{contCount+1}}">
+                                <button class="btn btn-block btn-primary"  type="submit">
+                                    Add Score
+                                </button></td>
+                        </tr>
+                        <tr ng-repeat="x in scoreRoundIndv track by $index" title="Round {{$index+1}}">
+                            <td>Round {{$index+1}}:
+                                <div class="badge" style="float:right" title="Remove this round" ng-click="removeround($index)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                </div>
+                            </td>
+                            <td ng-repeat="a in x track by $index">
+                                <div class="active">
+                                    {{a}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="well">Total</div></td>
+                            <td ng-repeat="a in totScore track by $index">
+                                <div class="well" style="text-align:center;">{{a}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                        </form>
+                </div>
+                
+                
+            </div>
+        </div>
+        <script>
+              
+            var app=angular.module("myApp",[]);
+            app.controller("controller",["$scope",function($scope){
+                $scope.user="";
+                $scope.contds=[];
+                $scope.contCount=$scope.contds.length;
+                $scope.totScore=[];
+                $scope.instruction="1.First manage contender names.<br />2. LOL.";
+                $scope.currScore=[];
+                $scope.scoreRoundIndv=[];
+                $scope.addCont=function(val){
+                    $scope.contds.push(val);
+                    
+                    $scope.contCount=$scope.contds.length;
+                    $scope.totScore.push(0);
+                    $scope.currScore.push(0);
+                    $scope.user="";
+                };
+                $scope.removeMe=function(inx){
+                    $scope.contds.splice(inx,1);
+                    $scope.contCount=$scope.contds.length;
+                    $scope.totScore.splice(inx,1);
+                    $scope.currScore.splice(inx,1);
+                    
+                    for(i=0;i<$scope.scoreRoundIndv.length;i++){
+                        $scope.scoreRoundIndv[i].splice(inx,1);
+                    }
+                };
+                $scope.addToCurrScore=function(inx,val){
+                    $scope.currScore[inx]=val;
+                    
+                };
+                $scope.addNewScoreRow=function(){
+                    var a=$scope.currScore;
+                    var b=[];
+                    for(x=0;x<a.length;x++){
+                        b.push(a[x]);
+                        $scope.totScore[x]=parseInt($scope.totScore[x])+parseInt(a[x]);
+                    }
+                    $scope.scoreRoundIndv.push(b);
+                };
+                $scope.removeround=function(inx){
+                    a=$scope.scoreRoundIndv[inx];
+                    for(i=0;i<a.length;i++){
+                        $scope.totScore[i]=$scope.totScore[i]-a[i];
+                    }
+                    $scope.scoreRoundIndv.splice(inx,1);
+                    
+                };
+                $scope.author="<table class='table table-bordered table-striped'><tr><td>Name</td><td>Soumya Sarthak Padhee</td></tr><tr><td>DOB</td><td>12th July 1991</td></tr><tr><td>Hobby</td><td>Reading, Cooking</td></tr></table>";
+            }]);
+            app.filter("isNotEmpty",function(){
+                return function(x){
+                    return x.length>0;
+                };
+            });
+            
+        </script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();
+                $('[data-toggle="tooltip"]').tooltip(); 
+            });
+            
+        </script>
+    </body>
+</html>
