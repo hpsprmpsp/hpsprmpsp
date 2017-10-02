@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        
+        <style>
+            
+            *{
+                box-sizing: border-box;
+            }
+            div#main{
+                position: absolute;
+                top:20px;
+                left:20px;
+                width:700px;
+                height: 500px;
+            }
+            #header{
+                position: absolute;
+                top:0px;
+                left:0px;
+                width: 100%;
+                height: 100px;
+                background-color: aquamarine;
+            }
+            ul{
+                list-style-type: none;
+                margin: 0px;
+                padding: 0px;
+            }
+            li{
+                float: left;
+            }
+            div#div_day, div#allMonth,div#allYear{
+                position: absolute;
+                top:100px;
+                width: 100%;
+                height: 400px;
+            }
+            div#allMonth{
+                top:200px;
+                display: none;
+            }
+            div#allYear{
+                top:150px;
+            }
+            ul#days{
+                position: absolute;
+                top:0px;
+                left:0px;
+                width: 100%;
+            }
+            div#prev_m{
+                position: absolute;
+                top:40px;
+                left:10px;
+                height:20px;
+                width:20px;
+                border-left: 5px solid white;
+                border-bottom:5px solid white;
+                transform: rotate(45deg);
+                cursor: pointer;
+            }
+            div#next_m{
+                position: absolute;
+                top:40px;
+                right:10px;
+                height:20px;
+                width:20px;
+                border-right: 5px solid white;
+                border-top:5px solid white;
+                transform: rotate(45deg);
+                cursor: pointer;
+            }
+            div#prev_y{
+                position: absolute;
+                bottom:10px;
+                left:340px;
+                height:20px;
+                width:20px;
+                border-right: 5px solid white;
+                border-bottom:5px solid white;
+                transform: rotate(45deg);
+                cursor: pointer;
+            }
+            div#next_y{
+                position: absolute;
+                top:10px;
+                left:340px;
+                height:20px;
+                width:20px;
+                border-left: 5px solid white;
+                border-top:5px solid white;
+                transform: rotate(45deg);
+                cursor: pointer;
+            }
+            div#div_m{
+                position: absolute;
+                left:200px;
+                top:22px;
+                width:150px;
+                color:white;
+                text-align: center;
+                line-height: 56px;
+                font-size:xx-large;
+                font-weight: 900;
+                cursor: pointer;
+            }
+            div#div_y{
+                position: absolute;
+                left:350px;
+                top:22px;
+                width:150px;
+                color:white;
+                text-align: center;
+                line-height: 56px;
+                font-size:xx-large;
+                font-weight: 900;
+                cursor: pointer;
+            }
+            ul#days li, ul#days a{
+                width:100px;
+                text-align: center;
+                text-decoration: none;
+                background-color: cornflowerblue;
+                color:white;
+            }
+            ul#days li{
+                border:5px solid white;
+                line-height: 50px;
+            }
+            ul#week{
+                position: absolute;
+                top:100px;
+                width:100%;
+            }
+            ul#week li, ul#week a{
+                width:100px;
+                text-align: center;
+                color:white;
+                line-height: 50px;
+                text-decoration: none;
+                background-color:darkmagenta;
+                font-size: medium;
+                font-weight: 900;
+                cursor:pointer;
+            }
+            ul#week li{
+                border:5px solid white;
+                line-height: 50px;
+            }
+            ul#week li:hover{
+                background-color: coral;
+                color:black;
+            }
+            ul#week li a{
+                background-color: transparent;
+                
+            }
+            ul#week li:hover a{
+                
+                color:black;
+            }
+            div#allMonth ul{
+                position: absolute;
+                top:0px;
+                padding:0px;
+                width:100%;
+            }
+            div#allMonth ul li{
+                float:left;
+                border:5px solid white;
+                background-color: brown;
+                color:white;
+                
+            }
+            div#allMonth ul li,  div#allMonth ul li a{
+                line-height: 50px;
+                width:175px;
+                text-align: center;
+                font-size: large;
+                font-weight: 900;
+            }
+            div#allYear ul{
+                position: absolute;
+                top:0px;
+                padding:0px;
+                width:100%;
+            }
+            div#allYear ul li{
+                float:left;
+                border:5px solid white;
+                background-color: brown;
+                color:white;
+                
+            }
+            div#allYear ul li,  div#allYear ul li a{
+                line-height: 50px;
+                width:100px;
+                text-align: center;
+                font-size: large;
+                font-weight: 900;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div id="main">
+            <div id="header">
+                <div id="prev_m" title="Previous Month" onclick="prev_mnt()"></div>
+                <div id="next_m" title="Next Month" onclick="nxt_mnt()"></div>
+                <div id="prev_y" title="Previous Year" onclick="prev_yr()"></div>
+                <div id="next_y" title="Next Year" onclick="nxt_yr()"></div>
+                <div id="div_m"></div>
+                <div id="div_y"></div>
+            </div>
+            <div id="div_day" >
+                <ul id="days">
+                    <li style="border-left:none;"><a>Sunday</a></li>
+                    <li><a>Monday</a></li>
+                    <li><a>Tuesday</a></li>
+                    <li><a>Wednessday</a></li>
+                    <li><a>Thursday</a></li>
+                    <li><a>Friday</a></li>
+                    <li style="border-right:none;"><a>Saturday</a></li>
+                    
+                </ul>
+                <ul id="week">
+                    
+                </ul>
+                
+            </div>
+            <div id="allMonth">
+                <ul>
+                    <li><a>January</a></li>
+                    <li><a>February</a></li>
+                    <li><a>March</a></li>
+                    <li><a>April</a></li>
+                    <li><a>May</a></li>
+                    <li><a>June</a></li>
+                    <li><a>July</a></li>
+                    <li><a>August</a></li>
+                    <li><a>September</a></li>
+                    <li><a>October</a></li>
+                    <li><a>November</a></li>
+                    <li><a>December</a></li>
+                    
+                </ul>
+            </div>
+            <div id="allYear">
+                <ul id="ulYear">
+                    
+                </ul>
+                <div id="next_yr_col"></div>
+                <div id="Prev_yr_col"></div>
+            </div>
+            <div id="dateDetail">
+                <div id="side_arrow"></div>
+                <div id="det"></div>
+            </div>
+        </div>
+        <script>
+            var ul=document.getElementById("week");
+            var mnt=document.getElementById("div_m");
+            var yr=document.getElementById("div_y");
+            
+            var d= new Date();
+            var m_n=d.getMonth();//get month number starting from 0
+            var month_name=["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November","December"];//using month number get month name
+            var m=month_name[m_n];//get month name
+            var y=d.getYear()+1900;//get year, +1900 as count starts from 1900 not 0000
+            mnt.innerHTML=m;//set month name
+            yr.innerHTML=y;//set year
+            
+            //no of days
+            var no_of_days=30;
+            getDates();
+            function setNoOfDays(){
+                if(m_n==1){
+                    if(y%4==0){
+                        no_of_days=29;
+                    }else{
+                        no_of_days=28;
+                    }
+                }else if(m_n==0 || m_n==2 || m_n==4 || m_n==6 || m_n==7 || m_n==9 || m_n==11){
+                    no_of_days=31;
+                }else{
+                    no_of_days=30;
+                }
+                
+            } 
+            
+            function getDates(){
+                setNoOfDays();
+                //get first day of current month
+                var curD=new Date(String(y)+"-"+String(m_n+1)+"-1");
+                var date_name=["Sunday","monday","Tuesday","Wednessday","Thursday","Friday","Saturday"];
+                var l=curD.getDay();//6 - day serial no of date 1
+                var i;
+                var li;
+                var lnk;
+                var tx;
+                ul.innerHTML="";
+                
+                for(i=0;i<l;i++){
+                   li=document.createElement("LI");
+                    lnk=document.createElement("A");
+                    tx=document.createTextNode("-");
+                    lnk.appendChild(tx);
+                    li.appendChild(lnk);
+                    li.style.visibility="hidden";
+                    ul.appendChild(li);
+                }
+                for(i=0;i<no_of_days;i++){
+                    
+                   li=document.createElement("LI");
+                    lnk=document.createElement("A");
+                    tx=document.createTextNode(String(i+1));
+                    if(i==(d.getDate()-1) && y==(d.getYear()+1900) && m_n==d.getMonth()){
+                        li.style.backgroundColor="crimson";
+                        
+                    }
+                    lnk.appendChild(tx);
+                    li.appendChild(lnk);
+                    ul.appendChild(li);
+                }
+            }
+            
+            function prev_mnt(){
+                if(m_n==0){
+                    m_n=11;
+                    y=y-1;
+                    yr.innerHTML=y;
+                }else{
+                    m_n=m_n-1;
+                }
+                
+                mnt.innerHTML=month_name[m_n];
+                getDates();
+            }
+            function nxt_mnt(){
+                if(m_n==11){
+                    m_n=0;
+                    y=y+1;
+                    yr.innerHTML=y;
+                }else{
+                    m_n=m_n+1;
+                }
+                
+                mnt.innerHTML=month_name[m_n];
+                 getDates();
+            }
+            function prev_yr(){
+                if(y==1900){
+                    alert("Minimum is 1900");
+                }else{
+                y=y-1;
+                yr.innerHTML=y;
+                getDates();
+                }
+                
+            }
+            function nxt_yr(){
+                y=y+1;
+                yr.innerHTML=y;
+                getDates();
+            }
+            
+            function loadYears(start_year){
+                var y_r=start_year;
+                var uly=document.getElementById("ulYear");
+                var j=0;
+                var liY;
+                var lnkY;
+                var txY;
+                for(j=-17;j<18;j++){
+                    liY=document.createElement("LI");
+                    lnkY=document.createElement("A");
+                    txY=document.createTextNode(String(y_r+j));
+                    if((y_r+j)==(d.getYear()+1900)){
+                        liY.style.backgroundColor="blue";
+                    }
+                    lnkY.appendChild(txY);
+                    liY.appendChild(lnkY);
+                    uly.appendChild(liY);
+                }
+            }
+        </script>
+    </body>
+</html>
