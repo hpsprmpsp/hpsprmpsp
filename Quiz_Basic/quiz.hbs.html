@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="author" content="hpsprmpsp"/>
+		<meta name="description" content="Quiz page using handlebar-js"/>
+		<title>Quiz</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+  		<script src="quiz.hbs.js"></script>
+  		<style>
+  			header{
+  				padding:10px;
+  				
+  			}
+  			
+  		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<header><h2>Quiz</h2></header>
+			<div class="btn-group btn-group-justified">
+				<a href="javascript:void()" class="btn btn-primary">Answer</a>
+				<a href="javascript:void()" class="btn btn-success" data-toggle="modal" data-target="#divScore">Score</a>
+			</div>
+			<script id="quiztemp" type="text/x-handlebars-template">
+				<div class="container-fluid">
+					<div class="col-sm-4 col-xs-12">
+						<div style="height:50px"></div>
+						<ul class="nav nav-pills nav-stacked">
+							{{#content}}
+								<li ><a class="btn-warning" data-toggle="tab" href="#qstn_box_{{@index}}">{{Var}}</a></li>
+							{{/content}}
+						</ul>
+					</div>
+					<div class="col-sm-8 col-xs-12"><div style="height:50px;"></div>
+						<div class="tab-content">
+							{{#content}}
+								
+								<div id="qstn_box_{{@index}}" class="tab-pane fade">
+									<div class="panel-group">
+										{{#cont}}
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													Q.{{Number}}: {{Q}} ?
+												</div>
+												<div class="panel-body">
+													<div class="col-xs-7">
+														<ul class="list-group">
+															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O1}} /> {{O1}}</label></li>
+															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O2}} /> {{O2}}</label></li>
+															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O3}} /> {{O3}}</label></li>
+															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O4}} /> {{O4}}</label></li>
+														</ul>
+													</div>
+													
+													<div class="col-xs-5">
+														<h3 id="Ans_{{@index}}">{{A}}</h3>
+														<p>{{D}}</p>
+													</div>
+
+												</div>
+												<div class="panel-footer"></div>
+											</div>
+										{{/cont}}
+									</div>
+								</div>
+							{{/content}}
+						</div>
+					</div>
+				</div>
+				<div id="divScore" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header"><h3>Score</h3></div>
+							<div class="modal-body">
+								<table class="table table-bordered">
+									<tr>
+										<th></th>
+										<th>Right</th>
+										<th>Wrong</th>
+										<th>Skipped</th>
+										<th>Total</th>
+									</tr>
+									{{#content}}
+											<tr>
+												<td>{{Var}}</td>
+												<td id="score_{{@index}}_right"></td>
+												<td id="score_{{@index}}_wrong"></td>
+												<td id="score_{{@index}}_skipped"></td>
+												<td id="score_{{@index}}_total"></td>
+											</tr>
+									{{/content}}
+									
+								</table>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</script>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$(".tab-pane").eq(0).addClass("active in");
+				$("ul.nav-pills li").eq(0).addClass("active");
+			});
+		</script>
+	</body>
+</html>
