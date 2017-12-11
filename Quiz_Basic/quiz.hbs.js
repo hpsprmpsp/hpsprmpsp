@@ -12,5 +12,17 @@
 		}
 	};
 
+var answers_provided={};
+
+function setAnswer(indx){
+	
+}
+
+function checkAnswer(inx){
+
+}
+function skipped(){}
+function rightAnswer(){}
+function wrongAnswer(){}
 
 

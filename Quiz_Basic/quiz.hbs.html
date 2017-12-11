@@ -22,21 +22,21 @@
 	<body>
 		<div class="container-fluid">
 			<header><h2>Quiz</h2></header>
-			<div class="btn-group btn-group-justified">
-				<a href="javascript:void()" class="btn btn-primary">Answer</a>
-				<a href="javascript:void()" class="btn btn-success" data-toggle="modal" data-target="#divScore">Score</a>
-			</div>
+			
 			<script id="quiztemp" type="text/x-handlebars-template">
 				<div class="container-fluid">
 					<div class="col-sm-4 col-xs-12">
-						<div style="height:50px"></div>
+						
 						<ul class="nav nav-pills nav-stacked">
 							{{#content}}
-								<li ><a class="btn-warning" data-toggle="tab" href="#qstn_box_{{@index}}">{{Var}}</a></li>
+								<li ><a data-toggle="tab" href="#qstn_box_{{@index}}"><i class="{{icon}}"></i> {{Var}}</a></li>
 							{{/content}}
 						</ul>
+						<div style="height:50px"></div>
+						<button class="btn btn-success btn-block" data-toggle="modal" data-target="#divScore">Score</button>
+						<div style="height:50px"></div>
 					</div>
-					<div class="col-sm-8 col-xs-12"><div style="height:50px;"></div>
+					<div class="col-sm-8 col-xs-12">
 						<div class="tab-content">
 							{{#content}}
 								
@@ -50,15 +50,15 @@
 												<div class="panel-body">
 													<div class="col-xs-7">
 														<ul class="list-group">
-															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O1}} /> {{O1}}</label></li>
-															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O2}} /> {{O2}}</label></li>
-															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O3}} /> {{O3}}</label></li>
-															<li class="list-group-item"><label><input type="radio" name="opt_{{@index}}" value={{O4}} /> {{O4}}</label></li>
+															<li class="list-group-item"><label><input control-type='opt' type="radio" name="opt_{{@../index}}_{{@index}}" value={{O1}} /> {{O1}}</label></li>
+															<li class="list-group-item"><label><input control-type='opt' type="radio" name="opt_{{@../index}}_{{@index}}" value={{O2}} /> {{O2}}</label></li>
+															<li class="list-group-item"><label><input control-type='opt' type="radio" name="opt_{{@../index}}_{{@index}}" value={{O3}} /> {{O3}}</label></li>
+															<li class="list-group-item"><label><input control-type='opt' type="radio" name="opt_{{@../index}}_{{@index}}" value={{O4}} /> {{O4}}</label></li>
 														</ul>
 													</div>
 													
 													<div class="col-xs-5">
-														<h3 id="Ans_{{@index}}">{{A}}</h3>
+														<h3 id="Ans_{{@../index}}_{{@index}}">{{A}}</h3>
 														<p>{{D}}</p>
 													</div>
 
@@ -67,6 +67,8 @@
 											</div>
 										{{/cont}}
 									</div>
+									<button class="btn btn-primary btn-block" ans-catagory-target="{{@index}}">Check Answers for {{Var}}</button>
+									<div style="height:50px"></div>
 								</div>
 							{{/content}}
 						</div>

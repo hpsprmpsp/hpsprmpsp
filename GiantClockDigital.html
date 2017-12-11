@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>00:00:00</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<style>
+  			body{
+  				background-color: #333;
+  				color:#eee;
+
+  			}
+  			#divHr, #divMin{
+  				font-size: 30vw;
+  				font-weight: 900;
+  				color:#eee;
+  				text-align: center;
+  			}
+  			#divSep{
+  				height:100%;
+  			}
+  			#divSep div{
+  				position: relative;
+  				height:20%;
+  				width: 100%;
+  				background-color: transparent;
+  			}
+  			#divSep div:nth-child(2n){
+  				background-color: #eee;
+  			}
+  			#divAmPm{
+  				bottom: 0px;
+  				display: inline;
+  				right:0px;
+  				margin-left:50px;
+  				font-size:10vw;
+  			}
+  			#divSecO{
+  				height:50px;
+  			}
+  			#divSecI{
+  				height:50px;
+  				background-color: #eee;
+  				transition: width 1s;
+  			}
+  		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-5" id="divHr"></div>
+				
+				<div class="col-xs-7" id="divMin"></div>
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-12" id="divSecO">
+					<div id="divSecI"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-xs-12"></div>
+				<div class="col-sm-6 col-xs-12"></div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				setTime();
+				setInterval(function(){
+					setTime();
+			},1000);
+
+				function setTime(){
+					var cDT= new Date();
+					var ampm="";
+					var hr=function(){
+					let op=cDT.getHours();
+					op=op>12?(op-12):op;
+					ampm=op>12?"pm":"am";
+					return op;
+				};
+
+				$("#divHr").html(hr());
+				$("#divMin").html(cDT.getMinutes()+"<div id='divAmPm'></div>");
+				$("#divAmPm").html(ampm);
+				// for second progress bar
+				var sec=cDT.getSeconds();
+				var sp=(sec/60)*100;
+
+				$("#divSecI").css("width",sp+"%");
+
+				document.title=hr()+":"+cDT.getMinutes()+":"+sec+" "+ampm;
+				}
+
+			});
+		</script>
+	</body>
+</html>
