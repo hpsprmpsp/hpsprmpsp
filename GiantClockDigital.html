@@ -102,13 +102,15 @@
 					setTime();
 			},1000);
 
+
 				function setTime(){
 					var cDT= new Date();
 					var ampm="";
 					var hr=function(){
 					let op=cDT.getHours();
-					op=op>12?(op-12):op;
 					ampm=op>12?"pm":"am";
+					op=op>12?(op-12):op;
+					
 					return op;
 				};
 				var sep="<div class='separator'><div></div><div></div></div>"
