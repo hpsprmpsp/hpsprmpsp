@@ -19,6 +19,7 @@
   				color:#eee;
   				text-align: center;
   			}
+  			
   			#divSep{
   				height:100%;
   			}
@@ -35,8 +36,8 @@
   				bottom: 0px;
   				display: inline;
   				right:0px;
-  				margin-left:50px;
-  				font-size:10vw;
+  				margin-left:20px;
+  				font-size:7vw;
   			}
   			#divSecO{
   				height:50px;
@@ -46,14 +47,42 @@
   				background-color: #eee;
   				transition: width 1s;
   			}
+  			.separator{
+  				position: absolute;;
+  				display: inline;
+  				top:0px;
+  				width:7%;
+  				height:100%;
+  				right:0px;
+  				background-color: transparent;
+  			}
+  			.separator div{
+  				position: relative;
+  				height:10%;
+  				background-color: transparent;
+  				width:100%;
+  				animation: blink 0.1s;
+  			}
+  			.separator div:nth-child(2n+1){
+  				top:35%;
+  				background-color: #eee;
+  			}
+  			.separator div:nth-child(2n){
+  				top:50%;
+  				background-color: #eee;
+  			}
+  			@keyframes blink{
+  				from{opacity: 1}
+  				to{opacity: 0}
+  			}
   		</style>
 	</head>
 	<body>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-5" id="divHr"></div>
+				<div class="col-xs-6" id="divHr"></div>
 				
-				<div class="col-xs-7" id="divMin"></div>
+				<div class="col-xs-6" id="divMin"></div>
 				
 			</div>
 			<div class="row">
@@ -82,9 +111,10 @@
 					ampm=op>12?"pm":"am";
 					return op;
 				};
+				var sep="<div class='separator'><div></div><div></div></div>"
 
-				$("#divHr").html(hr());
-				$("#divMin").html(cDT.getMinutes()+"<div id='divAmPm'></div>");
+				$("#divHr").html(add0(hr())+sep);
+				$("#divMin").html(add0(cDT.getMinutes())+"<div id='divAmPm'></div>");
 				$("#divAmPm").html(ampm);
 				// for second progress bar
 				var sec=cDT.getSeconds();
@@ -93,6 +123,14 @@
 				$("#divSecI").css("width",sp+"%");
 
 				document.title=hr()+":"+cDT.getMinutes()+":"+sec+" "+ampm;
+				}
+
+				function add0(inp){
+					if((inp).toString().length<2){
+						return "0"+inp;
+					}else{
+						return inp.toString();
+					}
 				}
 
 			});
