@@ -108,6 +108,7 @@
 					var ampm="";
 					var hr=function(){
 					let op=cDT.getHours();
+					op=op==12?00:op;
 					ampm=op>12?"pm":"am";
 					op=op>12?(op-12):op;
 					
@@ -124,7 +125,7 @@
 
 				$("#divSecI").css("width",sp+"%");
 
-				document.title=hr()+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
+				document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
 				}
 
 				function add0(inp){
