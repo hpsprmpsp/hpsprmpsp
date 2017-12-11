@@ -108,8 +108,12 @@
 					var ampm="";
 					var hr=function(){
 					let op=cDT.getHours();
-					op=op==12?00:op;
-					ampm=op>12?"pm":"am";
+
+					ampm=op>=12?"pm":"am";
+					if(op==00){
+						op=12;
+						ampm="am";
+					}
 					op=op>12?(op-12):op;
 					
 					return op;
