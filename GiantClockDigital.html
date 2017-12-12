@@ -107,29 +107,29 @@
 					var cDT= new Date();
 					var ampm="";
 					var hr=function(){
-					let op=cDT.getHours();
+						let op=cDT.getHours();
 
-					ampm=op>=12?"pm":"am";
-					if(op==00){
-						op=12;
-						ampm="am";
-					}
-					op=op>12?(op-12):op;
+						ampm=op>=12?"pm":"am";
+						if(op==00){
+							op=12;
+							ampm="am";
+						}
+						op=op>12?(op-12):op;
 					
-					return op;
-				};
-				var sep="<div class='separator'><div></div><div></div></div>"
+						return op;
+					};
+					var sep="<div class='separator'><div></div><div></div></div>"
 
-				$("#divHr").html(add0(hr())+sep);
-				$("#divMin").html(add0(cDT.getMinutes())+"<div id='divAmPm'></div>");
-				$("#divAmPm").html(ampm);
-				// for second progress bar
-				var sec=cDT.getSeconds();
-				var sp=(sec/60)*100;
+					$("#divHr").html(add0(hr())+sep);
+					$("#divMin").html(add0(cDT.getMinutes())+"<div id='divAmPm'></div>");
+					$("#divAmPm").html(ampm);
+					// for second progress bar
+					var sec=cDT.getSeconds();
+					var sp=(sec/60)*100;
 
-				$("#divSecI").css("width",sp+"%");
+					$("#divSecI").css("width",sp+"%");
 
-				document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
+					document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
 				}
 
 				function add0(inp){
