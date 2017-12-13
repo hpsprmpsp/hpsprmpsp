@@ -10,17 +10,13 @@
   		<style>
   		*{
   			user-select: none;
-  			
-  		}
-  			body{
-  				background-color: #333;
-  				color:#eee;
 
-  			}
+  		}
+  			
   			#divHr, #divMin{
   				font-size: 30vw;
   				font-weight: 900;
-  				color:#eee;
+  				color:inherit;
   				text-align: center;
   			}
   			
@@ -36,7 +32,7 @@
   			#divSep div:nth-child(2n){
   				background-color: #eee;
   			}
-  			#divAmPm{
+  			#divSec{
   				bottom: 0px;
   				display: inline;
   				right:0px;
@@ -69,11 +65,11 @@
   			}
   			.separator div:nth-child(2n+1){
   				top:35%;
-  				background-color: #eee;
+  				background-color: unset;
   			}
   			.separator div:nth-child(2n){
   				top:50%;
-  				background-color: #eee;
+  				background-color: unset;
   			}
   			@keyframes blink{
   				from{opacity: 1}
@@ -89,15 +85,7 @@
 				<div class="col-xs-6" id="divMin"></div>
 				
 			</div>
-			<div class="row">
-				<div class="col-xs-12" id="divSecO">
-					<div id="divSecI"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6 col-xs-12"></div>
-				<div class="col-sm-6 col-xs-12"></div>
-			</div>
+			
 		</div>
 		<script>
 			$(document).ready(function(){
@@ -125,14 +113,24 @@
 					var sep="<div class='separator'><div></div><div></div></div>"
 
 					$("#divHr").html(add0(hr())+sep);
-					$("#divMin").html(add0(cDT.getMinutes())+"<div id='divAmPm'></div>");
-					$("#divAmPm").html(ampm);
-					// for second progress bar
+					$("#divMin").html(add0(cDT.getMinutes())+"<div id='divSec'></div>");
+					
 					var sec=cDT.getSeconds();
-					var sp=(sec/60)*100;
+					$("#divSec").html(add0(sec));
 
-					$("#divSecI").css("width",sp+"%");
-
+					if((hr()>6 && ampm=="am") || (hr()<6 && ampm=="pm")){
+						$(document.body).css("background-color","#ddd");
+						$(document.body).css("color","#222");
+						$(".separator div").each(function(){
+							$(this).css("background-color","#222");
+						});
+					}else{
+						$(document.body).css("background-color","#333");
+						$(document.body).css("color","#eee");
+						$(".separator div").each(function(){
+							$(this).css("background-color","#eee");
+						});
+					}
 					document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
 				}
 
