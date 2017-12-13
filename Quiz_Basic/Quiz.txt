@@ -37,11 +37,11 @@
 			},
 			{
 				"Number":"2",
-				"Q": "Japan",
-				"O1": "Tokyo",
+				"Q": "Greece",
+				"O1": "Athens",
 				"O2": "Islamabad",
 				"O3": "Kochin",
-				"O4": "Japan doesn't have a capital",
+				"O4": "Greece doesn't have a capital, cause it's broke, lol",
 				"A": "Tokyo",
 				"D": "No Desc req"
 			}
