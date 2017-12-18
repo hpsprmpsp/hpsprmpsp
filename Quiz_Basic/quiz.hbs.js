@@ -12,6 +12,18 @@
 		}
 	};
 
+Handlebars.registerHelper("lisrboxeswithradio",function(name,options){
+	var rl=options.fn();
+	rl=rl.trim().split("|");
+
+	var op="";
+	for(var x in rl){
+		var item=rl[x].trim();
+		op+="<li class='list-group-item><label><input type='radio' name='"+item+"' value='"+x+"'/>"+item+"</label></li>";
+	}
+	return op;
+})
+
 var answers_provided={};
 
 function setAnswer(indx){

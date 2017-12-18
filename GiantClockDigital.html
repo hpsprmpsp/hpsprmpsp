@@ -12,6 +12,10 @@
   			user-select: none;
 
   		}
+  		body{
+  			color:#eee;
+  			background:#333;
+  		}
   			
   			#divHr, #divMin{
   				font-size: 30vw;
@@ -65,19 +69,40 @@
   			}
   			.separator div:nth-child(2n+1){
   				top:35%;
-  				background-color: unset;
+  				background-color: #eee;
   			}
   			.separator div:nth-child(2n){
   				top:50%;
-  				background-color: unset;
+  				background-color: #eee;
   			}
   			@keyframes blink{
   				from{opacity: 1}
   				to{opacity: 0}
   			}
+  			svg{
+  				position: fixed;
+  				top:5px;
+  				left:5px;
+  				z-index:20;
+  				transition:all 0.4s;
+  			}
+  			path{
+  				fill:none;
+  				stroke:#eee;
+  				stroke-width:10;
+  			}
+  			@media screen and (max-width: 728px){
+  				svg{
+  					top:calc(100% - 300px);
+  					left:calc(50% - 100px);
+  				}
+  			} 
   		</style>
 	</head>
 	<body>
+		<svg height="200" width="200" id="sDN" >
+			
+		</svg>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-6" id="divHr"></div>
@@ -85,7 +110,7 @@
 				<div class="col-xs-6" id="divMin"></div>
 				
 			</div>
-			
+			<div class="divAmPm"></div>
 		</div>
 		<script>
 			$(document).ready(function(){
@@ -110,6 +135,8 @@
 					
 						return op;
 					};
+					var days=['Sunday','Monday','Tuesday','Wednessday','Thursday','Friday'];
+					var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 					var sep="<div class='separator'><div></div><div></div></div>"
 
 					$("#divHr").html(add0(hr())+sep);
@@ -118,18 +145,12 @@
 					var sec=cDT.getSeconds();
 					$("#divSec").html(add0(sec));
 
-					if((hr()>6 && ampm=="am") || (hr()<6 && ampm=="pm")){
-						$(document.body).css("background-color","#ddd");
-						$(document.body).css("color","#222");
-						$(".separator div").each(function(){
-							$(this).css("background-color","#222");
-						});
+					if((hr()>6 && ampm=="am") || (hr()<6 && ampm=="pm") || (hr()==12)){
+						
+						addSvg("day",days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear());
 					}else{
-						$(document.body).css("background-color","#333");
-						$(document.body).css("color","#eee");
-						$(".separator div").each(function(){
-							$(this).css("background-color","#eee");
-						});
+						
+						addSvg("night",days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear());
 					}
 					document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
 				}
@@ -139,6 +160,26 @@
 						return "0"+inp;
 					}else{
 						return inp.toString();
+					}
+				}
+				function addSvg(light,day){
+					var s=document.getElementById("sDN");
+					
+					if(light=="day" || light=="d"){
+						var c='<circle cx="75" cy="75" r="50" stroke="#eee" stroke-width="10" fill="#eee" />';
+						var p="<path d='";
+						p+="M 0 75 L 15 75 M 135 75 l 15 0 M 75 135 l 0 15 M 75 0 l 0 15 M 15 15 m6 6 l 10.63 10.63 M135 15 m -6 6 l -10.63 10.63 M 135 135 m-6 -6 l -10.63 -10.63 M15 135 m 6 -6 l 10.63 -10.63";
+						p+="' />";
+						var t="<text x='15' y='165' fill='#eee'>"+day+"</text>";
+						s.innerHTML =c + p+t;
+
+					}else{
+						var c1='<circle cx="75" cy="75" r="50" stroke="#eee" stroke-width="10" fill="#eee" />';
+						var c2='<circle cx="87.50" cy="75" r="40" stroke="#eee" stroke-width="10" fill="none" />';
+						var c3='<circle cx="125" cy="75" r="40" stroke="#333" stroke-width="10" fill="#333" />';
+						var t="<text x='15' y='165' fill='#eee'>"+day+"</text>";
+						s.innerHTML=c1+c2+c3+t;
+
 					}
 				}
 
