@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>00:00:00</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<style>
+  		*{
+  			user-select: none;
+
+  		}
+  		body{
+  			color:#eee;
+  			background:#333;
+  		}
+  			
+  			#divHr, #divMin{
+  				font-size: 30vw;
+  				font-weight: 900;
+  				color:inherit;
+  				text-align: center;
+  			}
+  			
+  			#divSep{
+  				height:100%;
+  			}
+  			#divSep div{
+  				position: relative;
+  				height:20%;
+  				width: 100%;
+  				background-color: transparent;
+  			}
+  			#divSep div:nth-child(2n){
+  				background-color: #eee;
+  			}
+  			#divSec{
+  				bottom: 0px;
+  				display: inline;
+  				right:0px;
+  				margin-left:20px;
+  				font-size:7vw;
+  			}
+  			#divSecO{
+  				height:50px;
+  			}
+  			#divSecI{
+  				height:50px;
+  				background-color: #eee;
+  				transition: width 1s;
+  			}
+  			.separator{
+  				position: absolute;;
+  				display: inline;
+  				top:0px;
+  				width:7%;
+  				height:100%;
+  				right:0px;
+  				background-color: transparent;
+  			}
+  			.separator div{
+  				position: relative;
+  				height:10%;
+  				background-color: transparent;
+  				width:100%;
+  				animation: blink 0.1s;
+  			}
+  			.separator div:nth-child(2n+1){
+  				top:35%;
+  				background-color: #eee;
+  			}
+  			.separator div:nth-child(2n){
+  				top:50%;
+  				background-color: #eee;
+  			}
+  			@keyframes blink{
+  				from{opacity: 1}
+  				to{opacity: 0}
+  			}
+  			svg{
+  				position: fixed;
+  				top:5px;
+  				left:5px;
+  				z-index:20;
+  				transition:all 0.4s;
+  			}
+  			path{
+  				fill:none;
+  				stroke:#eee;
+  				stroke-width:10;
+  			}
+  			@media screen and (max-width: 728px){
+  				svg{
+  					top:calc(100% - 300px);
+  					left:calc(50% - 100px);
+  				}
+  			} 
+  		</style>
+	</head>
+	<body>
+		<svg height="200" width="200" id="sDN" >
+			
+		</svg>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6" id="divHr"></div>
+				
+				<div class="col-xs-6" id="divMin"></div>
+				
+			</div>
+			<div class="divAmPm"></div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				setTime();
+				setInterval(function(){
+					setTime();
+			},1000);
+
+
+				function setTime(){
+					var cDT= new Date();
+					var ampm="";
+					var hr=function(){
+						let op=cDT.getHours();
+
+						ampm=op>=12?"pm":"am";
+						if(op==00){
+							op=12;
+							ampm="am";
+						}
+						op=op>12?(op-12):op;
+					
+						return op;
+					};
+					var days=['Sunday','Monday','Tuesday','Wednessday','Thursday','Friday'];
+					var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+					var sep="<div class='separator'><div></div><div></div></div>"
+
+					$("#divHr").html(add0(hr())+sep);
+					$("#divMin").html(add0(cDT.getMinutes())+"<div id='divSec'></div>");
+					
+					var sec=cDT.getSeconds();
+					$("#divSec").html(add0(sec));
+
+					if((hr()>6 && ampm=="am") || (hr()<6 && ampm=="pm") || (hr()==12)){
+						
+						addSvg("day",days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear());
+					}else{
+						
+						addSvg("night",days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear());
+					}
+					document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
+				}
+
+				function add0(inp){
+					if((inp).toString().length<2){
+						return "0"+inp;
+					}else{
+						return inp.toString();
+					}
+				}
+				function addSvg(light,day){
+					var s=document.getElementById("sDN");
+					
+					if(light=="day" || light=="d"){
+						var c='<circle cx="75" cy="75" r="50" stroke="#eee" stroke-width="10" fill="#eee" />';
+						var p="<path d='";
+						p+="M 0 75 L 15 75 M 135 75 l 15 0 M 75 135 l 0 15 M 75 0 l 0 15 M 15 15 m6 6 l 10.63 10.63 M135 15 m -6 6 l -10.63 10.63 M 135 135 m-6 -6 l -10.63 -10.63 M15 135 m 6 -6 l 10.63 -10.63";
+						p+="' />";
+						var t="<text x='15' y='165' fill='#eee'>"+day+"</text>";
+						s.innerHTML =c + p+t;
+
+					}else{
+						var c1='<circle cx="75" cy="75" r="50" stroke="#eee" stroke-width="10" fill="#eee" />';
+						var c2='<circle cx="87.50" cy="75" r="40" stroke="#eee" stroke-width="10" fill="none" />';
+						var c3='<circle cx="125" cy="75" r="40" stroke="#333" stroke-width="10" fill="#333" />';
+						var t="<text x='15' y='165' fill='#eee'>"+day+"</text>";
+						s.innerHTML=c1+c2+c3+t;
+
+					}
+				}
+
+			});
+		</script>
+	</body>
+</html>
