@@ -15,6 +15,7 @@
   		body{
   			color:#eee;
   			background:#333;
+  			transition: all 0.4s;
   		}
   			
   			#divHr, #divMin{
@@ -96,6 +97,9 @@
   					top:calc(100% - 300px);
   					left:calc(50% - 100px);
   				}
+  				#divHr, #divMin{
+  					margin-top:100px;
+  				}
   			} 
   		</style>
 	</head>
@@ -110,14 +114,14 @@
 				<div class="col-xs-6" id="divMin"></div>
 				
 			</div>
-			<div class="divAmPm"></div>
+			
 		</div>
 		<script>
 			$(document).ready(function(){
 				setTime();
 				setInterval(function(){
 					setTime();
-			},1000);
+				},1000);
 
 
 				function setTime(){
@@ -144,13 +148,13 @@
 					
 					var sec=cDT.getSeconds();
 					$("#divSec").html(add0(sec));
-
+					var fullLengthDate=days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear();
 					if((hr()>6 && ampm=="am") || (hr()<6 && ampm=="pm") || (hr()==12)){
 						
-						addSvg("day",days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear());
+						addSvg("day",fullLengthDate);
 					}else{
 						
-						addSvg("night",days[cDT.getDay()]+", "+cDT.getDate()+" "+months[cDT.getMonth()]+" "+cDT.getFullYear());
+						addSvg("night",fullLengthDate);
 					}
 					document.title=add0(hr())+":"+add0(cDT.getMinutes())+":"+add0(sec)+" "+ampm;
 				}
