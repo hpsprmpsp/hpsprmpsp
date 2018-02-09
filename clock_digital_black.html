@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                background-color: #000;
+            }
+            .row{
+                position: absolute;
+                display: table;
+                table-layout: fixed;
+                border-spacing: 10px;
+                left:10%;
+                width:80%;
+                height:100%;
+                top: 0%;
+                padding:0px;
+                margin:0px;
+                color:#fff;
+            }
+            .col{
+                display: table-cell;
+                width: 50%;
+                height:100%;
+                margin:0px;
+                border-radius: 20px;
+                background-color: #222;
+            }
+            .cover{
+                position: relative;
+                top:0px;
+                left:0px;
+                height:100%;
+                width: 100%;
+                background-color: transparent;
+                text-align: center;
+                font-family: "Impact";
+                
+                font-size: 40vw;
+            }
+            .ampm{
+                position: absolute;
+                left:10px;
+                top:10px;
+                padding:10px;
+                z-index: 2;
+                background-color: transparent;
+                font-weight: 900;
+                font-size: 5vw;
+                color: #ddd;
+            }
+            .sec{
+                position: absolute;
+                right:10px;
+                bottom:0px;
+                padding:10px;
+                z-index: 2;
+                background-color: transparent;
+                font-weight: 900;
+                font-size: 5vw;
+                color: #ddd;
+            }
+            .fontstyle{
+                transform: scale(0.7,1);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col">
+                <div class="cover fontstyle">12</div>
+                <div class="ampm">AM</div>
+            </div>
+            <div class="col">
+                <div class="cover fontstyle">30</div>
+                <div class="sec">10</div>
+            </div>
+        </div>
+        <script>
+            
+        </script>
+    </body>
+</html>
