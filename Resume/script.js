@@ -7,7 +7,7 @@
   $('<div>',{
     "class": 'row resume-header',
     id: "resume-header"
-  }).appendTo('body');
+  }).appendTo('#wrapper-body');
   $('<div>',{
     "class": 'row resume-body',
     id: "resume-body"
@@ -63,7 +63,7 @@ $('#resume-body-scrollsply').append(scrollMenu);
 //setup body
 data.bodyContent.forEach(function(bc,idx){
   if(bc.type=='timeline'){
-    $("<div id='"+ bc.id+"' class='row timeline-holder holders'><h1>"+bc.title+"</h1></div>").appendTo("#resume-body");
+    $("<div id='"+ bc.id+"' class='row timeline-holder holders'><h1 class='header-text-container'>"+bc.title+"</h1></div>").appendTo("#resume-body");
     let tm="<div class='timeline'>";
     bc.content.forEach(function(c,i){
       tm+="<div class='tlcontainer "+(i%2==0?"left":"right")+"'><div class='content'>"+
@@ -74,7 +74,7 @@ data.bodyContent.forEach(function(bc,idx){
     $(tm).appendTo("#"+bc.id);
   }
   if(bc.type=="about"){
-    $("<div id='"+bc.id+"'class='row about-holder holders'><h1>"+bc.title+"</h1></div>").appendTo("#resume-body");
+    $("<div id='"+bc.id+"'class='row about-holder holders'><h1 class='header-text-container'>"+bc.title+"</h1></div>").appendTo("#resume-body");
     $("<p>"+bc.content+"</p>").appendTo("#"+bc.id);
   }
 });
