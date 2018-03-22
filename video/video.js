@@ -1,7 +1,7 @@
 var video=[];
 video.source="";
 video.inp=[];
-video.inp.actual=$("<input type='file' class='hidden' />");
+video.inp.actual=$("<input type='file' class='hidden' accept='video/mp4'/>");
 video.inp.toShow=$("<div class='input-holder'><input readonly class='input-group' data-ride='file-name'/><button class='input-group'>Browse</button></div>");
 
 

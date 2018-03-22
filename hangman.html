@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hangman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="word.js"></script>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    svg {
+        position: absolute;
+        left: calc(50% - 200px);
+        margin-top: 10px;
+        background-color: #333;
+    }
+
+    polyline,
+    circle,
+    line {
+        stroke: #eee;
+        stroke-width: 5;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: dash 1s;
+
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+    }
+
+    .btn-alphabet {
+        position: relative;
+        height: 45px;
+        width: 45px;
+        margin: 2.5px;
+        border: 1px solid #333;
+        color: #eee;
+        background-color: #333;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+    .btn-alphabet:disabled {
+        color: #333;
+        background-color: #eee;
+        cursor: not-allowed;
+    }
+
+    .btn-alphabet-clicked {
+        color: #333;
+        background-color: #eee;
+        cursor: not-allowed;
+    }
+
+    #divAlphabetPlate {
+        padding: 5px;
+    }
+
+    #divWord {
+        padding: 10px;
+        margin-left: 10px;
+    }
+
+    div.row {
+        min-height: 200px;
+    }
+
+    .btn-word,
+    .btn-word-space {
+        position: relative;
+        height: 60px;
+        width: 60px;
+        margin: 4px;
+        border: 4px solid transparent;
+        border-bottom-color: #333;
+        color: #333;
+        font-size: 1.5em;
+        font-weight: 900;
+        cursor: pointer;
+        user-select: none;
+        background-color: transparent;
+    }
+
+    .btn-word-space {
+        border-color: transparent;
+        width: 4px;
+        height: 80px;
+        margin-left: 24px;
+        margin-right: 24px;
+        transform: rotate(10deg);
+        background-color: #333;
+        border: none;
+        padding: 0px;
+    }
+
+    .error-message,
+    .success-message {
+        position: absolute;
+        left: calc(50% - 200px);
+        top: 560px;
+        color: #ff0000;
+        font-size: 1.5em;
+        height: 50px;
+        width: 400px;
+        text-align: center;
+    }
+
+    .success-message {
+        color: #888;
+    }
+
+    .chance-message {
+        position: absolute;
+        left: calc(50% - 200px);
+        top: 510px;
+        color: #333;
+        font-size: 1.5em;
+        height: 50px;
+        width: 400px;
+        text-align: center;
+        font-weight: 900;
+    }
+
+    .miscPlate {
+        position: absolute;
+        left: calc(50% - 200px);
+        top: 620px;
+        color: #333;
+        font-size: 1.5em;
+        height: 50px;
+        width: 400px;
+        text-align: center;
+        font-weight: 900;
+    }
+
+    .outer-modal {
+        position: fixed;
+        z-index: 10;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .inner-modal {
+        position: absolute;
+        top: 50px;
+        left: 20%;
+        width: 60%;
+        min-height: 200px;
+        background-color: white;
+        color: black;
+    }
+
+    .modal-header {
+        position: absolute;
+        top:0px;
+        left:0px;
+        height:20%;
+        width:100%;
+        
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    }
+
+    .content-holder {
+        position: absolute;
+        top:20%;
+        left:0px;
+        height:60%;
+        width:100%;
+        
+    }
+
+    .pop-footer {
+        position: absolute;
+        top:80%;
+        left:0px;
+        height:20%;
+        width:100%;
+        
+    }
+    .btn-group-justified{
+        width:100%;
+        float: right;
+    }
+
+    .action-blocker {
+        position: fixed;
+        z-index: 10;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        display: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .score {
+        position: fixed;
+        left: -10px;
+        top: calc(50% - 40px);
+        height: 80px;
+        width: 100px;
+        z-index: 8;
+        font-size: 3em;
+        font-weight: 900;
+        line-height: 80px;
+        text-align: right;
+        padding: 5px;
+        border-radius: 2.5px;
+        color: white;
+        background: linear-gradient(90deg, red 0%, green 33%, blue 67%, blue 100%);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes dash {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <svg height="500" width="400" id="svgHM"></svg>
+                <div class="chance-message" id="chanceDiv">Chances Left: 6</div>
+                <div id="errorDiv"></div>
+                <div class="miscPlate" id="divMisc">
+                    <div class="btn-group btn-group-justified">
+                        <button type="button" class="btn btn-primary">Next Match</button>
+                        <button type="button" class="btn btn-primary">End Game</button>
+                        <button type="button" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="row"></div>
+                <div class="row" id="divWord"></div>
+                <div class='row' id="divAlphabetPlate"></div>
+            </div>
+        </div>
+    </div>
+    <div class="outer-modal">
+        <div class="inner-modal">
+            <div class="modal-header"></div>
+            <div class="content-holder"></div>
+            <div class="pop-footer">
+                <div class="btn-group btn-group-justified">
+                    <button type="button" class="btn btn-primary">Next Match</button>
+                    <button type="button" class="btn btn-primary">End Game</button>
+                    <button type="button" class="btn btn-primary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="action-blocker"></div>
+    <div class="score"></div>
+    <script>
+    var svg = document.getElementById('svgHM');
+    var chances = 6;
+    var modal = document.getElementById('divModal');
+
+    generateButtonUI();
+    generateWordUI();
+    getScore();
+
+    var score = sessionStorage.getItem('score');
+
+
+
+    //get alphabet button
+    function getAlphabet() {
+        var alphabet = [];
+        for (let i = 65; i < 91; i++) {
+            alphabet.push(String.fromCharCode(i));
+        }
+        return alphabet;
+    }
+    //get word collection
+    function getWords() {
+        var k = words.split(',');
+        return k;
+    }
+    //get random word from word collection
+    function getRandomWord() {
+        /*var wd = getWords();
+        var l = wd.length;
+        var rnd = Math.floor(Math.random() * l);
+        return wd[rnd].toString();*/
+        return "GOD";
+
+    }
+
+    //generate alphabet buttons
+    function generateButtonUI() {
+        var wd = getAlphabet();
+
+        var cont = document.getElementById('divAlphabetPlate');
+
+        wd.forEach(function(w) {
+            var btn = document.createElement('input');
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('value', w.toString());
+            btn.setAttribute('class', 'btn-alphabet');
+            btn.addEventListener('click', function(e) {
+
+                var ele = e.target;
+                var val = ele.value;
+                var inputs = document.getElementsByName('inp-' + val);
+                if (inputs.length > 0) {
+                    inputs.forEach(function(inp) {
+                        inp.value = val.toUpperCase();
+                    });
+                    openBlocker();
+
+                } else {
+                    wrongEntry();
+                }
+                ele.classList.add('btn-alphabet-clicked');
+                ele.setAttribute('disabled', 'disabled');
+                if (puzzleComplete()) {
+                    puzzleWon();
+                }
+
+            }, false);
+            cont.appendChild(btn);
+        });
+    }
+
+    //generate UI for words
+    function generateWordUI() {
+        var wd = getRandomWord().split("");
+        var cont = document.getElementById('divWord');
+        wd.forEach(function(w) {
+            var btn = document.createElement('input');
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('value', "");
+            btn.setAttribute('class', 'btn-word');
+            if (w == " ") {
+                btn.setAttribute('class', 'btn-word-space');
+            }
+            btn.setAttribute('name', 'inp-' + w.toUpperCase());
+
+            cont.appendChild(btn);
+        });
+
+    }
+
+    function wrongEntry() {
+        chances -= 1;
+        showError();
+        drawHangman(chances);
+        document.getElementById('chanceDiv').innerHTML = "Chances Left: " + chances;
+
+    }
+
+    function showError() {
+        document.getElementById('errorDiv').className = "error-message";
+        document.getElementById('errorDiv').innerHTML = "WRONG!!!";
+
+        setTimeout(function() {
+            document.getElementById('errorDiv').innerHTML = "";
+
+        }, 1000);
+
+    }
+
+    function drawHangman(idx) {
+        var elements = [{
+                'type': 'line',
+                'attr': ['x1', 'x2', 'y1', 'y2'],
+                'val': ['10', '390', '10', '10']
+            },
+            {
+                'type': 'line',
+                'attr': ['x1', 'x2', 'y1', 'y2'],
+                'val': ['200', '200', '10', '70']
+            },
+            {
+                'type': 'circle',
+                'attr': ['cx', 'cy', 'r', 'fill'],
+                'val': ['200', '120', '50', 'none']
+            },
+            {
+                'type': 'line',
+                'attr': ['x1', 'x2', 'y1', 'y2'],
+                'val': ['200', '200', '170', '370']
+            },
+            {
+                'type': 'line',
+                'attr': ['x1', 'x2', 'y1', 'y2'],
+                'val': ['100', '300', '220', '220']
+            },
+            {
+                'type': 'polyline',
+                'attr': ['points', 'fill'],
+                'val': ['100,450  200,370 300,450', 'none']
+            }
+        ];
+
+        var item = elements[5 - idx];
+        var dr = document.createElementNS('http://www.w3.org/2000/svg', item['type']);
+        item.attr.forEach(function(prop, idx) {
+            dr.setAttribute(prop, item['val'][idx]);
+        });
+        svg.append(dr);
+        if (idx == 0) {
+            setTimeout(gameOver, 1000);
+        }
+    }
+
+    function gameOver() {
+
+        var ctx = 'You have LOST!!! YOur score is ' + score;
+        popModal(ctx);
+
+    }
+
+    function puzzleComplete() {
+        var elements = document.getElementsByClassName('btn-word');
+        var ret = true;
+        for (i = 0; i < elements.length; i++) {
+            if (elements[i].value) {
+
+            } else {
+                ret = false;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    function puzzleWon() {
+        document.getElementById('errorDiv').className = "success-message";
+        document.getElementById('errorDiv').innerHTML = "You have won";
+        setScore();
+        var btns = document.getElementsByClassName('btn-alphabet');
+        for (x of btns) {
+            x.setAttribute('disabled', 'disabled');
+        }
+        var ctx = 'You have won!!! YOur score is ' + score;
+        popModal(ctx);
+        getScore();
+        //setTimeout(closeModal,1000);
+    }
+
+    function popModal(ctx) {
+        document.getElementsByClassName('outer-modal')[0].style.display = 'block';
+        document.getElementsByClassName('content-holder')[0].innerHTML = ctx;
+    }
+
+    function closeModal() {
+        document.getElementsByClassName('outer-modal')[0].style.display = 'none';
+        document.getElementsByClassName('inner-modal')[0].innerHTML = "";
+    }
+
+    function openBlocker() {
+        document.getElementsByClassName('action-blocker')[0].style.display = 'block';
+        setTimeout(function() {
+            document.getElementsByClassName('action-blocker')[0].style.display = 'none';
+        }, 1100)
+    }
+
+    function setScore() {
+        score = (parseInt(score, 10) + 1).toString();
+        score=score?score:0;
+        sessionStorage.setItem('score', score);
+    }
+
+    function getScore() {
+        score = sessionStorage.getItem('score');
+        score=score?score:0;
+        document.getElementsByClassName('score')[0].innerHTML = score;
+    }
+    </script>
+</body>
+
+</html>
