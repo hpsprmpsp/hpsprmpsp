@@ -6,7 +6,7 @@ if __name__ == '__main__':
         print("Welcome to hangman!!")
         with open('words.txt','r') as r:
             words=list(r)
-        
+
         word=random.choice(words)
         word = "".join(word)
         #word="EVAPORATE"
@@ -30,7 +30,7 @@ if __name__ == '__main__':
                                 lstGuessed.add(letter.upper())
                                 wrong+=1
                         #letter = input("guess letter: ")
-                        print("Incorrect Guess(life lef= ",6-wrong," times)")
+                        print("Incorrect Guess(life left= ",6-wrong," times)")
                 print(''.join(guessed))
                 print("==================================")
                 if '_' not in guessed:
