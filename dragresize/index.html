@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            .outer{
+                position:absolute;
+                width: 70%;
+                left:15%;
+                min-height: 80%;
+                top:10%;
+            }
+            .card{
+                position: relative;
+                display: inline-block;
+                min-height: 200px;
+                min-width: 200px;
+                margin: 5px;
+                padding:5px;
+                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+            }
+            .placeholder{
+                border:2px dotted black;
+                border-radius: 5px;
+                min-height: 200px;
+                min-width: 200px;
+                background-color: #999;
+                display: inline-block;
+            }
+            .ui-resizable-handle{
+                position: absolute;
+                height:10px;
+                width:10px;
+                background-color: red;
+                top: calc(100% - 20px);
+                left: calc(100% - 20px);
+            }
+            .ui-sortable-handle::after{
+                content:"";
+                position: absolute;
+                height:10px;
+                width:10px;
+                background-color: green;
+                top: 10px;
+                left: calc(100% - 20px);
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $(".outer").sortable({
+                    placeholder:"placeholder",
+                    update:function(ev,ui){
+                        var pr=$(this).sortable('toArray').toString();
+                        console.log(pr);
+                    }
+                });
+                $(".card").resizable();
+            });
+        </script>
+    </body>
+</html>
