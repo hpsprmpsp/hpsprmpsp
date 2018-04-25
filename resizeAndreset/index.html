@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="data.js"></script>
+    <script src="render.js"></script>
+</head>
+
+<body>
+    <div class="outer" ng-app="myApp" ng-controller="myController" id="div-main-container">
+        <!--<div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>-->
+        <div ng-repeat="x in data track by $index" class="{{x.cssClass}}" id="{{x.elment_id}}" style="{{x.style}}">
+            <div class="handle" ></div>
+            <div class="card-content">
+                {{x.content}}
+            </div>
+        </div>
+    </div>
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller("myController", ["$scope", function($scope) {
+        $scope.detail = initialise(data, 'default');
+        $scope.data = $scope.detail.data;
+        $scope.activePlan = $scope.detail.activePlan;
+        /*$("#div-main-container").on('drop',function(e){
+            $scope.$apply();
+        var d_p=updateDataFromLayout(pr);
+        save_layout(d_p,'chema',true);
+    
+        });*/
+
+    }]);
+    app.filter('changeToHTML',function(){
+        return function(x){
+            return $("'"+x+"'");
+        }
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $(".outer").sortable({
+            start: function(ev,ui){debugger;
+                ui.placeholder.html("placeholder");
+                ui.placeholder.height(ui.item.height());
+                ui.placeholder.width(ui.item.width());
+                
+            },
+            update: function(ev, ui) {
+                var pr = $(this).sortable('toArray');
+                var wd = $(this).sortable('widget');
+                console.log(pr);
+                console.log(wd);
+                let new_layout=updateDataFromLayout(pr);
+                save_layout(new_layout,'test',true);
+            },
+            helper: 'clone',
+            handle: '.handle',
+            containment: ".outer",
+            cursor: 'move',
+            cursorAt :{right:12},
+            item: "> .card",
+            revert: true,
+            placeholder: 'placeholder'
+        });
+        $(".card").resizable({
+            ghost:true,
+            containment: ".outer",
+            
+            stop: function(ev,ui){
+                var op_array=ui.element.parent().first().find('.card').toArray().map(function(a){return a.id})
+                console.log(op_array);
+                let new_layout=updateDataFromLayout(op_array);
+                save_layout(new_layout,'test',true);
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
