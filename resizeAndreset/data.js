@@ -36,14 +36,8 @@ var data = [
         cssClass: "card",
         content: "abc box6",
         
-    },
-    {
-        elment_id: "box7",
-        cssClass: "card",
-        content: "abc box7",
-        
     }
     
 ];
 
-timespamp=1524473481126;
+timespamp=1524828947800;
