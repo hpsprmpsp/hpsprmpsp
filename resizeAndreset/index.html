@@ -7,7 +7,7 @@
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="data.js"></script>
+    <script src="data2.js"></script>
     <script src="render.js"></script>
 </head>
 
@@ -15,20 +15,27 @@
     <div class="option-holder-main">
         <button id="btnEdit" class="btn btn-primary left">Edit</button>
     </div>
-    <div class="outer" ng-app="myApp" ng-controller="myController" id="div-main-container">
-        <!--<div class="card">1</div>
-            <div class="card">2</div>
-            <div class="card">3</div>
-            <div class="card">4</div>
-            <div class="card">5</div>
-            <div class="card">6</div>
-            <div class="card">7</div>-->
-        <div ng-repeat="x in data track by $index" class="{{x.cssClass}} dragg_ele" id="{{x.elment_id}}" style="{{x.style}}">
+    <!--<div class="outer" ng-app="myApp" ng-controller="myController" id="div-main-container">
+       
+        <div ng-repeat="tr in data track by $index" class="{{tr.cssClass}}" id="{{tr.elment_id}}" style="{{x.style}}">
             <div class="card-content">
                 {{x.content}}
             </div>
         </div>
-    </div>
+    </div>-->
+    <table class="table" ng-app="myApp" ng-controller="myController">
+        <tr ng-repeat="tr in data track by $index" class="{{tr.cssClass}}" style="{{tr.style}}">
+            <td ng-repeat="td in tr.content track by $index" class="{{td.cssClass}}" style="{{td.style}}">
+                <div class="inner">
+                    <div ng-repeat="x in td.content track by $index" class="{{x.cssClass}} card" style="{{x.style}}" id="{{x.elment_id}}">
+                        <div class="card-content">
+                            {{x.content}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
     <script>
     var app = angular.module('myApp', []);
     app.controller("myController", ["$scope", function($scope) {
@@ -51,63 +58,152 @@
     </script>
     <script>
     $(document).ready(function() {
-        let edit=1;
+        /*let edit = 1;
 
         $("#btnEdit").on("click", function() {
-            if(edit){
-                
-            $(this).text("Done");
-            $('.dragg_ele').each(function(i, el) {
-                let hndl = document.createElement('DIV');
-                hndl.classList.add('handle');
-                el.prepend(hndl);
-            });
-            $(".outer").sortable({
-                start: function(ev, ui) {
-                    debugger;
-                    ui.placeholder.html("placeholder");
-                    ui.placeholder.height(ui.item.height());
-                    ui.placeholder.width(ui.item.width());
+            if (edit) {
 
-                },
-                update: function(ev, ui) {
-                    var pr = $(this).sortable('toArray');
-                    var wd = $(this).sortable('widget');
-                    console.log(pr);
-                    console.log(wd);
-                    let new_layout = updateDataFromLayout(pr);
-                    save_layout(new_layout, 'test', true);
-                },
-                helper: 'clone',
-                handle: '.handle',
-                containment: ".outer",
-                cursor: 'move',
-                cursorAt: { right: 12 },
-                item: "> .card",
-                revert: true,
-                placeholder: 'placeholder'
-            });
-            $('.card').removeClass("ui-resizable-disabled");
-            $(".card").resizable({
-                ghost: true,
-                containment: ".outer",
-                stop: function(ev, ui) {
-                    var op_array = ui.element.parent().first().find('.card').toArray().map(function(a) { return a.id })
-                    console.log(op_array);
-                    let new_layout = updateDataFromLayout(op_array);
-                    save_layout(new_layout, 'test', true);
-                }
-            });
-            }else{
-               
+                $(this).text("Done");
+                $('.dragg_ele').each(function(i, el) {
+                    let hndl = document.createElement('DIV');
+                    hndl.classList.add('handle');
+                    el.prepend(hndl);
+                });
+                $(".inner").sortable({
+                    connectWith: '.inner',
+                    /*start: function(ev, ui) {
+                        debugger;
+                        ui.placeholder.html("placeholder");
+                        ui.placeholder.height(ui.item.height());
+                        ui.placeholder.width(ui.item.width());
+
+                    },
+                    update: function(ev, ui) {
+                        var pr = $(this).sortable('toArray');
+                        var wd = $(this).sortable('widget');
+                        console.log(pr);
+                        console.log(wd);
+                        let new_layout = updateDataFromLayout(pr);
+                        save_layout(new_layout, 'test', true);
+                    },
+                    helper: 'clone',
+                    handle: '.handle',
+                    containment: ".outer",
+                    cursor: 'move',
+                    cursorAt: { right: 12 },
+                    item: "> .card",
+                    revert: true,
+                    placeholder: 'placeholder'
+                });
+                $('.card').removeClass("ui-resizable-disabled");
+                $(".card").resizable({
+                    ghost: true,
+
+                    stop: function(ev, ui) {
+                        var op_array = ui.element.parent().first().find('.card').toArray().map(function(a) { return a.id })
+                        console.log(op_array);
+                        let new_layout = updateDataFromLayout(op_array);
+                        save_layout(new_layout, 'test', true);
+                    }
+                });
+            } else {
+
                 $(this).text("Edit");
                 $(".outer").sortable('destroy');
                 $(".handle").remove();
                 $(".card").resizable('destroy');
                 $(".ui-resizable-handle").remove();
             }
-            edit=!edit;
+            edit = !edit;
+        });*/
+
+        $(".inner").sortable({
+            connectWith: ".inner",
+            helper: 'clone',
+            cursor: 'move',
+            cursorAt: { right: 12 },
+            item: "> .card",
+            revert: true,
+            placeholder: 'placeholder',
+            forcePlaceholderSize: true,
+            forceHelperSize: true,
+            distance: 100,
+            start: function(ev, ui) {
+                ui.placeholder.html("placeholder");
+                ui.placeholder.height(ui.item.height());
+                ui.placeholder.width(ui.item.width());
+            },
+            update: function(ev, ui) {
+                let op = [];
+                let table = $(this).parents('table:first');
+                table.children().children().each(function(i, tr) {
+                    var tr_obj = {};
+                    tr_obj.style = tr.style.cssText;
+                    tr_obj.content = [];
+                    $(tr).children().each(function(j, td) {
+                        var td_obj = {};
+                        td_obj.style = td.style.cssText;
+                        td_obj.content = [];
+                        $(td).children('.inner').children('.card').each(function(k, div) {
+                            let div_obj = {};
+                            div_obj.elment_id = div.id;
+                            div_obj.cssClass = div.classList;
+                            div_obj.content = div.innerHTML;
+                            div_obj.style = div.style.cssText;
+
+                            td_obj.content.push(div_obj);
+                        });
+
+                        tr_obj.content.push(td_obj);
+
+                    });
+                    op.push(tr_obj);
+                });
+                //console.log(op);
+                //let new_layout = updateDataFromLayout(pr);
+                save_layout(op, 'Kamui', true);
+            }
         });
+        $(".card").resizable({
+            ghost: true,
+            
+            stop: function(ev, ui) {
+
+                let op = [];
+                let table = $(this).parents('table:first');
+                table.children().children().each(function(i, tr) {
+                    var tr_obj = {};
+                    tr_obj.style = tr.style.cssText;
+                    tr_obj.content = [];
+                    $(tr).children().each(function(j, td) {
+                        var td_obj = {};
+                        td_obj.style = td.style.cssText;
+                        td_obj.content = [];
+                        $(td).children('.inner').children('.card').each(function(k, div) {
+                            let div_obj = {};
+                            div_obj.elment_id = div.id;
+                            div_obj.cssClass = div.classList;
+                            div_obj.content = div.innerHTML;
+                            div_obj.style = div.style.cssText;
+
+                            td_obj.content.push(div_obj);
+                        });
+
+                        tr_obj.content.push(td_obj);
+
+                    });
+                    op.push(tr_obj);
+                    //console.log(op);
+                    save_layout(op, 'Baikuno', true);
+                });
+            }
+        });
+
+        $("table td").resizable({
+            ghost: true
+        });
+
+
     });
     </script>
 </body>
