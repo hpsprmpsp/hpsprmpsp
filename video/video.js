@@ -1,19 +1,15 @@
-var video=[];
-video.source="";
-video.inp=[];
-video.inp.actual=$("<input type='file' class='hidden' accept='video/mp4'/>");
+var video={};
+video.inp={};
+video.inp.actual=$("<input type='file' class='hidden' ele-purp = 'video-input' accept='video/mp4'/>");
 video.inp.toShow=$("<div class='input-holder'><input readonly class='input-group' data-ride='file-name'/><button class='input-group'>Browse</button></div>");
+video.video = {};
+video.video.element=$("<video vid-name='my-video'></video>");
+video.video.source= "";
+video.video.container=$('#div-video-container');
 
-
-
-
-
-video.clear=function(){
-	video.container.empty();
+video.video.clear=function(){
+	video.video.container.empty();
 }
-
-
-
 
 video.inp.initiate=function(){
 	$('#div-container-input').html(video.inp.actual);
@@ -31,9 +27,7 @@ video.inp.clear=function(){
 	$('#div-container-input').empty();
 };
 
-
-
-
 video.initiate=function(){
-
+	video.video.clear();
 };
+
