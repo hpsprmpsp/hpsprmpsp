@@ -6,7 +6,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0px;
-    background-color: #ddd!important;
+    background-color: #444!important;
     overflow-x: hidden;
 }
 
@@ -101,13 +101,13 @@ ul.nav-stacked{
     width: 76%;
     left: 12%;
     background-color: white;
-    box-shadow: 0px 0px 5px 0px #999;
     margin: 0px!important;
     margin-top: 12.5px!important;
     margin-bottom: 12.5px!important;
     border-radius: 5px;
     position: relative;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
@@ -122,11 +122,11 @@ ul.nav-stacked{
 
 .resume-header-title {
     position: absolute;
-    top: 0px;
+    top: 50px;
     left: 0px;
-    height: 100%;
+    height: calc(100% - 50px);
     width: 100%;
-    padding: 10px;
+    padding: 5px;
 }
 
 .resume-header-title h1 {
@@ -143,7 +143,7 @@ ul.nav-stacked{
     line-height: 50px;
     cursor: pointer;
     color:white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 5px #444;
 }
 
 
@@ -194,9 +194,15 @@ ul.nav-stacked{
 
 .resume-footer {
     position: relative;
-    min-height: 100px;
+    min-height: 50px;
+    box-shadow: 0px -1px 0px 0px #eee;
+    padding: 10px;
+    align-content: center;
 }
-
+.resume-footer p{
+    width: 76%;
+    margin-left: 12%;
+}
 
 /*CSS for timeline element inside wrapper->body*/
 
@@ -208,6 +214,7 @@ ul.nav-stacked{
 .timeline {
     position: relative;
     margin: 0 auto;
+    margin-top:-10px;
 }
 
 .timeline::after {
@@ -286,4 +293,158 @@ ul.nav-stacked{
     color: #eee;
     position: relative;
     border-radius: 6px;
+}
+
+.table{
+    display: table;
+    width : 100%;
+    margin: auto;
+    margin-top:20px;
+    border-collapse: collapse;
+}
+.table tr{
+    display: table-row;
+    min-height: 40px;
+    
+}
+.table tr td, .table tr th{
+    display: table-cell;
+    min-height: 40px;
+    padding: 5px;
+    padding-left: 10px;
+    vertical-align: top;
+    
+}
+.table tr th{
+    font-weight: 900;
+    font-size: 1.5em;
+
+}
+.table-bordered tr, .table-bordered tr th, .table-bordered tr td{
+    border: 2px solid black;
+}
+.table_highlight_header tr th{
+    background-color: #444;
+    color: #eee;
+}
+.table_separator_bottom tr{
+    border-bottom: 1px solid #444;
+}
+.table_separator_bottom tr:nth-of-type(1){
+    border:none;
+}
+.table_separator_bottom tr:nth-last-of-type(1){
+    border: none;
+}
+ol{
+    padding: 0px;
+    margin-left:10px;
+}
+ol li{
+    padding: 5px;
+    padding-left: 10px;
+}
+.header_dark{
+    background-color: #444;
+    color: #eee;
+}
+.table_striped tr:nth-of-type(even){
+    background-color: #444;
+    color: #eee;
+}
+.left-allign{
+    text-align: left;
+}
+.right-align{
+    text-align: right;
+}
+.horizonatal-header{
+    padding-right: 10px;
+    font-weight: 800;
+    font-size: 1.2em;
+}
+.horizonatal-content{
+    padding-left: 10px;
+}
+.table_striped tr:nth-of-type(even) td.horizonatal-header{
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee
+}
+.table_striped tr:nth-of-type(odd) td.horizonatal-header{
+    border-right: 1px solid #444;
+}
+.table_striped tr:nth-of-type(even) td.horizonatal-content{
+    border-right: 1px solid #eee!important;
+}
+a.anchor{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    font-style: italic;
+    color: cornflowerblue;
+    padding:2px;
+}
+a.anchor:hover{
+    text-decoration: none;
+    color: white;
+    background-color: cornflowerblue;
+}
+a.anchor:visited, a.anchor:active{
+    text-decoration: none;
+}
+.left-float{
+    float: left;
+    margin-left: 10px!important;
+}
+.right-float{
+    float: right;
+    margin-right: 10px!important;
+}
+
+.cont-div{
+    width: 100%;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.cont-div ul{
+    margin:10px;
+    padding:0px;
+    margin-left: 25px;
+}
+.cont-div-header{
+    margin-top:5px;
+    width:100%;
+    padding:5px;
+    min-height: 40px;
+    background-color: #444;
+    color: #eee;
+    font-weight: 800;
+    font-size: 1.2em;
+    
+}
+.corner-border-light1{
+    border-left: 1px solid #eee!important;
+    border-right: 1px solid #eee!important;
+}
+.social-box{
+    position: absolute;
+    top: 0px;
+    height: 50px;
+    right: 10px;
+    padding: 5px;
+}
+.social-box a{
+    margin:5px;
+    cursor: pointer;
+}
+.social-box a:hover{
+    color:blanchedalmond;
+}
+.ligh_font{
+    color: #eee;
+}
+.bold{
+    padding: 5px;
+    font-size: 1.2em;
+    font-weight: 900;
 }
