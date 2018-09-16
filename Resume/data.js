@@ -240,7 +240,11 @@ var data = {
                 },
                 {
                     label : 'DOB',
+<<<<<<< HEAD
                     content : { "date": "6", "month": "10", "year": "2017" },
+=======
+                    content : { "date": "12", "month": "07", "year": "1991" },
+>>>>>>> ume
                     type : 'date'
                 },
                 {
