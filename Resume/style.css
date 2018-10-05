@@ -425,6 +425,7 @@ a.anchor:visited, a.anchor:active{
 .corner-border-light1{
     border-left: 1px solid #eee!important;
     border-right: 1px solid #eee!important;
+
 }
 .social-box{
     position: absolute;
@@ -448,3 +449,4 @@ a.anchor:visited, a.anchor:active{
     font-size: 1.2em;
     font-weight: 900;
 }
+

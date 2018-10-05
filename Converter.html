@@ -7,13 +7,15 @@
         <style>
             *{
                 box-sizing: border-box;
+                color:white;
+                background-color: black;
             }
             input[name="number"]{
                 position: absolute;
                 top:10px;
-                left:100px;
+                left:21%;
                 height:50px;
-                width:450px;
+                width:750px;
                 border:1px solid cornflowerblue;
                 color:cornflowerblue;
                 font-size: large;
@@ -27,7 +29,7 @@
             button[name="btnGo"]{
                 position: absolute;
                 top:10px;
-                left:450px;
+                left:calc(21% + 650px);
                 height:50px;
                 width:100px;
                 border:1px solid cornflowerblue;
@@ -66,9 +68,9 @@
             .output{
                 position: absolute;
                 
-                left:100px;
+                left:21%;
                 height:100px;
-                min-width:450px;
+                min-width:75%;
                 border:1px solid transparent;
                 color:gray;
                 font-size: 5em;
@@ -97,16 +99,19 @@
             .tags{
                 position: absolute;
                 height: 100px;
-                width:85px;
+                width:20%;
                 color:cornflowerblue;
-                font-size: large;
+                font-size: 4em;
                 line-height: 100px;
                 text-align: right;
                 font-weight: 900;
             }
+            .tags:after{
+                content: ":";
+            }
             .copyButton{
                 position: absolute;
-                left:100px;
+                left:21%;
                 height:30px;
                 width:50px;
                 border:1px solid transparent;

@@ -67,6 +67,8 @@ session_start();
         </style>
     </head>
     <body>
+
+        
         <?php
         $err="";
         $op="";
@@ -106,6 +108,8 @@ session_start();
         }
         ?>
         
+
+
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <input name="number"placeholder="Number only" value="<?php echo $num; ?>" /><button name="btnGo">Go</button>
             <span class="error"><?php echo $err; ?></span>
