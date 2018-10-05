@@ -12,6 +12,16 @@
 </head>
 
 <body>
+
+    <script>
+        var intv = setInterval(function(){
+            if(document.readyState == 'complete'){
+                $('[data-toggle="tooltip"]').tooltip(); 
+                clearInterval(intv);
+            }
+        },100);
+    </script>
+
 </body>
 
 </html>

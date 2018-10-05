@@ -122,11 +122,11 @@ ul.nav-stacked{
 
 .resume-header-title {
     position: absolute;
-    top: 0px;
+    top: 50px;
     left: 0px;
-    height: 100%;
+    height: calc(100% - 50px);
     width: 100%;
-    padding: 10px;
+    padding: 5px;
 }
 
 .resume-header-title h1 {
@@ -214,6 +214,7 @@ ul.nav-stacked{
 .timeline {
     position: relative;
     margin: 0 auto;
+    margin-top:-10px;
 }
 
 .timeline::after {
@@ -424,4 +425,28 @@ a.anchor:visited, a.anchor:active{
 .corner-border-light1{
     border-left: 1px solid #eee!important;
     border-right: 1px solid #eee!important;
+
 }
+.social-box{
+    position: absolute;
+    top: 0px;
+    height: 50px;
+    right: 10px;
+    padding: 5px;
+}
+.social-box a{
+    margin:5px;
+    cursor: pointer;
+}
+.social-box a:hover{
+    color:blanchedalmond;
+}
+.ligh_font{
+    color: #eee;
+}
+.bold{
+    padding: 5px;
+    font-size: 1.2em;
+    font-weight: 900;
+}
+

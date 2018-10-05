@@ -8,7 +8,7 @@ var data = {
         title: 'Soumya Padhee\'s resume',
         icon: false,
         jsLibrary: ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"],
-        cssLibrary: ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", ]
+        cssLibrary: ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css","https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" ]
     },
 
     pageHeader: {
@@ -36,6 +36,26 @@ var data = {
             icon: 'glyphicon glyphicon-list-alt',
             src: '#experiance',
             name: 'experiance'
+        }
+    ],
+    social: [
+        {
+            name : 'linkedin',
+            target : "https://www.linkedin.com/in/soumyasarthakpadhee/",
+            icon : "fa-linkedin-square",
+            tooltip: 'LinkedIn account'
+        },
+        {
+            name : 'github',
+            target : "https://github.com/hpsprmpsp",
+            icon : "fa-github",
+            tooltip: 'GIT account'
+        },
+        {
+            name : 'gmail',
+            target: "mailTo:soumya.sarthak.padhee@gmail.com",
+            icon : "fa-envelope",
+            tooltip : 'Gmail'
         }
     ],
     bodyContent: [{
@@ -220,7 +240,10 @@ var data = {
                 },
                 {
                     label : 'DOB',
-                    content : { "date": "6", "month": "10", "year": "2017" },
+
+
+                    content : { "date": "12", "month": "07", "year": "1991" },
+
                     type : 'date'
                 },
                 {

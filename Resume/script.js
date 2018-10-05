@@ -38,13 +38,14 @@
         $.each(data.pageMeta.cssLibrary, function(idx, cssLib) {
             $('head').append('<link rel="stylesheet" type="text/css" href="' + cssLib + '" />');
         });
+
     }
     if (data.pageMeta.jsLibrary && data.pageMeta.jsLibrary.length > 0) {
         $.each(data.pageMeta.jsLibrary, function(idx, jsLib) {
             $('head').append('<script src="' + jsLib + '"></script>');
         });
     }
-
+    debugger;
     //setup Header
 
     $("<div class='resume-header-title' id='resume-header-title'><h1>" + data.pageHeader.title +
@@ -54,7 +55,20 @@
         eval(data.pageHeader.onclick);
     });
 
-
+    var socialBox = $("<div />",{"class":"social-box"});
+    data.social.forEach(function(s,i){
+        $("<a />",{
+            "class" : "ligh_font",
+            html : "<i class='fa "+s.icon+"' style='font-size:30px;'></i>",
+            target : "_blank",
+            'data-toggle': 'tooltip',
+            'data-placement': 'auto',
+            title: s.tooltip, 
+            href : s.target,
+            click : function(e){e.stopPropagation();}
+        }).appendTo(socialBox);
+    });
+    socialBox.appendTo('#resume-header');
     //setup left pan Menu
     /*
     var scrollMenu="<div class='row'><nav class='col-sm-12' id='resume-scroll-menu'><ul class='nav nav-stacked'>";
@@ -118,6 +132,7 @@
                 });
                 contDiv.appendTo("#"+bc.id);
             });
+
 
         }
         //summery
@@ -191,6 +206,34 @@
 
         
     });
+
+
+        //education
+        if(bc.type == 'education'){
+            var tbl = $('<table />',{
+                'class' : 'table table_highlight_header table_separator_bottom'
+            });
+            var tr_head = $("<tr class='corner-border-light1'><th>Degree and date</th><th>Institute</th><th>Major and Specialization</th><th>Percentage of mark</th></tr>");
+            var trs_body = "";
+            bc.content.forEach(function(cont, idx){
+                var time_per;
+                if(cont.start && cont.end){
+                    time_per=setDate(cont.start) +" &mdash; "+setDate(cont.end)
+                }else{
+                    time_per = "&mdash;";
+                }
+
+                trs_body += "<tr><td>"+cont.degree+"<br />"+time_per+"</td><td>"+cont.inst+"</td><td>"+(cont.major?cont.major:"&mdash;")+"</td><td>"+cont.mark+"</td></tr>";
+            });
+            trs_body = $(trs_body);
+            tbl.append(tr_head);
+            tbl.append(trs_body);
+            tbl.appendTo("#"+bc.id);
+        }
+
+        
+    });
+
 
     
     function setDate(dObj,mode) {
