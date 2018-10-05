@@ -179,35 +179,7 @@
             $(tr).appendTo(tbl);
             tbl.appendTo("#"+bc.id);
         }
-
-
-        //education
-        if(bc.type == 'education'){
-            var tbl = $('<table />',{
-                'class' : 'table table_highlight_header table_separator_bottom'
-            });
-            var tr_head = $("<tr class='corner-border-light1'><th>Degree and date</th><th>Institute</th><th>Major and Specialization</th><th>Percentage of mark</th></tr>");
-            var trs_body = "";
-            bc.content.forEach(function(cont, idx){
-                var time_per;
-                if(cont.start && cont.end){
-                    time_per=setDate(cont.start) +" &mdash; "+setDate(cont.end)
-                }else{
-                    time_per = "&mdash;";
-                }
-
-                trs_body += "<tr><td>"+cont.degree+"<br />"+time_per+"</td><td>"+cont.inst+"</td><td>"+(cont.major?cont.major:"&mdash;")+"</td><td>"+cont.mark+"</td></tr>";
-            });
-            trs_body = $(trs_body);
-            tbl.append(tr_head);
-            tbl.append(trs_body);
-            tbl.appendTo("#"+bc.id);
-        }
-
         
-    });
-
-
         //education
         if(bc.type == 'education'){
             var tbl = $('<table />',{
