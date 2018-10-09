@@ -236,7 +236,7 @@ var data = {
                 },
                 {
                     label: 'Passport',
-                    content : "<b>Passport number:</b> J7316186<br /><b>Issued on:</b> 04th June 2012<br /><b>Valid till:</b> 03rd June 2022"
+                    content : "<b>Passport number:</b> XXXXXXXX<br /><b>Issued on:</b> 04th June 2012<br /><b>Valid till:</b> 03rd June 2022"
                 },
                 {
                     label : 'DOB',
