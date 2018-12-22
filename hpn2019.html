@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="author" content="Soumya Padhee" />
+        <title>Happy New Year 2019</title>
+        <link href="https://fonts.googleapis.com/css?family=Charm|Dancing+Script:700&amp;subset=latin-ext" rel="stylesheet"> 
+        <style>
+        	.cont-num{
+        		position: absolute;
+        		height: 200px;
+        		width: 200px;
+        		top: 450px;
+        		font-weight: 900;
+        		font-size : 20vw;
+        		color: red;
+        		display: inline-block;
+        		text-align: center;
+        		line-height: 200px;
+        		z-index: 5;
+        		font-family: 'Charm', cursive;
+        	}
+        	
+        	.pos-no1{
+        		left: calc(50% - 400px);
+        		color:  #FF5733 ;
+        	}
+        	.pos-no2{
+        		left: calc(50% - 200px);
+        		color: #7B68EE;
+        	}
+        	.pos-no3{
+        		left: 50%;
+        		color: #FF1493;
+        	}
+        	.pos-no4{
+        		left: calc(50% + 200px);
+        		color: #4169E1;
+        		animation-name: forNo4;
+        		animation-duration: 7s;
+        		animation-fill-mode: forwards;
+
+        	}
+        	.pos-no5{
+        		left: calc(100% - 200px);
+        		color: #FF00FF;
+        		opacity: 0;
+        		animation-name: forNo5;
+        		animation-duration: 7s;
+        		animation-fill-mode: forwards;
+        	}
+        	.baloon{
+        		top: 150px;
+        		left: calc(100% - 185px);
+        		opacity: 0;
+        		z-index: 1;
+        		animation-name: forBaloon;
+        		animation-duration: 7s;
+        		animation-fill-mode: forwards;
+        		z-index: 4;
+        	}
+        	.hpn-text{
+        		position: absolute;
+        		top: calc(100% - 300px);
+        		opacity: 0;
+        		height: 300px;
+        		width: 900px;
+        		left: calc(50% - 450px);
+        		font-family: 'Dancing Script', cursive;
+        		font-size: 9vw;
+        		text-align: center;
+        		background: -webkit-linear-gradient(45deg,violet, indigo, blue, green, yellow, orange, red);
+  				-webkit-background-clip: text;
+  				-webkit-text-fill-color: transparent;
+        		animation-name: forText;
+        		animation-duration: 2s;
+        		animation-delay: 7s;
+        		animation-fill-mode: forwards;
+        		z-index: 5;
+        	}
+
+        	@keyframes forNo5{
+        		0%{opacity: 0; left: calc(100% - 200px);}
+        		20%{opacity: 1; left: calc(50% + 350px);}
+        		40%{opacity: 1; left: calc(50% + 350px);}
+        		60%{opacity: 1; left: calc(50% + 350px);}
+        		80%{opacity: 1; left: calc(50% + 200px);}
+        		100%{ opacity: 1; left: calc(50% + 200px) }
+        		
+        	}
+        	@keyframes forNo4{
+        		0%{top: 450px; opacity: 1}
+        		20%{top: 450px; opacity: 1}
+        		40%{top: 450px; opacity: 1}
+        		60% {top: -220px; opacity: 0;}
+        		100%{top: -220px; opacity: 0;}
+        	}
+        	@keyframes forBaloon{
+
+        		0%{top: 150px;opacity: 0; left: calc(100% - 185px);}
+        		20%{top: 150px;opacity: 1; left: calc(50% + 365px);}
+        		40%{top: 150px;opacity: 1; left: calc(50% + 215px);}
+        		60% {top: -520px; opacity: 0;left: calc(50% + 215px);}
+        		80% {top: -520px; opacity: 0;left: calc(50% + 215px);}
+        		100% {top: -520px; opacity: 0;left: calc(50% + 215px);}
+        	}
+        	@keyframes forText{
+        		to{
+        			top : 100px; opacity: 1;
+        		}
+        	}
+        </style>
+	</head>
+	<body>
+		<div class="container">
+			
+			<div class="cont-num pos-no1">2</div>
+			<div class="cont-num pos-no2">0</div>
+			<div class="cont-num pos-no3">1</div>
+			<div class="cont-num pos-no4">8</div>
+			
+			<div class="baloon cont-num">
+				<svg width="200" height="300">
+					<defs>
+						<linearGradient id="grTopToBot" x1="0%" y1="0%" x2="0%" y2="100%">
+							<stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+							<stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+						</linearGradient>
+					</defs>
+					<path stroke="url(#grTopToBot)" fill="url(#grTopToBot)" 
+						d="M 100 200 c -200 -200 200 -200 0 0"
+					/>
+					<path  stroke="black" stroke-width="2"
+						d="M 100 200 l 0 100"
+					 />
+					>
+				</svg>
+			</div>
+			<div class="cont-num pos-no5">9</div>
+			<div class="hpn-text">Happy New Year</div>
+	</body>
+	<script>
+		setTimeout(insertCan,9000);
+		function insertCan(){
+                var c=document.createElement('canvas');
+                c.width=window.innerWidth;
+                c.height=window.innerHeight;
+                c.style.zIndex='-1';
+                var t = 0;
+                //var c = document.querySelector("canvas");     
+                var $ = c.getContext('2d');
+                
+                $.fillStyle = 'hsla(0,0%,0%,1)';
+
+                window.addEventListener('resize', function() {
+                    c.width=document.documentElement.scrollWidth;
+                    c.height=document.documentElement.scrollHeight;
+                }, false);
+                
+                function draw() {
+                    $.globalCompositeOperation = 'source-over';
+                    $.fillStyle = 'hsla(0,0%,0%,1)';
+                    $.fillRect(0, 0, c.width, c.height);
+                    var foo, i, j, r;
+                    foo = Math.sin(t) * 2 * Math.PI;
+                    for (i=0; i<400; ++i) {
+                        r = 500 * Math.sin(i * foo);
+                        $.globalCompositeOperation = '';
+                        $.fillStyle = 'hsla(' + i + 12 + ',100%, 60%,1)';
+                        $.beginPath();
+                        $.arc(Math.sin(i) * r + (c.width/4 ), 
+                              Math.cos(i) * r + + (c.height/4 ), 
+                              1.5, 0, Math.PI * 2);
+                        $.arc(Math.sin(i) * r + (3*c.width/4 ), 
+                              Math.cos(i) * r + (3*c.height/4 ), 
+                              1.5, 0, Math.PI * 2);
+                        
+                        
+                        $.fill();
+
+                    }
+                    t += 0.000005;
+                    return t %= 2 * Math.PI;
+
+                };
+
+                function run() {
+                    window.requestAnimationFrame(run);
+                    draw();
+                }
+                document.body.appendChild(c);
+                run();
+               }
+	</script>
+</html>
