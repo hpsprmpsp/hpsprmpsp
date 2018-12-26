@@ -1,0 +1,204 @@
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>&lt;3</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <style>
+         * {
+         box-sizing: border-box;
+         }
+         body {
+         background: #418bcc;
+         }
+         canvas {
+         display: block;
+         position: absolute;
+         top: 0px;
+         left: 0px;
+         z-index: 1;
+         }
+         svg {
+         position: absolute;
+         background: transparent;
+         z-index: 5;
+         }
+         #spnI,
+         #spnYou {
+         position: absolute;
+         top: 50%;
+         height: 5%;
+         width: 5%;
+         color: yellow;
+         }
+      </style>
+   </head>
+   <body>
+      <svg viewBox="0 0 100 50" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+         defs>
+         <linearGradient id="grTopToBot" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#f23be4;stop-opacity:1" />
+            <stop offset="5%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="10%" style="stop-color:#f096e9;stop-opacity:1" />
+            <stop offset="15%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="20%" style="stop-color:#f23be4;stop-opacity:1" />
+            <stop offset="25%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="30%" style="stop-color:#f096e9;stop-opacity:1" />
+            <stop offset="35%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="40%" style="stop-color:#f23be4;stop-opacity:1" />
+            <stop offset="45%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#f096e9;stop-opacity:1" />
+            <stop offset="55%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="60%" style="stop-color:#f23be4;stop-opacity:1" />
+            <stop offset="65%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="70%" style="stop-color:#f096e9;stop-opacity:1" />
+            <stop offset="75%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="80%" style="stop-color:#f23be4;stop-opacity:1" />
+            <stop offset="85%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="90%" style="stop-color:#f096e9;stop-opacity:1" />
+            <stop offset="95%" style="stop-color:#f45ae8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f23be4;stop-opacity:1" />
+         </linearGradient>
+         <linearGradient id="letter" x1="0%" y1="0%" x2="0%" y2="110%">
+            <stop offset="0%" style="stop-color:#f03fe8;stop-opacity:1" />
+            <stop offset="33%" style="stop-color:#e37ef5;stop-opacity:1" />
+            <stop offset="66%" style="stop-color:#f756b0;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#a30e9a;stop-opacity:1" />
+         </linearGradient>
+         </defs>
+         <path stroke="url(#grTopToBot)" stroke-width='0.4' fill="none" 
+            d="M 2.5,25 l 10,0 l 1.2,-4 l 1.2,4 l 4,0 l 1.2,4 l 1.2,-24 l 1.6,44 l 1.6,-24 l 7,0
+            l 1.8,-2 l 1.8,2 l 7.4,0
+            l -6,-6 c -4.5,-6 6,-6 7.5,-1 c 1.5,-6 12,-4 7.5,1 l -6,6 
+            l 10,0 l 1.2,-4 l 1.2,4 l 4,0 l 1.2,4 l 1.2,-24 l 1.6,44 l 1.6,-24 l 7,0
+            l 1.2,-4 l 1.2,4 l 4,0 l 1.2,4 l 1.2,-4 l 10,0
+            "
+            />
+      </svg>
+      <canvas id="canvas"></canvas>
+      <script>
+         $(document).ready(function() {
+             window.onload = function() {
+                $('svg').css('top', (window.innerHeight - $('svg').height())/2);
+                $('svg').css('left', (window.innerWidth - $('svg').width())/2);
+             var path = document.getElementsByTagName("path")[0];
+             var pathLength = path.getTotalLength();
+             path.style.strokeDasharray=pathLength;
+             path.style.strokeDashoffset=pathLength;
+             ctr=pathLength;
+             var t= setInterval(function(){
+                 if(ctr<=0){
+                     clearInterval(t);
+                     showLetter();
+                     return;
+                 }
+                 path.style.strokeDashoffset-=1;
+                 ctr-=1;
+             },30);
+             var showLetter=function(){
+                 var svg = document.getElementsByTagName('svg')[0];
+                 var txt_i=document.createElementNS("http://www.w3.org/2000/svg","text");
+                 var txt_u=document.createElementNS("http://www.w3.org/2000/svg","text");
+                 txt_i.setAttribute("x","10");
+                 txt_i.setAttribute("y","20");
+                 txt_i.setAttribute("fill","url(#letter)");
+                 txt_i.setAttribute('id','txtI');
+                 txt_i.innerHTML="I";
+         
+                 txt_u.setAttribute("x","72.5");
+                 txt_u.setAttribute("y","20");
+                 txt_u.setAttribute("fill","url(#letter)");
+                 txt_u.setAttribute('id','txtU');
+                 txt_u.innerHTML="You";
+         
+                 svg.appendChild(txt_i);
+                 svg.appendChild(txt_u);
+                 
+             };
+         
+          	var canvas = document.getElementById("canvas");
+          	var ctx = canvas.getContext("2d");
+          	
+          	//canvas dimensions
+          	var W = window.innerWidth;
+          	var H = window.innerHeight;
+          	canvas.width = W;
+          	canvas.height = H;
+          	
+          	
+          	var mp = 50; //max particles
+          	var particles = [];
+          	for(var i = 0; i < mp; i++)
+          	{
+          		particles.push({
+          			x: Math.random()*W, //x-coordinate
+          			y: Math.random()*H, //y-coordinate
+          			r: Math.random()*4+1, //radius
+          			d: Math.random()*mp //density
+          		})
+          	}
+          	
+          	//Lets draw the flakes
+          	function draw()
+          	{
+          		ctx.clearRect(0, 0, W, H);
+          		
+          		ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+          		ctx.beginPath();
+          		for(var i = 0; i < mp; i++)
+          		{
+          			var p = particles[i];
+          			ctx.moveTo(p.x, p.y);
+          			ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+          		}
+          		ctx.fill();
+          		update();
+          	}
+          	
+          	
+          	var angle = 0;
+          	function update()
+          	{
+          		angle += 0.01;
+          		for(var i = 0; i < mp; i++)
+          		{
+          			var p = particles[i];
+          			p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+          			p.x += Math.sin(angle) * 2;
+          			
+          			if(p.x > W+5 || p.x < -5 || p.y > H)
+          			{
+          				if(i%3 > 0) 
+          				{
+          					particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
+          				}
+          				else
+          				{
+          					//If the flake is exitting from the right
+          					if(Math.sin(angle) > 0)
+          					{
+          						//Enter from the left
+          						particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
+          					}
+          					else
+          					{
+          						//Enter from the right
+          						particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
+          					}
+          				}
+          			}
+          		}
+          	}
+          	
+          	//animation loop
+          	setInterval(draw, 33);
+          }
+          
+          })
+      </script>
+   </body>
+</html>
+

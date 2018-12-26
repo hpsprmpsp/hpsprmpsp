@@ -82,6 +82,9 @@
         		animation-fill-mode: forwards;
         		z-index: 5;
         	}
+            .dummy{
+                display: none;
+            }
 
         	@keyframes forNo5{
         		0%{opacity: 0; left: calc(100% - 200px);}
@@ -113,6 +116,32 @@
         			top : 100px; opacity: 1;
         		}
         	}
+            @media only screen and (max-width: 800px){
+                .dummy{
+                    position: fixed;
+                    top:0px;
+                    left: 0px;
+                    width:100%;
+                    height: 100%;
+                    z-index: 30;
+                    background: linear-gradient(90deg, violet, indigo, green, yellow, orange, red);
+                    display: block;
+                    color: white;
+                    font-size: 7vw;
+                    font-weight: 900;
+                    line-height: 100%;
+                    text-align: center;
+                }
+                .dummy span{
+                    position: absolute;
+                    left: 2%;
+                    top:50%;
+                    transform: translateY(-50%);
+                }
+                .cont-num, .hpn-text{
+                    display: none;
+                }
+            }
         </style>
 	</head>
 	<body>
@@ -142,6 +171,7 @@
 			</div>
 			<div class="cont-num pos-no5">9</div>
 			<div class="hpn-text">Happy New Year</div>
+            <div class = 'dummy'><span>Not Suitable for mobile devices</span></div>
 	</body>
 	<script>
 		setTimeout(insertCan,9000);
