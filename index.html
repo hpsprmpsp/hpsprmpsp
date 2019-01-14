@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>hpsprmpsp</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="index.js"></script>
+		<style>
+			*{
+				box-sizing: border-box;
+			}
+			.container{
+				position: absolute;
+				width: 60%;
+				left: 20%;
+				overflow-x: hidden;
+				overflow-y: auto;
+				height: auto;
+				top: 10%;
+			}
+			.links{
+				height: 50px;
+				display: inline-block;
+				width: 150px;
+				text-align: center;
+				line-height: 50px;
+				text-decoration: none;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space:nowrap;
+				padding-left: 3px;
+				padding-right: 3px;
+				box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+				margin: 10px;
+				font-size: 20px;
+				font-weight: 900;
+			}
+			@media only screen and (max-width: 600px) {
+  				.links{
+  					width: 100%;
+  				}
+			}
+		</style>
+	</head>
+	<body>
+			<div class="container" id="container"></div>
+		<script>
+			var files =files_raw.sort(function(a,b){
+				return a.name.localeCompare(b.name);
+			}); 
+			function getRandomColor(){
+					var clrColl = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
+					var op = "#";
+					for(i=0;i<6;i++){
+						let r = Math.floor(Math.random()*16);
+						op = op + clrColl[r];
+					}
+					return op;
+				}
+			$(document).ready(function(){
+				var container = $("#container");
+				files.forEach(function(f){
+					$("<a />",{
+						id: 'link-' + f.name,
+						title: f.name + " :: " + f.href,
+						html: f.name,
+						href: f.href,
+						"class": 'links',
+						target: "_blank",
+						css: {
+							color:'white',
+							background: getRandomColor()
+						}
+					}).appendTo("#container");
+				});
+
+
+			});
+		</script>
+	</body>
+</html>

@@ -174,7 +174,9 @@
             <div class = 'dummy'><span>Not Suitable for mobile devices</span></div>
 	</body>
 	<script>
-		if(window.innerWidth >1200) setTimeout(insertCan,9000);
+
+        if(window.innerWidth >1200) setTimeout(insertCan,9000);
+
 		function insertCan(){
                 var c=document.createElement('canvas');
                 c.width=window.innerWidth;
