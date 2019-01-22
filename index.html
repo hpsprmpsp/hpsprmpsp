@@ -1,162 +1,111 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<title>hpsprmpsp</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="index.js"></script>
-		<style>
-			*{
-				box-sizing: border-box;
-			}
-			.container{
-				position: absolute;
-				width: 60%;
-				left: 20%;
-				overflow-x: hidden;
-				overflow-y: auto;
-				height: auto;
-				top: 10%;
-				z-index: 20;
-			}
-			.links{
-				height: 50px;
-				display: inline-block;
-				width: 150px;
-				text-align: center;
-				line-height: 50px;
-				text-decoration: none;
-				text-overflow: ellipsis;
-				overflow: hidden;
-				white-space:nowrap;
-				padding-left: 3px;
-				padding-right: 3px;
-				box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-				margin: 10px;
-				font-size: 20px;
-				font-weight: 900;
-			}
-			canvas{
-				display: block;
-				top:0px;
-				left:0px;
-				z-index: 1;
-				background: yellow;
-			}
-			@media only screen and (max-width: 600px) {
-  				.links{
-  					width: 100%;
-  				}
-			}
-		</style>
-	</head>
-	<body>
-			<div class="container" id="container"></div>
-			<canvas id="canvas"></canvas>
-		<script>
-			var files =files_raw.sort(function(a,b){
-				return a.name.localeCompare(b.name);
-			}); 
 
-			function getRandomColor(){
-					var clrColl = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
-					var op = "#";
-					for(i=0;i<6;i++){
-						let r = Math.floor(Math.random()*16);
-						op = op + clrColl[r];
-					}
-					return op;
-				}
-			$(document).ready(function(){
-				window.onload = function(){
-					var container = $("#container");
-				files.forEach(function(f){
-					$("<a />",{
-						id: 'link-' + f.name,
-						title: f.name + " :: " + f.href,
-						html: f.name,
-						href: f.href,
-						"class": 'links',
-						target: "_blank",
-						css: {
-							color:'white',
-							background: getRandomColor()
-						}
-					}).appendTo("#container");
-				});
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>hpsprmpsp</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
 
+    .container {
+        position: absolute;
+        width: 60%;
+        left: 20%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: auto;
+        top: 10%;
+        z-index: 20;
+    }
 
+    .links {
+        height: 150px;
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+        line-height: 150px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding-left: 3px;
+        padding-right: 3px;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        margin: 10px;
+        font-size: 24px;
+        font-weight: 900;
+    }
 
-				// draw background for canvas
-				/* random color background with 2 balls, one
-					starting from left hitting walls
-					and one starting from right
-					small balls
+    ul{
+    	margin:0px;
+    	padding: 0px;
+    	list-style-type: none;
+    }
+   	li{
+   		margin: 10px;
+   		float: left;
+   		width: 150px;
+   	}
+    @media only screen and (max-width: 600px) {
+        .links {
+            width: 100%;
+        }
+    }
+    </style>
+</head>
 
-				*/
-				var canvas = document.getElementById("canvas");
-          		var ctx = canvas.getContext("2d");
-          		var cnt = document.getElementById("container");
-          		//canvas dimensions
-          		var W = window.innerWidth > cnt.scrollWidth ? window.innerWidth : cnt.scrollWidth;
-          		var H = window.innerHeight > cnt.scrollHeight ? window.innerHeight : cnt.scrollHeight;
-          		canvas.width = W;
-          		canvas.height = H;
+<body>
+    <div class="container" id="container"></div>
+    <script>
+    var files = files_raw.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
 
-          		var particles = [
-          		{x:0, y:0, r: 10, vx: 7, vy: 11, vxc:W, vyc:H, rel:'>'},
-          		{x:(W-10), y:(H-100), r: 10, vx: -10, vy: -5, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
-          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'}
-          		];
-
-          		
-
-          		function draw(){
-          			ctx.clearRect(0,0,W,H);
-
-          			ctx.fillStyle=getRandomColor();
-          			ctx.beginPath();
-
-          			for(i=0; i< particles.length; i++){
-          				var p = particles[i];
-          				ctx.moveTo(p.x,p.y);
-          				ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
-          			}
-          			ctx.fill();
-          			update();
-
-          		}
-
-          		function update(){
-          			for(i=0; i< particles.length; i++){
-          				var p = particles[i];
-          				if(p.rel === '>'){
-          					if(p.x >= p.vxc){p.vx = p.vx * -1;}
-          					if(p.y >= p.vyc){p.vy = p.vy * -1;}
-          				}
-          				if(p.rel === '<'){
-          					if(p.x <= p.vxc){p.vx = p.vx * -1;}
-          					if(p.y <= p.vyc){p.vy = p.vy * -1;}
-          				}
-          				p.x += p.vx;
-          				p.y += p.vy;
-
-          			}
-          		}
-
-          		setInterval(draw, 33);
-				};
+    function getRandomColor() {
+        var clrColl = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+        var op = "#";
+        for (i = 0; i < 6; i++) {
+            let r = Math.floor(Math.random() * 16);
+            op = op + clrColl[r];
+        }
+        return op;
+    }
+    $(document).ready(function() {
+        window.onload = function() {
+            var container = $("#container");
+            var ul = $("<ul />",{
+            	id: "ulCont"
+            });
+            ul.appendTo("#container");
+            files.forEach(function(f, i) {
+            	var li = $("<li />", {
+            		id: 'li' + i
+            	});
+            	li.appendTo("#ulCont");
+                $("<a />", {
+                    id: 'link-' + f.name,
+                    title: f.name + " :: " + f.href,
+                    html: f.name,
+                    href: f.href,
+                    "class": 'links',
+                    target: "_blank",
+                    css: {
+                        color: 'white',
+                        background: getRandomColor()
+                    }
+                }).appendTo("#li"+ i);
+            });
+            
+        };
 
 
-			});
-		</script>
-		
-	</body>
+    });
+    </script>
+</body>
+
 </html>
