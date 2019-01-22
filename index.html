@@ -18,6 +18,7 @@
 				overflow-y: auto;
 				height: auto;
 				top: 10%;
+				z-index: 20;
 			}
 			.links{
 				height: 50px;
@@ -36,6 +37,13 @@
 				font-size: 20px;
 				font-weight: 900;
 			}
+			canvas{
+				display: block;
+				top:0px;
+				left:0px;
+				z-index: 1;
+				background: yellow;
+			}
 			@media only screen and (max-width: 600px) {
   				.links{
   					width: 100%;
@@ -45,10 +53,12 @@
 	</head>
 	<body>
 			<div class="container" id="container"></div>
+			<canvas id="canvas"></canvas>
 		<script>
 			var files =files_raw.sort(function(a,b){
 				return a.name.localeCompare(b.name);
 			}); 
+
 			function getRandomColor(){
 					var clrColl = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
 					var op = "#";
@@ -59,7 +69,8 @@
 					return op;
 				}
 			$(document).ready(function(){
-				var container = $("#container");
+				window.onload = function(){
+					var container = $("#container");
 				files.forEach(function(f){
 					$("<a />",{
 						id: 'link-' + f.name,
@@ -76,7 +87,76 @@
 				});
 
 
+
+				// draw background for canvas
+				/* random color background with 2 balls, one
+					starting from left hitting walls
+					and one starting from right
+					small balls
+
+				*/
+				var canvas = document.getElementById("canvas");
+          		var ctx = canvas.getContext("2d");
+          		var cnt = document.getElementById("container");
+          		//canvas dimensions
+          		var W = window.innerWidth > cnt.scrollWidth ? window.innerWidth : cnt.scrollWidth;
+          		var H = window.innerHeight > cnt.scrollHeight ? window.innerHeight : cnt.scrollHeight;
+          		canvas.width = W;
+          		canvas.height = H;
+
+          		var particles = [
+          		{x:0, y:0, r: 10, vx: 7, vy: 11, vxc:W, vyc:H, rel:'>'},
+          		{x:(W-10), y:(H-100), r: 10, vx: -10, vy: -5, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'},
+          		{x:W, y:H, r: 10, vx: -7, vy: -11, vxc:0, vyc:0, rel:'<'}
+          		];
+
+          		
+
+          		function draw(){
+          			ctx.clearRect(0,0,W,H);
+
+          			ctx.fillStyle=getRandomColor();
+          			ctx.beginPath();
+
+          			for(i=0; i< particles.length; i++){
+          				var p = particles[i];
+          				ctx.moveTo(p.x,p.y);
+          				ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+          			}
+          			ctx.fill();
+          			update();
+
+          		}
+
+          		function update(){
+          			for(i=0; i< particles.length; i++){
+          				var p = particles[i];
+          				if(p.rel === '>'){
+          					if(p.x >= p.vxc){p.vx = p.vx * -1;}
+          					if(p.y >= p.vyc){p.vy = p.vy * -1;}
+          				}
+          				if(p.rel === '<'){
+          					if(p.x <= p.vxc){p.vx = p.vx * -1;}
+          					if(p.y <= p.vyc){p.vy = p.vy * -1;}
+          				}
+          				p.x += p.vx;
+          				p.y += p.vy;
+
+          			}
+          		}
+
+          		setInterval(draw, 33);
+				};
+
+
 			});
 		</script>
+		
 	</body>
 </html>

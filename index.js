@@ -19,5 +19,6 @@ var files_raw = [
 				{name: "Roll A dice", href:"Roll-A-Dice.html"},
 				{name: "Text-Binart-Text", href:"TextToBinaryAndViceVersa.html"},
 				{name: "Tic-Tac-Toe", href: "TicTacToe.html"},
+				{name: "Dice Roll", href: "diceroll.html"}
 
 			];
