@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="author" content="hpsprmpsp@gmail.com"/>
+		<title>Morse it up</title>
+		<style>
+			*{
+				box-sizing: border-box;
+			}
+			.page-header{
+				position: relative;
+				top:-10px;
+				left:0px;
+				width:100%;
+				padding:10px;
+				background-color: #e4e4e4;
+				padding-bottom: 30px;
+				margin-bottom: 10px;
+				color: #3e3e3e;
+				border-bottom: 1px solid #535353;
+
+			}
+			.page-header h1{
+				font-size: 50px;
+			}
+			.container{
+				position: relative;
+				padding: 10px;
+				margin:auto;
+				width: 100%;
+			}
+			.input_group{
+				position: relative;
+				display: block;
+				margin-top:0px;
+				float: left;
+				width: 100%;
+			}
+			.input_group label{
+				position: relative;
+				float: left;
+				display: block;
+				font-size: 25px;
+				font-weight: 900;
+				color: #4f4f4f;
+
+			}
+			.input_group input{
+				position: relative;
+				float: left;
+				display: block;
+				width:100%;
+				
+				font-size: 34px;
+				padding:3px;
+				color: #4f4f4f;
+				border:1px solid #4f4f4f;
+				border-radius: 2px;
+			}
+			.btn{
+				position: relative;
+				padding:3px;
+				font-size: 22px;
+				font-weight: 900;
+				color: #4f4f4f;
+				background-color: #f2f2f2;
+				border: 1px solid #4f4f4f;
+				border-radius: 2px;
+			}
+			.btn-block{
+				display: block;
+				width:100%;
+			}
+			.btn-primary{
+				color: #ffffff;
+				background-color: #004eff;
+				border: 1px solid #004eff;
+			}
+			.output_group{
+				position: relative;
+				margin:auto;
+				margin-top:10px;
+				width: 100%;
+				float: left;
+			}
+			.output_holder{
+				position: relative;
+				width: 100%;
+				padding:10px;
+				margin:auto;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			.dot, .dash{
+				position: relative;
+				padding: 0px;
+				margin:10px;
+				height: 40px;
+				width: 60px;
+				background-color: #010101;
+				display: inline-block;
+			}
+			.dot{
+				width: 40px;
+				border-radius: 100%;
+			}
+			.morse_container{
+				position: relative;
+				padding:3px;
+				border-right: 1px solid #4f4f4f;
+				display: inline-block;
+			}
+			.textarea{
+				position: relative;
+				padding:5px;
+				color: #3f3f3f;
+				border:1px solid #4f4f4f;
+				border-radius: 2px;
+				resize: vertical;
+				margin-top:10px;
+				margin-bottom: 10px;
+				font-size: 40px;
+			}
+			.textarea.textarea-block{
+				width: 100%;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="page-header">
+			<div class="morse_container"><div class="dash"></div><div class="dash"></div></div><div class="morse_container"><div class="dash"></div><div class="dash"></div><div class="dash"></div></div><div class="morse_container"><div class="dot"></div><div class="dash"></div><div class="dot"></div></div><div class="morse_container"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="morse_container"><div class="dot"></div></div>
+		</header>
+		<div class="container">
+			<div class="input_group"><label>Text to be converted:</label>
+				<input id="inp_mor" type="text" />
+			</div>
+			<div class="output_group">
+				<div class="output_holder"></div>
+				<textarea id="txt_op" class="textarea textarea-block"></textarea>
+				<button class="btn btn-primary btn-block" id="btnCopy" onclick="copyOP()">Copy</button>
+			</div>
+		</div>
+
+		<script>
+			var inp=document.getElementById("inp_mor");
+			var op=document.getElementsByClassName("output_holder")[0];
+			var ta_op=document.getElementById("txt_op");
+			var btnCopy=document.getElementById("btnCopy");
+			var op_txt="";
+			inp.addEventListener("keyup",function(){
+
+				if(/[^a-zA-Z0-9\s]/.test(inp.value)){
+					inp.style.borderColor="red";
+					return;
+				}else{
+
+					inp.style.borderColor="#4f4f4f";
+					op_txt="";
+					var input=inp.value;
+					input=input.replace(/\s/g,"");
+					input=	(input).split("");
+					op.innerHTML="";
+						for(let i=0;i<input.length;i++){
+							var m=getMorse(input[i]);
+							op_txt+=m+"  ";
+							addDotDash(m);
+					}
+					ta_op.value=op_txt;
+				}
+
+			});
+
+			function getMorse(txt){
+				if(txt===" "){
+					return "";
+				}
+				var morse={"A":".-","B":"-...","C":"-.-.","D":"-..","E":".","F":"..-.","G":"--.","H":"....","I":"..","J":".---","K":"-.-","L":".-..","M":"--","N":"-.","O":"---","P":".--.","Q":"--.-","R":".-.","S":"...","T":"-","U":"..-","V":"..-","W":".--","X":"-..-","Y":"-.--","Z":"--..","1":".----","2":"..----","3":"...--","4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.","0":"-----"};
+				var ip=(txt.toUpperCase()).split("");
+				var tmp_op="";
+				for(let i=0;i<ip.length;i++){
+					tmp_op+=morse[ip[i]];
+				}
+				return tmp_op;
+
+			}
+			function addDotDash(morse){
+
+				var tmp_obj=morse.split("");
+				var sp=document.createElement("div");
+				for(let i=0;i<tmp_obj.length;i++){
+					let a= document.createElement("div");
+					a.className=tmp_obj[i]=="."?"dot":"dash";
+					sp.appendChild(a);
+				}
+				sp.className="morse_container";
+				op.appendChild(sp);
+			}
+			function copyOP(){
+
+				ta_op.select();
+				document.execCommand("Copy");
+				if ( document.selection ) {
+					document.selection.empty();
+				} else if ( window.getSelection ) {
+					window.getSelection().removeAllRanges();
+				}
+				btnCopy.innerHTML="Copied";
+				setTimeout(function(){
+					btnCopy.innerHTML="Copy";
+				},3000);
+			}
+
+		</script>
+	</body>
+</html>

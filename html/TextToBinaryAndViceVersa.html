@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8"/>
+		<title>Text to Binary and Vice-Versa</title>
+        
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            textarea{
+                resize: none;
+                border-radius: 0%!important;
+            }
+            button{
+                border-radius: 0%!important;
+            }
+        </style>
+		<script>
+        function toBinary() {
+            var x = document.getElementById("txaText").value;
+            document.getElementById("txaBinary").value = getBinaryFromText(x);
+        }
+        function toText() {
+            var x = document.getElementById("txaBinary").value;
+            document.getElementById("txaText").value = getTextFromBinary(x);
+        }
+    </script>
+	</head>
+	<body>
+		<div class="page-header">
+            <h1>Conversion</h1>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-sm-5 col-xs-12">
+                    
+                        <div class="form-group">
+                            <textarea id="txaText" rows="5" cols="40" class="form-control"></textarea>
+                            <button id="btnToBinary" class="btn btn-primary btn-block" onclick="toBinary()">To Binary</button>
+                        </div>
+                   
+                </div>
+                <div class="col-sm-5 col-xs-12">
+                    
+                        <div class="form-group">
+                            <textarea id="txaBinary" rows="5" cols="40" class="form-control"></textarea>
+                        <button id="btnToText" onclick="toText()" class="btn btn-primary btn-block">To Text</button>
+                        </div>
+                    
+                </div>
+                <div class="col-xs-1"></div>
+            </div>
+        </div>
+       
+        
+
+    <div id="divBody">
+        <div>
+            <table align="center"  >
+                <tr>
+                    <td>
+                        
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<script>
+        // JavaScript source code
+
+//**********************************************************
+//=====================================================================
+// FORWARD conversion
+//=====================================================================
+//**********************************************************
+
+
+
+//======================================================================
+//1.  To convert a text to ASCII
+//======================================================================
+
+function convertTextToASCII(text) {
+    var x, y, z, a, b, c, i, j, m;
+    z = "";
+    x = String(text);
+    c = x.length;
+
+    for (i = 0; i < c; i++) {
+        m = ""
+        y = x.substr(i, 1);
+
+        m = String(y.charCodeAt(0));
+        a = m.length;
+        b = 3 - a;
+        for (j = 0; j < b; j++) {
+            m = "0" + m;
+        }
+        z = z + m;
+
+    }
+
+    return z;
+}
+
+
+
+
+
+//======================================================================
+//2. To convert an  number to Binary
+//======================================================================
+function numberToBinary(asciiNum) {
+    var x, y, z, a, b, i;
+    x = asciiNum;
+    
+    if (x == 0){
+        a = '0';
+    }
+    else if (x == 1) {
+        a = '1';
+    }
+    
+    else {
+        z = "";
+        while (x > 1) {
+            y = x % 2;
+            
+            if (y == 0) {
+                x = x / 2;
+            }
+            else {
+                x = (x - 1) / 2;
+            }
+            
+            
+                z = y + z;
+                
+           
+        }
+        
+        a = "1" + z;
+    }
+    b = 8-(a.length);
+    for (i = 1;i<=b;i++){
+        a = "0" + a;
+    }
+    
+    return a;
+}
+// for grouped ascii in a group of 3
+function getBinaryFromGroupedASCII(inp) {
+    var a, b, c, d, e, f, g,i;
+
+    a = String(inp);
+    b = a.length;
+    c = "";
+    
+    for (i = 0; i < b; i+=3) {
+        d = a.substr(i, 3);
+        e = Number(d);
+        
+        c = c + numberToBinary(e);
+    }
+    return c;
+}
+
+
+//**********************************************************
+//=====================================================================
+// BACKWARD conversion
+//=====================================================================
+//**********************************************************
+
+
+
+//======================================================================
+// 1.To convert a Binary to ASCII
+//======================================================================
+
+function binaryToNumber(number) {
+    var x, i, z, a, b, c, l, p;
+    a = 0;
+    x = String(number);
+
+    for (i = 0; i < 8; i++) {
+        y = x.substr(i, 1);
+
+        p = Math.pow(2, 7 - i);
+
+        z = parseInt(y) * p;
+
+        a = a + z;
+    }
+    b = String(a);
+
+    l = b.length
+    c = 3 - l;
+
+    for (i = 1; i <= c; i++) {
+        b = "0" + b;
+    }
+    
+    return b;
+}
+
+function getNumberFromBinary(number) {
+    var a, b, c, d, e, i;
+
+    a = String(number);
+    
+    b = a.length;
+    
+    e = "";
+    for (i = 0; i < b; i += 8) {
+        
+        b = a.substr(i, 8);
+       
+        if (b != "") {
+            c = Number(b);
+
+            d = binaryToNumber(b);
+            e = e + String(d);
+        }
+        
+    }
+    return e;
+}
+
+//======================================================================
+// 2.To convert a ASCII to TEXT
+//======================================================================
+function convertAsciiToText(ascii) {
+    var a, b;
+    a = String(ascii);
+    b = String.fromCharCode(a);
+    return b;
+}
+
+function getTextFromASCIIinBatch(ascii) {
+    var a, b, c, d, e,  i;
+
+    a = String(ascii);
+    b = a.length;
+    e = "";
+    for (i = 0; i < b; i += 3) {
+        c = a.substr(i, 3);
+        if (c != "") {
+            d = convertAsciiToText(c);
+            e = e + d;
+        }
+        
+    }
+    return e;
+}
+//**********************************************************
+//=====================================================================
+// CONJUCTED conversion
+//=====================================================================
+//**********************************************************
+
+
+
+//======================================================================
+// To convert a Text to Binary
+//======================================================================
+
+function getBinaryFromText(txt) {
+    var a, b, c, d, e, f;
+    a = String(txt);
+
+    b = convertTextToASCII(a);
+    c = getBinaryFromGroupedASCII(b);
+    return c;
+}
+
+function getTextFromBinary(bnr) {
+    var a, b, c, d, e;
+    a = String(bnr);
+    b = getNumberFromBinary(a);
+    c = getTextFromASCIIinBatch(b);
+    return c;
+
+}
+        </script>
+   
+	</body>
+</html>

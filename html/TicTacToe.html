@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="author" content="hpsprmpsp" />
+        <meta name='description' content="Tic Tac Toe game using svg"/>
+        <meta name="keywords" content="Tic tac toe svg "/>
+        <title>Tic-Tac-Toe</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            .circle_tic{
+                stroke-width:5;
+                stroke:#0066CC;
+                fill:none;
+                stroke-dasharray:1000;
+                stroke-dashoffset:2000;
+                animation-name:drawCircleTicTacToe;
+                animation-duration:0.3s;
+                animation-timing-function: linear;
+            }
+            @keyframes drawCircleTicTacToe{
+                from{stroke-dashoffset:1000;}
+                to{stroke-dashoffset:0;}
+            }
+            path[id^="tictactoe_cross_"]{
+                stroke-width:5;
+                stroke:#FF00FF;
+                fill:none;
+                
+            }
+            .svgPlace{
+                position: absolute;
+                top:10px;
+                left:10px;
+            }
+            .blockAction{
+                cursor: default;
+                z-index: 10;
+                background-color: rgba(255,255,255,0.7);
+                height: 300px;
+                width: 300px;
+            }
+            .notAllowed{
+                display: block;
+                
+            }
+            .allowed{
+                display: none;
+            }
+            #divBlock button{
+                position: absolute;
+                height:40px;
+                top:calc(80% - 30px);
+                width:130px;
+                border: 2px solid cadetblue;
+                background-color: cadetblue;
+                color:white;
+                font-weight: 900;
+                font-size: medium;
+                cursor: pointer;
+                line-height: 30px;
+                text-align: center;
+            }
+            #winnName{
+                position: absolute;
+                height:40px;
+                top:calc(40% - 10px);
+                left:10px;
+                width:calc(100% - 20px);
+                border: 2px solid darkblue;
+                background-color: darkblue;
+                color:white;
+                font-weight: 900;
+                font-size: medium;
+                cursor: pointer;
+                line-height: 40px;
+                text-align: center;
+                font-weight: 900;
+            }
+            #divBlock button:nth-child(2){
+                left:10px;
+            }
+            #divBlock button:nth-child(3){
+                left:160px;
+            }
+            table#score{
+                position: absolute;
+                left:10px;
+                top:320px;
+                width:300px;
+                border-collapse: collapse;
+                
+            }
+            table#score thead td{
+                width: 50%;
+                text-align: center;
+                background-color: cadetblue;
+                color: white;
+                height:40px;
+                line-height: 40px;
+                padding:0px;
+                font-weight: 900;
+                font-size: medium;
+                border: 2px solid cadetblue;
+            }
+            table#score tbody td{
+                width: 50%;
+                text-align: center;
+                background-color: white;
+                color: cadetblue;
+                border: 2px solid cadetblue;
+                top:-5px;
+                height:40px;
+                line-height: 40px;
+                padding:0px;
+                font-weight: 900;
+                font-size: large;
+            }
+        </style>
+    </head>
+    <body>
+        <svg width="300" height="300" id="tic_tac_toe_svg" class="svgPlace">
+            <!--<line id="l1" x1="100" y1="00" x2="100" y2="300" stroke="black" stroke-width="5" fill="none" />
+            <line id="l2" x1="200" y1="00" x2="200" y2="300" stroke="black" stroke-width="5" fill="none" />
+            <line id="l3" x1="00" y1="100" x2="300" y2="100" stroke="black" stroke-width="5" fill="none" />
+            <line id="l4" x1="00" y1="200" x2="300" y2="200" stroke="black" stroke-width="5" fill="none" />-->
+        </svg>
+        <div  id="divBlock" class="svgPlace blockAction allowed">
+            <span id="winnName"></span>
+            <button id="btnNextRound" onclick="nextRound()">Next</button>
+            <button id="btnResetGame" onclick="reset()">Reset</button>
+        </div>
+        <table id='score'>
+            <thead>
+                <tr>
+                    <td style="border-right:2px solid white;">
+                        Comp
+                    </td>
+                    <td style="border-left:2px solid white;">
+                        User
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="scrC">
+                        0
+                    </td>
+                    <td id="scrU">
+                        0
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            var svg=document.getElementById("tic_tac_toe_svg");
+            var x=[];
+            var o=[];
+            var all=["1",'2','3','4','5','6','7','8','9'];
+            var score_check=false;
+            var x_score=0;
+            var o_score=0;
+            var dblock=document.getElementById("divBlock");
+            var win="";
+            drawFourmainLine();
+            function drawFourmainLine(){
+                drawmainLine(100,00,100,300);
+                drawmainLine(200,00,200,300);
+                drawmainLine(00,100,300,100);
+                drawmainLine(00,200,300,200);
+            }
+            
+            function drawmainLine(x1,y1,x2,y2){
+                var ln=document.createElementNS("http://www.w3.org/2000/svg","line");
+                ln.setAttribute("x1",String(x1));
+                ln.setAttribute("x2",String(x2));
+                ln.setAttribute("y1",String(y1));
+                ln.setAttribute("y2",String(y2));
+                ln.setAttribute("stroke","black");
+                ln.setAttribute("stroke-width","5");
+                svg.appendChild(ln);
+            }
+            
+            svg.onclick=function(event){
+                
+                if(!score_check){
+                    var e=event.target;
+                    if(e.id!="tic_tac_toe_svg"){
+                        return;
+                    }
+                    var d=e.getBoundingClientRect();
+                    var x1=event.clientX-d.left;
+                    var y1=event.clientY-d.top;
+                    //tile1
+                    if((x1>0 && x1<100)&&(y1>0 && y1<100)){
+                        getO(50,50,1);
+                    }
+                    //tile 2
+                    else if((x1>100 && x1<200)&&(y1>0 && y1<100)){
+                        getO(150,50,2);
+                    }
+                    //tile3
+                    else if((x1>200 && x1<300)&&(y1>0 && y1<100)){
+                        getO(250,50,3);
+                    }
+                    //tile4
+                    else if((x1>0 && x1<100)&&(y1>100 && y1<200)){
+                        getO(50,150,4);
+                    }
+                    //tile5
+                    else if((x1>100 && x1<200)&&(y1>100 && y1<200)){
+                        getO(150,150,5);
+                    }
+                    //tile6
+                    else if((x1>200 && x1<300)&&(y1>100 && y1<200)){
+                        getO(250,150,6);
+                    }
+                    //tile7
+                    else if((x1>0 && x1<100)&&(y1>200 && y1<300)){
+                        getO(50,250,7);
+                    }
+                    //tile8
+                    else if((x1>100 && x1<200)&&(y1>200 && y1<300)){
+                        getO(150,250,8);
+                    }
+                    //tile9
+                    else if((x1>200 && x1<300)&&(y1>200 && y1<300)){
+                        getO(250,250,9);
+                    }
+                
+                    
+                    checkWin(o,"green");
+                }
+            };
+            function getO(xcord,ycord,tileNo){
+                
+                if(all.indexOf(String(tileNo))>-1 && o.indexOf(String(tileNo))<0 ){
+                    var sh=document.createElementNS("http://www.w3.org/2000/svg","circle");
+                
+                    var posAll=all.indexOf(String(tileNo));
+                    sh.id="tictactoe_circle_"+String(tileNo);
+                    sh.classList.add("circle_tic");
+                    sh.setAttribute("cx",String(xcord));
+                    sh.setAttribute("cy",String(ycord));
+                    sh.setAttribute("r","40");
+                    all.splice(posAll,1);
+                    o.push(String(tileNo));
+                    svg.appendChild(sh);
+                    if(all.length>0){
+                        setTimeout(playComp,300);
+                    }
+                    }
+                
+            }
+            function getX(xcord,ycord,tileNo){
+                
+                if(all.indexOf(String(tileNo))>-1 && x.indexOf(String(tileNo))<0){
+                    var sh=document.createElementNS("http://www.w3.org/2000/svg","path");
+                    sh.id="tictactoe_cross_"+String(tileNo);
+                    var pth="M "+String(xcord)+" "+String(ycord)+" l 28 28 l -56 -56 l 28 28 l 28 -28 l -56 56";
+                    sh.setAttribute("d",pth);
+                    var posAll=all.indexOf(String(tileNo));
+                    all.splice(posAll,1);
+                    x.push(String(tileNo));
+                    svg.appendChild(sh);
+                }
+            }
+            
+            function playComp(){
+                
+                if(!score_check){
+                    var l=all.length;
+                    var r=Math.floor(Math.random()*l);
+                    var rnd=Number(all[r]);
+                    //random numnber being generated to accomodate the cross, taken from left tile numbers
+                    if(rnd==1){
+                        getX(50,50,1);
+                    }
+                    else if(rnd==2){
+                        getX(150,50,2);
+                    }
+                    else if(rnd==3){
+                        getX(250,50,3);
+                    }
+                    else if(rnd==4){
+                        getX(50,150,4);
+                    }
+                    else if(rnd==5){
+                        getX(150,150,5);
+                    }
+                    else if(rnd==6){
+                        getX(250,150,6);
+                    }
+                    else if(rnd==7){
+                        getX(50,250,7);
+                    }
+                    else if(rnd==8){
+                        getX(150,250,8);
+                    }
+                    else if(rnd==9){
+                        getX(250,250,9);
+                    }
+                    
+                    checkWin(x,"red");
+                }
+            }
+            function checkWin(arr,col){
+                //123
+                if(arr.indexOf("1")>-1 && arr.indexOf("2")>-1 && arr.indexOf("3")>-1){drawStick(0,50,300,50,col);}
+                else if(arr.indexOf("4")>-1 && arr.indexOf("5")>-1 && arr.indexOf("6")>-1){drawStick(0,150,300,150,col);}
+                else if(arr.indexOf("7")>-1 && arr.indexOf("8")>-1 && arr.indexOf("9")>-1){drawStick(0,250,300,250,col);}
+                else if(arr.indexOf("1")>-1 && arr.indexOf("5")>-1 && arr.indexOf("9")>-1){drawStick(0,0,300,300,col);}
+                else if(arr.indexOf("7")>-1 && arr.indexOf("5")>-1 && arr.indexOf("3")>-1){drawStick(0,300,300,0,col);}
+                else if(arr.indexOf("1")>-1 && arr.indexOf("4")>-1 && arr.indexOf("7")>-1){drawStick(50,0,50,300,col);}
+                else if(arr.indexOf("5")>-1 && arr.indexOf("2")>-1 && arr.indexOf("8")>-1){drawStick(150,0,150,300,col);}
+                else if(arr.indexOf("9")>-1 && arr.indexOf("6")>-1 && arr.indexOf("3")>-1){drawStick(250,0,250,300,col);}
+                if(all.length==0){
+                        document.getElementById("winnName").innerHTML="Nobody wins.";
+                        document.getElementById("scrC").innerHTML=x_score;
+                        document.getElementById("scrU").innerHTML=o_score;
+                        blockAct();
+                        return;
+                }
+                
+            }
+            function drawStick(x1,y1,x2,y2,col){
+                var l=document.createElementNS("http://www.w3.org/2000/svg","line");
+                l.setAttribute('x1',String(x1));
+                l.setAttribute('x2',String(x2));
+                l.setAttribute('y1',String(y1));
+                l.setAttribute('y2',String(y2));
+                l.setAttribute("stroke-width","10");
+                l.setAttribute('stroke',col);
+                svg.appendChild(l);
+                
+                if(col=="green"){
+                    o_score=score_check ? o_score:o_score+1;
+                    score_check=true;
+                    win="Player";
+                }else if(col=="red"){
+                    x_score=score_check ? x_score:x_score+1;
+                    score_check=true;
+                    win="COMP";
+                }
+                document.getElementById("winnName").innerHTML=win + " won.";
+                document.getElementById("scrC").innerHTML=x_score;
+                document.getElementById("scrU").innerHTML=o_score;
+                blockAct();
+            }
+            function blockAct(){
+                dblock.classList.remove("allowed");
+                dblock.classList.add("notAllowed");
+                
+            }
+            function removeBloack(){
+                dblock.classList.add("allowed");
+                dblock.classList.remove("notAllowed");
+                document.getElementById("winnName").innerHTML="";
+            }
+            function nextRound(){
+                var em=svg.childNodes;
+                svg.innerHTML="";
+                removeBloack();
+                x=[];
+                o=[];
+                all=["1",'2','3','4','5','6','7','8','9'];
+                score_check=false;
+                drawFourmainLine();
+            }
+            function reset(){
+                nextRound();
+                o_score=0;
+                x_score=0;
+                document.getElementById("scrC").innerHTML=x_score;
+                document.getElementById("scrU").innerHTML=o_score;
+            }
+        </script>
+    </body>
+</html>

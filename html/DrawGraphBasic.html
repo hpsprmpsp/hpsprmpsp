@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="author" content="hpsprmpsp" />
+        <title>Draw Graph</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            #content{
+                position: absolute;
+                top:0px;
+                left:10px;
+                height:600px;
+                width:600px;
+                
+            }
+            #points{
+                position: absolute;
+                top:10px;
+                left:700px;
+                width:400px;
+                height: 200px;
+            }
+            #points input, #btnPlace{
+                position: absolute;
+                left:0px;
+                width:250px;
+                height: 30px;
+            }
+            #x{
+                top:10px;
+            }
+            #y{
+                top:35px;
+            }
+            #btnPlace{
+                top:70px;
+                border:2px solid black;
+                color:black;
+                background-color:transparent;
+                font-weight: 900;
+            }
+            #btnDraw{
+                position: absolute;
+                top:10px;
+                left:0px;
+                height:25px;
+                width: 100%;
+                border:2px solid black;
+                color:black;
+                background-color:transparent;
+                font-weight: 900;
+            }
+            #pointList{
+                position: absolute;
+                left:00px;
+                top:120px;
+                height:470px;
+                width: 250px;
+                border-top: 1px dotted black;
+                z-index: 10;
+                overflow: auto;
+            }
+            #pointList ul{
+                position: absolute;
+                top:40px;
+                left:0px;
+                width: 100px;
+                list-style-type: none;
+                margin: 0px;
+                padding:0px;
+            }
+            #pointList ul li{
+                border:5px solid transparent;
+            }
+            #pointList ul li div{
+                height:30px;
+                width:150px;
+                text-align: center;
+                font-weight: 800;
+            }
+            #pointList ul li div span{
+                position: absolute;
+                height:30px;
+                width:30px;
+                left:170px;
+                text-align: center;
+                font-weight: 800;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <svg id="svgGraph" height="500" width="510" style="position:absolute;left:50px;top:50px;">
+                <line x1="250" y1="00" x2="250" y2="500"  stroke="black" stroke-width="1" />
+                <line x1="0" y1="250" x2="500" y2="250"  stroke="black" stroke-width="1" />
+                <circle cx="250" cy="250" fill="black" stroke-width="2" r="3" />
+            </svg>
+            
+        </div>
+        <div id="points">
+            <input id="x" type="number" max="10" placeholder="X"/>
+            <input id="y" type="number" max="10" placeholder="Y"/>
+            <button id="btnPlace" onclick="placePoints()">Place</button>
+            <div id="pointList">
+                <button id="btnDraw" onclick="drawGraph()">Draw</button>
+                <ul id="ulPoints"></ul>
+            </div>
+        </div>
+        
+        <script>
+            var x=document.getElementById('x');
+            var y=document.getElementById('y');
+            var svg=document.getElementById('svgGraph');
+            var sh;
+            var tx;
+            var xcord=[];
+            var ycord=[];
+           
+            
+            var ul=document.getElementById("ulPoints");
+            
+            placePosX();
+            placeNegX();
+            placePosY();
+            placeNegY();
+           function placePosX(){
+                for(var i=1;i<11;i++){
+                    sh=document.createElementNS("http://www.w3.org/2000/svg","circle");
+                    sh.setAttribute("cx",String((250) + (i*25)));
+                    sh.setAttribute("cy","250");
+                    sh.setAttribute('fill','blue');
+                    sh.setAttribute("r","2");
+                    svg.appendChild(sh);
+                    
+                    tx=sh=document.createElementNS("http://www.w3.org/2000/svg","text");
+                    tx.setAttribute("x",String((250) + (i*25)));
+                    tx.setAttribute('y','260');
+                    tx.setAttribute("font-size",'10');
+                    tx.innerHTML=String(i);
+                    svg.appendChild(tx);
+                }
+           }
+           function placeNegX(){
+            for(var i=1;i<11;i++){
+                    sh=document.createElementNS("http://www.w3.org/2000/svg","circle");
+                    sh.setAttribute("cx",String((250) - (i*25)));
+                    sh.setAttribute("cy","250");
+                    sh.setAttribute('fill','blue');
+                    sh.setAttribute("r","2");
+                    svg.appendChild(sh);
+                    
+                    tx=document.createElementNS("http://www.w3.org/2000/svg","text");
+                    tx.setAttribute("x",String((250) - (i*25)));
+                    tx.setAttribute('y','260');
+                    tx.setAttribute("font-size",'10');
+                    tx.innerHTML="-"+String(i);
+                    svg.appendChild(tx);
+                }
+        }
+           function placePosY(){
+                for(var i=1;i<11;i++){
+                    sh=document.createElementNS("http://www.w3.org/2000/svg","circle");
+                    sh.setAttribute("cx","250");
+                    sh.setAttribute("cy",String(250-(i*25)));
+                    sh.setAttribute('fill','red');
+                    sh.setAttribute("r","2");
+                    svg.appendChild(sh);
+                    
+                    tx=sh=document.createElementNS("http://www.w3.org/2000/svg","text");
+                    tx.setAttribute("x","260");
+                    tx.setAttribute('y',String(257-(i*25)));
+                    tx.setAttribute("font-size",'10');
+                    tx.innerHTML=String(i);
+                    svg.appendChild(tx);
+                }
+            }
+           function placeNegY(){
+                for(var i=1;i<11;i++){
+                    sh=document.createElementNS("http://www.w3.org/2000/svg","circle");
+                    sh.setAttribute("cx","250");
+                    sh.setAttribute("cy",String(250+(i*25)));
+                    sh.setAttribute('fill','red');
+                    sh.setAttribute("r","2");
+                    svg.appendChild(sh);
+                    
+                    tx=sh=document.createElementNS("http://www.w3.org/2000/svg","text");
+                    tx.setAttribute("x","260");
+                    tx.setAttribute('y',String(250+(i*25)));
+                    tx.setAttribute("font-size",'10');
+                    tx.innerHTML="-"+String(i);
+                    svg.appendChild(tx);
+                }
+            }
+            
+            
+            
+            function placePoints(){
+                if(Math.abs(x.value)>10 || Math.abs(y.value)>10){
+                    alert("Max value is 10");
+                    x.value="";
+                    y.value="";
+                    return;
+                }
+                if(x==""){
+                    var xc=0;
+                }else{
+                    var xc=25*x.value;
+                }
+                if(y==""){
+                    var yc=0;
+                }else{
+                    var yc=25*y.value;
+                }
+                
+                
+                var crc=document.createElementNS("http://www.w3.org/2000/svg","circle");
+                var trc=document.createElementNS("http://www.w3.org/2000/svg","text");
+                crc.setAttribute("cx",String(250+xc));
+                trc.setAttribute("x",String(255+xc));
+                if(yc<0){
+                    crc.setAttribute("cy",String(250-yc));
+                    trc.setAttribute("y",String(255-yc));
+                }else{
+                    crc.setAttribute("cy",String(250-yc));
+                    trc.setAttribute("y",String(255-yc));
+                }
+                var cl=getrandomColor();
+                crc.setAttribute('fill',cl);
+                crc.setAttribute("r","2");
+                trc.setAttribute("fill",cl);
+                trc.innerHTML="("+String((Number(crc.getAttribute("cx"))-250)/25)+","+String((250-Number(crc.getAttribute("cy")))/25)+")";
+                crc.id=String(xc)+"_"+String(yc);
+                trc.id="t_"+String(xc)+"_"+String(yc);
+                xcord.push(crc.getAttribute("cx"));
+                ycord.push(crc.getAttribute("cy"))
+                
+                addPointToList(crc.id,String((Number(crc.getAttribute("cx"))-250)/25),String((250-Number(crc.getAttribute("cy")))/25),cl,crc.getAttribute("cx"),crc.getAttribute("cy"));
+                
+                svg.appendChild(trc);
+                svg.appendChild(crc);
+                x.value="";
+                y.value="";
+                
+            }
+            
+            function addPointToList(id,xcord,ycord,clr,cxval,cyval){
+                var li=document.createElement("LI");
+                var dv=document.createElement("DIV");
+                var spn=document.createElement("SPAN");
+                var txt=document.createTextNode("x="+xcord+" y="+ycord);
+                var t_s=document.createTextNode("del");
+                li.id="li_"+id;
+                dv.style.color=clr;
+                spn.appendChild(t_s);
+                spn.onclick=function(){
+                    deletePoint(id,cxval,cyval);
+                };
+                dv.appendChild(txt);
+                dv.appendChild(spn);
+                li.appendChild(dv);
+                ul.appendChild(li);
+            }
+            
+            function drawGraph(){
+                var clr=getrandomColor();
+                var pt=svg.getElementsByTagName("path");
+                if(pt.length>0){
+                    for(var i=0;i<pt.length;i++){
+                        pt[i].parentElement.removeChild(pt[i]);
+                    }
+                   
+                }
+                var pth="M250 250 ";
+                for(var i=0;i<xcord.length;i++){
+                    pth=pth+"L"+xcord[i]+" "+ycord[i]+" ";
+                }
+                var p=document.createElementNS("http://www.w3.org/2000/svg","path");
+                p.setAttribute("d",pth);
+                p.setAttribute("fill","none");
+                p.setAttribute('stroke',clr);
+                p.setAttribute("stroke-width","2");
+                
+                svg.appendChild(p);
+                
+            }
+            
+           
+            
+            function deletePoint(id,cxval,cyval,txval,tyval){
+                var lid="li_"+id;
+                var tid="t_"+id;
+               
+                //remove from array
+                xcord.splice(xcord.indexOf(cxval),1);
+                ycord.splice(ycord.indexOf(cyval),1);
+                
+                document.getElementById(lid).parentNode.removeChild(document.getElementById(lid));
+                document.getElementById(id).parentNode.removeChild(document.getElementById(id));
+                document.getElementById(tid).parentNode.removeChild(document.getElementById(tid));
+                
+                var pth=svg.getElementsByTagName("path");
+                if(pth.length>0){
+                    for(var i=0;i<pth.length;i++){
+                        pth[i].parentElement.removeChild(pth[i]);
+                    }
+                    drawGraph();
+                }
+                
+            }
+            
+            function getrandomColor(){
+                var lo="0123456789ABCDEF";
+                var clr="#";
+                
+                for(var i=0;i<6;i++){
+                    clr=clr+lo[Math.floor(Math.random()*16)];
+                }
+                return clr;
+            }
+            
+        </script>
+    </body>
+</html>

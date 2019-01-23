@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>hpsprmpsp</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="index.js"></script>
+    <script src="data/index.js"></script>
     <style>
     * {
         box-sizing: border-box;
@@ -39,6 +39,7 @@
         margin: 10px;
         font-size: 24px;
         font-weight: 900;
+        
     }
 
     ul{
@@ -50,6 +51,7 @@
    		margin: 10px;
    		float: left;
    		width: 150px;
+   		border-radius: 50%;
    	}
     @media only screen and (max-width: 600px) {
         .links {
@@ -91,7 +93,7 @@
                     id: 'link-' + f.name,
                     title: f.name + " :: " + f.href,
                     html: f.name,
-                    href: f.href,
+                    href: "html/"+f.href,
                     "class": 'links',
                     target: "_blank",
                     css: {

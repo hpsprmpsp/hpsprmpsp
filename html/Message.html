@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="author" content="Soumya Sarthak Padhee" />
+        <title>Message</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                background-color: #f1f1f1;
+            }
+            .container{
+                position: relative;
+                margin:auto;
+                margin-top:40px;
+                width:50%;
+                
+                color:#343434;
+                overflow: hidden;
+                max-height: 0px;
+                transition: 2s;
+                box-shadow: none;
+            }
+            
+            .container h1{
+                font-size: 30px;
+                font-weight: 900;
+                margin-left: 55px;
+            }
+            .container p{
+                font-size: 25px;
+                margin-left: 55px;
+                width: calc(100% - 100px);
+            }
+            .border{
+                position: absolute;
+                top:0px;
+                width:20px;
+                height: 100%;
+                background-image: repeating-linear-gradient(0deg,cadetblue,cadetblue 10px,transparent 10px,transparent 20px);
+                background-size: 20px 20px;
+                background-repeat: repeat-y;
+                
+                -webkit-animation:stripRun 10s infinite linear forwards;
+                -moz-animation:stripRun 10s infinite linear forwards;
+                animation: stripRun 10s infinite linear forwards;
+                
+            }
+            @keyframes stripRun{
+                0%{
+                    background-position: 0px 0%;
+                }
+                100%{
+                    background-position: 0px 100%;
+                }
+            }
+            @-webkit-keyframes stripRun{
+                0%{
+                    background-position: 0px 0%;
+                }
+                100%{
+                    background-position: 0px 100%;
+                }
+            }
+            @-moz-keyframes stripRun{
+                0%{
+                    background-position: 0px 0%;
+                }
+                100%{
+                    background-position: 0px 100%;
+                }
+            }
+            .left{
+                left:0px;
+            }
+            .right{
+                right:0px;
+            }
+            .drop-container{
+                position: relative;
+                display: inline-block;
+                left:25%;
+                width:50%;
+                margin:auto;
+                padding:20px;
+                background-color: cadetblue;
+                box-shadow: none;
+                transition:1s;
+            }
+            .drops{
+                position: relative;
+                margin:5px;
+                padding:10px;
+                text-decoration: none;
+                background-color: transparent;
+                color:cadetblue;
+                font-size: 22px;
+                font-weight: 900;
+                visibility: hidden;
+                animation-name: vShake, glow;
+                animation-duration: 1s,2s;
+                animation-delay: 4s,5s;
+                animation-fill-mode: forwards,both;
+                animation-iteration-count: 1,1;
+            }
+            .drops span{
+                font-size: 26px!important;
+            }
+            @keyframes vShake{
+                0%{visibility: visible;top:-10px}
+                10%{top:10px}
+                20%{top:-8px}
+                30%{top:8px}
+                40%{top:-6px}
+                50%{top:6px}
+                60%{top:-4px}
+                70%{top:4px}
+                80%{top:-2px}
+                90%{top:-2px}
+                100%{visibility: visible;top:0px}
+            }
+            @keyframes glow{
+                0%{
+                    text-shadow: 0 0 0 rgba(0,0,0,0);
+                }
+                50%{
+                    text-shadow: 0 0 5px #FF0000, 0 0 8px #0000FF;
+                }
+                100%{
+                    text-shadow: 0 0 0 rgba(0,0,0,0);
+                }
+            }
+            .sign{
+                max-width: 70%;
+                position: relative;
+                margin-left: 55px;
+                user-select:none;
+                color:#0022ff;
+            }
+            .sign h2{
+                margin:0;
+                text-align: left;
+                color:#343434;
+            }
+            .sign summary{
+                margin-left: -10px;
+                font-size: 20px;
+            }
+            .sign p{
+                font-size: 15px;
+                margin:0;
+                padding: 0;
+                font-weight: 700;
+               
+            }
+            @media screen and (max-width:728px){
+                .container{
+                    width:100%;
+                    
+                }
+                .drop-container{
+                    width:100%;
+                    left:0%;
+                }
+            }
+            .sideBar{
+                position: fixed;
+                left:0px;
+                top:10%;
+                z-index: 5;
+            }
+            .poke-out, .reset-col, .refresh-poke,.rand-col{
+                position: relative;
+                display: block;
+                float: left;
+                clear:left;
+                padding:10px 0px 10px 0px;
+                font-size: 22px;
+                width:200px;
+                left: -180px;
+                font-weight: 900;
+                text-align: center;
+                transition: 0.5s;
+				margin-bottom: 5px;
+				cursor: pointer;
+				border-radius: 5px;
+				user-select:none;
+            }
+            
+			.reset-col{
+				background-color: cadetblue;
+				color:white;
+			}
+			.refresh-poke{
+				background-image: repeating-linear-gradient(90deg,red,red 33.34%,green 33.34%,green 66.66%,blue 66.66%,blue 100%);
+				color:#f3f3f3;
+				
+				font-size: 18px;
+			}
+            .rand-col{
+                background-image: repeating-linear-gradient(90deg,blue, green 20%,red 40%, blue 60%,red 80%, green 100%);
+				color:#f3f3f3;
+				
+				font-size: 18px;
+            }
+            .poke-out:hover, .reset-col:hover, .refresh-poke:hover,.rand-col:hover{
+                left:-5px;
+                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.5);
+				
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="border left"></div>
+            <h1>Hi,</h1>
+            <p>Lorem ipsum dolor sit amet, ex iisque definiebas argumentum cum, hinc senserit facilisis ad his, ut sed quas etiam. Probo perfecto vix ex, eum id nibh quidam nominavi. Ei eos erant cetero fuisset, </p>
+            <div class="sign">
+                <h2>Lorem Ipsum</h2>
+                <details>
+                    <summary>Soumya Sarthak Padhee</summary>
+                    <p>Phone:9652147435</p>
+                    <p><a href="#dropCont">Social contacts mentioned below</a></p>
+                </details>
+            </div>
+            <div class="border right"></div>
+            <div style="height:100px;"></div>
+        </div>
+        
+        <div class="drop-container" id="dropCont">
+            <a class="drops" href="https://500px.com/hpsprmpsp"><span class="fa fa-500px"></span></a>
+            <a class="drops" href="https://www.facebook.com/hpsprmpsp"><span class="fa fa-facebook-official"></span></a>
+            <a class="drops" href="https://www.github.com/hpsprmpsp/hpsprmpsp"><span class="fa fa-github"></span></a>
+            <a class="drops" href="https://plus.google.com/u/0/+soumyasarthakpadhee"><span class="fa fa-google-plus"></span></a>
+            <a class="drops" href="https://www.instagram.com/hpsprmpsp"><span class="fa fa-instagram"></span></a>
+            <a class="drops" href="https://jsfiddle.net/user/hpsprmpsp/fiddles/"><span class="fa fa-jsfiddle"></span></a>
+            <a class="drops" href="https://www.linkedin.com/in/soumya-padhee-4a110b62/"><span class="fa fa-linkedin"></span></a>
+            <a class="drops" href="https://in.pinterest.com/soumya_sarthak"><span class="fa fa-pinterest"></span></a>
+            <a class="drops" href="https://twitter.com/hpsprmpsp"><span class="	fa fa-twitter"></span></a>
+            <a class="drops" href="https://www.tumblr.com/blog/soumyapadhee"><span class="fa fa-tumblr"></span></a>
+            
+            <a class="drops" href="mailTo:hpsprmpsp@gmail.com"><span class="fa fa-envelope"></span></a>
+        </div>
+        <div class="sideBar">
+			
+            <div class="poke-out" >Set</div>
+			<div class="poke-out">Set</div>
+			<div class="poke-out" >Set</div>
+			<div class="poke-out" >Set</div>
+			<div class="poke-out">Set</div>
+            <div class="poke-out">Set</div>
+            <div class="poke-out">Set</div>
+            <div class="poke-out">Set</div>
+			<div class="refresh-poke">New Pills</div>
+            <div class="rand-col" onclick="setRandomEleCol()">Random</div>
+            <div class="reset-col">Reset</div>
+        </div>
+        <script>
+            var div=document.getElementsByClassName("container")[0];
+            var drops=document.getElementsByClassName("drops");
+            var dropCont=document.getElementsByClassName("drop-container")[0];
+            var border=document.getElementsByClassName('border');
+            var pout=document.getElementsByClassName('poke-out');
+            var col=['violet','indigo','blue','green','yellow','orange','red','navajowhite','magenta','azure','crimson'];
+            var poutbColor=[];
+			setDropColor();
+			setPoke();
+			dropCont.style.top=(div.offsetTop- (dropCont.scrollHeight)) + "px";
+			setTimeout(function(){
+                div.style.maxHeight=div.scrollHeight+"px";
+                
+                dropCont.style.top="0px";
+            },100);
+            window.addEventListener('resize',function(){
+                div.style.maxHeight=div.scrollHeight+"px";
+            });
+			
+			document.getElementsByClassName("refresh-poke")[0].addEventListener("click",function(e){
+				e.preventDefault;
+				e.stopPropagation;
+				setPoke();
+			});
+			
+            function setPoke(){
+				for (x of pout){
+					let bcol=randCol();
+					while(poutbColor.indexOf(bcol)>0){
+						bcol=randCol();
+					}
+					poutbColor.push(bcol);
+					x.style.backgroundColor=bcol;
+					x.style.color=complementaryColor(bcol,true);
+					x.innerHTML= bcol;
+					x.addEventListener('click',function(e){
+						e.preventDefault;
+						e.stopPropagation;
+						setEleCol(bcol);
+					});
+					x.addEventListener('dblclick',function(e){
+						e.preventDefault;
+						e.stopPropagation;
+						document.getElementsByClassName('reset-col')[0].click();
+					});
+					x.setAttribute("title","Single Click to apply and double click to remove");
+				}
+			}
+            function setRandomEleCol(){
+                setEleCol();
+            }
+            function setEleCol(bcol){
+                bcol=bcol || randCol();
+                div.style.backgroundColor=bcol;
+						div.style.color=complementaryColor(bcol,false);
+                for (a of border){
+                    a.style.backgroundImage="repeating-linear-gradient(0deg,"+complementaryColor(bcol,false)+","+complementaryColor(bcol,false)+" 10px,transparent 10px,transparent 20px)";
+                }
+                dropCont.style.backgroundColor=complementaryColor(bcol,false);
+                for (a of drops){
+                    a.style.color=complementaryColor(complementaryColor(bcol,false),true);
+                }
+                document.getElementsByClassName("sign")[0].style.color=complementaryColor(bcol,true);
+                document.querySelector(".sign h2").style.color=complementaryColor(bcol,true);
+                document.querySelector(".sign p a").style.color=complementaryColor(bcol,true);
+                
+                
+            }
+			document.getElementsByClassName('reset-col')[0].addEventListener('click',function(e){
+				e.preventDefault;
+				e.stopPropagation;
+				div.removeAttribute('style');
+				div.style.maxHeight=div.scrollHeight+"px";
+				for (a of border){
+					a.style.backgroundImage="repeating-linear-gradient(0deg,cadetblue,cadetblue 10px,transparent 10px,transparent 20px)";
+				}
+				dropCont.removeAttribute('style');
+				dropCont.style.top="0px";
+				setDropColor();
+				document.getElementsByClassName("sign")[0].removeAttribute('style');
+				document.querySelector(".sign h2").removeAttribute('style');
+				document.querySelector(".sign p a").removeAttribute('style');
+			});
+			
+            
+            function setDropColor(){
+				for (x of drops){
+					x.setAttribute("target","_blank");
+					let ind=Array.prototype.indexOf.call(drops,x);
+					x.style.animationDelay=(ind+2.5)+"s, "+(ind+3.5)+'s';
+					if(ind>=col.length){ind=ind-col.length;}
+					x.style.color=col[ind];
+				}
+			}
+            
+            
+            function randCol(){
+                let op="#";
+                let clrTmp="0123456789ABCDEF";
+                let l=clrTmp.length;
+                for(let i=0;i<6;i++){
+                    let tmpN=Math.floor(Math.random()*l);
+                    op+=clrTmp[tmpN];
+                }
+                return op;
+            }
+           function complementaryColor(hexCol,bw){
+               if(hexCol.indexOf('#')===0){
+                   hexCol=hexCol.slice(1);
+               }
+               if(hexCol.length==3){
+                   hexCol=hexCol[0]+hexCol[0]+hexCol[1]+hexCol[1]+hexCol[2]+hexCol[2];
+               }
+               if(hexCol.length!=6){
+                   throw new Error("Invalid Hexadecimal input length");
+               }
+               let r=parseInt(hexCol.slice(0,2),16);
+               let g=parseInt(hexCol.slice(2,4),16);
+               let b=parseInt(hexCol.slice(4,6),16);
+               
+               if(bw){
+                   return((r*0.229+g*0.587+b*0.114)>186 ? "#000000" : "#FFFFFF");
+				   //return((r+g+b)>350 ? "#000000" : "#FFFFFF");
+               }
+               r=(255-r).toString(16);
+               g=(255-g).toString(16);
+               b=(255-b).toString(16);
+			   
+			   return "#" + padZero(r) + padZero(g) + padZero(b);
+           }
+			function padZero(str,leng){
+				leng=leng||2;
+				var zeros=new Array(leng).join('0');
+				return (zeros+str).slice(-leng);
+			}
+			
+        </script>
+    </body>
+</html>

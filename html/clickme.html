@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Click Me</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src = "../src/randomMove.js"></script>
+		<style>
+			*{
+				box-sizing: border-box;
+			}
+			.box{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				padding:0px;
+				height: 50px;
+				width: 200px;
+				font-weight: 900;
+				font-size: 40px;
+				background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
+				-webkit-background-clip: text;
+  				-webkit-text-fill-color: transparent;
+				transition: all 0.050s linear;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">Click Me!!!<div>
+		<script>
+			document.addEventListener('contextmenu', event => event.preventDefault());
+			$(document).ready(function(){
+				
+				randomMove("#box", $);
+			});
+		</script>
+	</body>
+</html>

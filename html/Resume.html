@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../style/style_resume.css" />
+    <link rel="stylesheet" type="text/css" href="../style/media_resume.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../data/data_resume.js" defer></script>
+
+</head>
+
+<body>
+
+    <script>
+        var intv = setInterval(function(){
+            if(document.readyState == 'complete'){
+                $('[data-toggle="tooltip"]').tooltip(); 
+                clearInterval(intv);
+            }
+        },100);
+    </script>
+
+</body>
+
+</html>
