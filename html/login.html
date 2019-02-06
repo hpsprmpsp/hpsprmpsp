@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'/>
+    <style>
+        *{
+                box-sizing: border-box;
+            }
+            .container{
+                position: relative;
+                margin: auto;
+                width: 400px;
+                height: 400px;
+                top: 100px;
+            }
+            .container h3{
+                padding: 5px;
+                padding-left:40px;
+                color: blue;
+                font-size: 30px;
+                font-weight: 900;
+                margin:0px;
+            }
+            .container form{
+                top: 100px;
+                left:0px;
+                width: 100%;
+                height: calc(100% - 100px);
+
+            }
+            .container form .form-group{
+                display: block;
+                width: 100%;
+                margin-top:10px;
+                margin-bottom: 10px;
+                box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
+                border:none;
+            }
+            .container form .form-group input{
+                padding: 2.5px;
+                padding-left:10px;
+                height: 40px;
+                font-size: 30px;
+                line-height: 40px;
+                border: none;
+                margin: 0px;
+                width: calc(100% - 35px);
+            }
+            .container form .form-group input:focus{
+                border: none;
+                outline: none;
+            }
+            .container form .form-group button{
+                display: inline-block;
+                color: white;
+                font-weight: 900;
+                font-size: 25px;
+                padding: 10px;
+                background-color: cadetblue;
+                border:none;
+                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+            }
+
+            .fas{
+                z-index: 100;
+                padding: 2.5px;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+       
+        <form>
+
+            <label class="form-group">
+                <i class="fas fa-user-tie" style='font-size:25px'></i><input type="text" name="username" />
+            </label>
+            <label class="form-group">
+                <i class="fas fa-key" style='font-size:25px'></i><input type="password" type="password" />
+            </label>
+            <lable class="form-group" style="box-shadow: none;border: none;">
+                <button type="submit">Submit</button>
+                <button type="reset">Cancel</button>
+            </lable>
+
+        </form>
+    </div>
+</body>
+
+</html>

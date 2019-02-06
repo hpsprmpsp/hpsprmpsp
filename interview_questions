@@ -1,0 +1,121 @@
+Basic Concept
+======================
+significance of doctype (quirk mode : when doctype is not mentioned, browser thinks it as old fashoined and used quirk mode, else standard mode) 2/5
+significance of meta 1/5
+favourite html5 feature and ever used it 1/5
+responsive page design without using bootstrap--skipped
+design a triangle in svg 0/5
+design a simple circular progress bar where it fill the arcs in black color wrt to percentage 0/5
+replicate area-map function in an image (getBoundingClientRect) :https://www.w3schools.com/jsref/met_element_getboundingclientrect.asp 
+https://developer.mozilla.org/en-US/docs/Web/API/Element/            1/5
+what's a promise 0/5
+Javascript hoisting and examples   0/5
+explain bind, call, apply with example https://medium.com/@omergoldberg/javascript-call-apply-and-bind-e5c27301f7bb 
+1/5
+
+create obj x={
+    a: val,
+    fn : function(){return this.a};
+}
+
+var ams = function(){console.log("assa" + this.fn();)}
+instead of apssing argument in ams, and using it as arg.fn(), ams.bind(x), will set this as x
+
+call and apply are bind that excepts more parameter
+call expects indivisual arguement, apply expects them in array
+so for above
+
+ams.call(x,'as',lol')
+ams.apply(x, ['as','lol'])
+var person = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+var person1 = {
+  firstName:"John",
+  lastName: "Doe",
+}
+var person2 = {
+  firstName:"Mary",
+  lastName: "Doe",
+}
+person.fullName.call(person1);
+
+find a missing elements in an array which consists of n consecutive numbers from 1   2/5
+find duplicates in an array   
+replicate loader 1 -- skipped
+example of polyphil 0/5
+sort an array without using sort function 
+Describe the difference between a cookie, sessionStorage and localStorage --skipped
+Describe the difference between <script>, <script async> and <script defer> 0/5
+what kind of inheritance is there in javascript, and please explain a little about it -skipped
+what is functional programming --skipped
+What are two-way data binding and one-way data flow, and how are they different --skipped
+What is monolithic and microservice architectures --skipped
+What is asynchronous programming, and why is it important in JavaScript -- 1/5
+scope of variable 1/5
+Have you used or implemented media queries or mobile specific layouts/CSS
+    if yes, Can you give an example of an @media property other than screen
+What does * { box-sizing: border-box; } do? What are its advantages
+Can you explain the difference between coding a web site to be responsive versus using a mobile-first strategy
+
+0/5
+
+
+what is a css processor and can you give me an example https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor 
+hoisting, variable, function, hoisting doesn't work with const and let, why 0/5
+event delegation: https://javascript.info/event-delegation  0/5
+closure with example https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures 
+
+building blocks of html 5: https://www.quora.com/Design-Consider-HTML5-as-an-open-web-platform-What-are-the-building-blocks-of-HTML5 
+1/5
+
+
+what is the recomendation of position of style and script, and why?: https://stackoverflow.com/a/6625843/6853800 
+0.5/5
+
+replicate 
+for( i = start; i<end; i += step){
+    console.log(i);
+}
+using without any loop, 
+
+
+Ans:
+function looping(start, end , step){
+    if(start >= end ){
+        return false;
+    }
+    console.log(start);
+    start += step;
+    looping(start, end, step)
+}
+   0/5
+
+what is the output of
+for(var i=0; i< 10; i++){
+    setTimeout(function(){
+    console.log(i);
+},10);
+
+if he gives correct answers ask him why and how shall we solve it(using let) and closure    0/5
+
+
+
+codes to write
+====================
+Compare two objects --0/5
+duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5] --skipped
+
+
+load
+
+https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95
+https://www.geeksforgeeks.org/functional-programming-paradigm/
+
+
+
+
+
+

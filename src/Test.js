@@ -5,11 +5,11 @@
     if value is array, use array compare method
     if value is others, user ===
 */
-function compareObject(obj1, obj2){
+function isObjectsEqual(obj1, obj2){
     //if they have different length, meaning different numbers of key: value pair
     //then what's the point
     if(Object.keys(obj1).length != Object.keys(obj2).length) return false;
-    
+    if(!isArraysEqual(Object.keys(obj1), Object.keys(obj2))) return false;
     //same length means same set of keys
     //for all browsers
     var keys = Object.keys(obj1);
@@ -17,7 +17,7 @@ function compareObject(obj1, obj2){
     for(var i = 0; i<keys.length; i++){
         if(obj1[keys[i]] instanceof Array){
             if(obj2[keys[i]] instanceof Array){
-                if(!compareArray(obj1[keys[i]], obj2[keys[i]])){
+                if(!isArraysEqual(obj1[keys[i]], obj2[keys[i]])){
                     isSame = false;
                     i += keys.length;
                 }
@@ -27,7 +27,7 @@ function compareObject(obj1, obj2){
             }
         }else if(obj1[keys[i]] instanceof Object){
             if(obj2[keys[i]] instanceof Object){
-                if(!compareObject(obj1[keys[i]], obj2[keys[i]])){
+                if(!isObjectsEqual(obj1[keys[i]], obj2[keys[i]])){
                     isSame = false;
                     i += keys.length;
                 }
@@ -45,7 +45,7 @@ function compareObject(obj1, obj2){
     return isSame;
 }
 
-function compareArray(arr1, arr2){
+function isArraysEqual(arr1, arr2){
     if(!isArray(arr1) || !isArray(arr2)) return false;
     if(arr1.length != arr2.length) return false;
     //iterate through each item in array 1 to check if they are in array2, if one is missing, return false
@@ -54,12 +54,12 @@ function compareArray(arr1, arr2){
     arr2.sort();
     for(var i = 0; i< arr1.length; i++){
         if(arr1[i] instanceof Object){
-            if(!compareObject(arr1[i], arr2[2])){
+            if(!isObjectsEqual(arr1[i], arr2[2])){
                 isSame  = false;
                 i=arr1.length + 1;
             }
         }else if(arr1[i] instanceof Array){
-            if(!compareArray(arr1[i], arr2[2])){
+            if(!isArraysEqual(arr1[i], arr2[2])){
                 isSame  = false;
                 i=arr1.length + 1;
             }
@@ -90,15 +90,15 @@ function test(){
     var o1={"name": "chema", "age": "200", "dead":"no","qual":{
         "10th": {"math":"90","phy":"96"},
         "12th": {"IP": 120, "PE": "failed"},
-        "btech": [8,4,5,6,8]
+        "btech": [8,4,5,{'z':'1'},8]
     }, "disease":["cancer","hiv","todie"]};
     var o2={"name": "chema", "age": "200", "dead":"no","qual":{
         "10th": {"math":"90","phy":"96"},
         "12th": {"IP": 120, "PE": "failed"},
-        "btech": [8,4,5,6,8]
+        "btech": [8,4,5,{'z':'1'},8]
     }, "disease":["cancer","hiv","todie"]};
-    if(compareObject(o1,o2)){
-        console.log("tested okay")
+    if(isObjectsEqual(o1,o2)){
+        console.log("tested okay");
     }
 }
 
