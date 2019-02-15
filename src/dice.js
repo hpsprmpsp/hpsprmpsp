@@ -64,7 +64,7 @@ function dice(canvasContainer, buttonContainer, $) {
 	var r = d/7;
 
     //draw dots based on outcome 
-    function draw(dotCollection){
+    function draw(dotCollection, number){
     	ctx.clearRect(0,0,d,d);
     	cnvCover.css('height', "100%");
     	$(btn).prop('disabled','disabled');
@@ -79,13 +79,14 @@ function dice(canvasContainer, buttonContainer, $) {
     		setTimeout(function(){
     			animateCircle(dot.x,dot.y,dot.r,ctx);
     		},(index * 630));
-    	});
+		});
+		return number? number : false;
     }
 
     function update(){
     	let rnd = (Math.floor(Math.random() * 6) + 1).toString();console.log(rnd);
     	moveDice();
-    	draw(cordingateCollection[rnd]);
+    	return draw(cordingateCollection[rnd], rnd);
 
     }
 	function animateCircle(x,y,r, cntx){
@@ -148,7 +149,7 @@ function dice(canvasContainer, buttonContainer, $) {
     }
 
     
-    draw(cordingateCollection["6"])
+    draw(cordingateCollection["6"],6);
 
     $(btn).on("click", function(){
     	update();

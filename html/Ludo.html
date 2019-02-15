@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="application-name" content="Ludo"/>
+        <meta name="author" content="hpsprmpsp@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <title>Ludo Khelenge</title>
+        <link rel="stylesheet" type="text/css" href="../style/ludo.css"/>
+    </head>
+    <body>
+       
+            <!--<span class="current-roller"></span>--> <!--To be created dynamically-->
+            <div class="ludo-plate" id="ludo-plate"></div>
+            <div class="ludo-players"></div>
+            <div class="dice-control" id="dice-control"></div>
+        
+        <div class=" modal-pop-outer">
+            <div class="dice-holder" id="dice-holder"></div>
+            <span  class="modal-pop-close" element-action="close">X</span>
+        </div>
+        
+        <script src="../src/ludo.js"></script>
+        <script>
+           $(document).ready(function(){
+            ludo({
+                "ludo-container" : "ludo-plate",
+                "dice-holder" : "dice-holder",
+                "dice-control" : "dice-control",
+                "user-container" : "ludo-players"
+            },$);
+           });
+        </script>
+    </body>
+</html>
