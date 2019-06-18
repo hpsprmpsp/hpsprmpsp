@@ -1,0 +1,288 @@
+* {
+            box-sizing: border-box;
+            outline: 0 !important;
+            transition: all 0.5s linear;
+        }
+
+        *:focus,
+        *:active {
+            outline: 0 !important;
+        }
+
+        .full {
+            height: 100vh;
+        }
+
+        .shady {
+            background-image: url("../data/header1.jpeg");
+            background-blend-mode: darken;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .image-body {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            z-index: 0;
+        }
+
+        .loader-cover {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: block;
+            width: 100%;
+            height: 100%;
+            z-index: 1600;
+            background-color: transparent;
+            animation-name: destroyBox;
+            animation-delay: 6s;
+            animation-duration: 0.5s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .loader {
+            width: 100%;
+            left: 0px;
+            min-height: 100px;
+            background-color: #fefefe;
+        }
+
+        .loader.pusher {
+            height: 30%;
+            background-image: linear-gradient(#ff3dff, orange);
+            animation-name: ripBanner;
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            z-index: 200;
+        }
+
+        .loader.pusher::before {
+            content: "\2708";
+            position: absolute;
+            display: inline-block;
+            right: -100px;
+            top: 50%;
+            font-size: 4em;
+            transform: translateY(-50%) rotate(180deg);
+            animation-name: planeMove;
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .loader.pusher::after {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            right: -100px;
+            top: 50%;
+            width: 32px;
+            transform: translateY(-2.5px);
+            border: 3px solid #111;
+            animation-name: smokeMove;
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+
+        }
+
+        .loader.top,
+        .loader.bottom {
+            height: 35%;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+            background-image: linear-gradient(cadetblue, lightgreen);
+            border: none;
+            transform-origin: left;
+            animation-name: fallHolder;
+            animation-delay: 4s;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes planeMove {
+            0% {
+                right: -100px;
+            }
+
+            10% {
+                right: 30px;
+            }
+
+            100% {
+                right: calc(100% + 30px);
+            }
+        }
+
+        @keyframes smokeMove {
+            0% {
+                right: -100px;
+            }
+
+            10% {
+                right: 0px;
+            }
+
+            100% {
+                right: 100%;
+            }
+        }
+
+        @keyframes ripBanner {
+            0% {
+                width: 100%;
+            }
+
+            10% {
+                width: 100%;
+            }
+
+            100% {
+                width: 0%;
+            }
+        }
+
+        @keyframes fallHolder {
+            0% {
+                transform: rotate(0deg);
+                margin-top: 0px;
+            }
+
+            30% {
+                transform: rotate(90deg);
+                margin-top: 0px;
+            }
+
+            100% {
+                transform: rotate(90deg);
+                margin-top: 400%;
+                margin-left: -50%;
+            }
+
+        }
+
+        @keyframes destroyBox {
+            to {
+                height: 0px;
+                width: 0px;
+                display: none;
+                opacity: 0;
+            }
+        }
+
+        .card-container {
+            position: absolute;
+            top: 20vh;
+            left: 10.5vw;
+            height: 80vh;
+            width: 83vw;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            background-color: transparent;
+        }
+
+        .card {
+            display: none;
+            position: absolute;
+            margin-left: 0.5vw;
+            width: 27vw;
+            top: 10vh;
+            height: 60vh;
+            background-color: #000032;
+            margin: 0px;
+            padding: 0px;
+            box-shadow: 0px 0px 5px 2px #fff;
+            border-radius: 5%;
+            animation-duration: 1.4s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+           
+        }
+
+        .card.prev,
+        .card.next,
+        .card.active {
+            display: inline-block;
+        }
+
+        .card.prev {
+            left: 5vw;
+        }
+
+        .card.next {
+            right: 5vw;
+        }
+
+        .card.active {
+            left: 27vw;
+            z-index: 200;
+            top: -5vh;
+            transform: scale(1.2);
+        }
+        .carousal-control {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 5vh;
+            z-index: 420;
+            display: none;
+            transition: all 1s linear;
+        }
+
+        .card-container:hover .carousal-control {
+            display: block;
+        }
+
+        .carousal-control.left {
+            left: 0px;
+        }
+
+        .carousal-control.right {
+            right: 0px;
+        }
+
+        .card-inside-box {
+            position: absolute;
+            top: 2.5%;
+            left: 2.5%;
+            width: 95%;
+            height: 95%;
+            border-radius: 5%;
+            background-color: transparent;
+        }
+
+        .card-inside-box>.container-box {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 80%;
+            width: 100%;
+            border-top-left-radius: 5%;
+            border-top-right-radius: 5%;
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        .card-inside-box>.banner {
+            position: absolute;
+            top: 80%;
+            left: 0px;
+            width: 100%;
+            height: 20%;
+            border-bottom-left-radius: 5%;
+            border-bottom-right-radius: 5%;
+            background-color: #000032;
+            font-size: 5vh;
+            text-align: center;
+            color: white;
+        }

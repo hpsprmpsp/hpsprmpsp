@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="application-name" content="Wedding-Invitation" />
+    <meta name="author" content="Soumya Sarthak Padhee" />
+    <meta name="keywords" content="wedding invitation soumya padhee hpsprmpsp puja purohit pujasmita" />
+    <title>Wedding Invotation</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/wedding.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <div class="loader-cover">
+            <div class="loader top"></div>
+            <div class="loader pusher"></div>
+            <div class="loader bottom"></div>
+        </div>
+
+    <div class="container-fluid full shady">
+        <div class="card-container">
+            <!--
+            -->
+            <div class="card" data-box-no='1'>
+                <div class="card-inside-box">
+                    <div class="container-box"></div>
+                    <div class="banner">Page1</div>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="card" data-box-no='2'>
+                <div class="card-inside-box">
+                    <div class="container-box" id="map"></div>
+                    <div class="banner">page 2</div>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="card" data-box-no='3'>
+                <div class="card-inside-box">
+                    <div class="container-box"></div>
+                    <div class="banner">page3</div>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="card" data-box-no='4'>
+                <div class="card-inside-box">
+                    <div class="container-box"></div>
+                    <div class="banner">page4</div>
+                </div>
+            </div>
+            <!--
+            --><button id="btnPrev" class="carousal-control left" onclick="showPrev()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+            <!--
+--><button id="btnNext" class="carousal-control right" onclick="showNext()"><span class="glyphicon glyphicon-chevron-right"></span></button>
+            <!--
+        -->
+        </div>
+    </div>
+    <!--<div id="map" class="card"></div>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMK2gMHVb2No-9zT_H4thtHt71aOPovqs">
+    </script>
+    <script>
+        var slideIndex = 1;
+        var initialLoad = true;
+        show(slideIndex);
+
+        function showNext() {
+            slideIndex -= 1;
+            show(slideIndex);
+        }
+
+        function showPrev() {
+            slideIndex += 1;
+            show(slideIndex);
+        }
+
+        function show(idx) {
+            var nxIndex = idx + 1,
+                prIndex = idx - 1;
+            var cards = $(".card");
+            if (slideIndex >= cards.length) {
+                slideIndex = cards.length;
+                prIndex = slideIndex - 1;
+                nxIndex = 1;
+            }
+            if (idx > slideIndex) {
+                slideIndex = 1;
+                nxIndex = 2;
+                prIndex = cards.length;
+            }
+            if (idx < 1) {
+                slideIndex = cards.length;
+                nxIndex = 1;
+                prIndex = cards.length - 1;
+            }
+            if (idx == 1) {
+                prIndex = cards.length;
+            }
+            cards.removeClass("active next prev");
+            cards.eq(slideIndex - 1).addClass("active");
+            cards.eq(nxIndex - 1).addClass("next");
+            cards.eq(prIndex - 1).addClass("prev");
+
+
+        }
+        initMap();
+
+        function initMap() {
+            var loc = {
+                lat: 20.2517619,
+         z``       lng: 83.2168029
+            };
+            var map = new google.maps.Map(
+                document.getElementById('map'), {
+                    zoom: 10,
+                    center: loc
+                });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({
+                position: loc,
+                map: map
+            });
+        }
+    </script>
+</body>
+
+</html>

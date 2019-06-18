@@ -7,6 +7,7 @@
     <title>hpsprmpsp</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="data/index.js"></script>
+    <script src="lib/html2canvas.min.js"></script>
     <style>
     * {
         box-sizing: border-box;
@@ -58,11 +59,41 @@
             width: 100%;
         }
     }
+    .modal{
+        position: fixed;
+        top:0px;
+        left:0px;
+        height:100vh;
+        width: 100vw;
+        z-index: 200;
+        background-color: black;
+        
+        display: none;
+    }
+    .modal.in{
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 90vw;
+        height: 90vh;
+    }
+    .modal.in.content{
+        
+    }
+    .image-contain{
+        object-fit: contain;
+    }
     </style>
 </head>
 
 <body>
     <div class="container" id="container"></div>
+    <div class="modal" id="modal">
+        <div class="in">
+            <div class="content" id='modalContent'></div>
+            <div class="controller"><button>Download</button></div>
+        </div>
+    </div>
     <script>
     var files = files_raw.sort(function(a, b) {
         return a.name.localeCompare(b.name);
@@ -107,6 +138,19 @@
 
 
     });
+
+    window.onkeyup = function(e){
+        if(e.keyCode === 83 && e.ctrlKey){
+            takeSnap(document.getElementById("container"),document.getElementById("modalContent"));
+        }
+    };
+    function takeSnap(ele, opEle){
+
+        html2canvas(ele).then(function(canvas){
+           opEle.innerHTML = "<img src='" + canvas.toDataURL("image/png") + "' alt='chema' class='image-contain'/> ";
+           document.getElementById("modal").style.display="block";
+        });
+    }
     </script>
 </body>
 

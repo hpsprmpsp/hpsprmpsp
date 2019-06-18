@@ -1,0 +1,69 @@
+<style>
+    #vid-js-video-container{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    #vid-js-video-subtitle-holder{
+        display: block;
+        position: absolute;
+        top:0px;
+        left:0px;
+        width: 100%;
+        height: 100%;
+    }
+    #vid-js-video-holder{
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+    }
+    #vid-js-video-player{
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+    }
+    #vid-js-subtitle-holder{
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+    }
+    #vid-js-control-holder{
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        z-index: 100;
+    }
+</style>
+<div id="vid-js-video-container">
+    <div id="vid-js-video-subtitle-holder">
+        <div id="vid-js-video-holder">
+            <video id="vid-js-video-player"></video>
+        </div>
+        <div id="vid-js-subtitle-holder"></div>
+    </div>
+    <div id="vid-js-control-holder">
+        <div id="progress-bar">
+            <span id="timeCalc"></span>
+            <div id="preogress"></div>
+        </div>
+        <div class="control-element">
+            <span id="playpause"></span>
+            <span id="forward"></span>
+            <span id="backword"></span>
+            <span id="fullscreen"></span>
+        </div>
+    </div>
+</div>
