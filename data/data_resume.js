@@ -140,12 +140,12 @@ var data = {
                 },
                 {
                     time: { "date": "20", "month": "11", "year": "2017" },
-                    timelineEvent: 'Joined Riverbed Technology',
+                    timelineEvent: 'Joined Riverbed Technology, Bengaluru',
                     icon: false
                 },
                 {
                     time: { "date": "22", "month": "11", "year": "2017" },
-                    timelineEvent: 'I was assigned to SCM in Riverbed Technology',
+                    timelineEvent: 'I was assigned to SCM in Riverbed Technology, Bengaluru',
                     icon: false
                 }
                 
