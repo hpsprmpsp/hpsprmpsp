@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+.container {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 5px 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+.input-group{
+    padding: 5px 10px;
+
+}
+.input-group.vertical {
+    margin: auto;
+}   
+.input-group label {
+    margin: 5px;
+    padding: 5px 10px;
+    
+}
+.input-group.vertical label {
+    clear: both;
+    float: left;
+}
+.input-group label input, .input-group.vertical label input,
+.input-group label select, .input-group.vertical label select,
+.input-group label button, .input-group.vertical label button {
+    padding: 2px 10px;
+    margin: 0px 3px 0px 7px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 2vh;
+    line-height: 25px;
+    
+}

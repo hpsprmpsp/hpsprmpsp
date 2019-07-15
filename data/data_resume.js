@@ -62,7 +62,7 @@ var data = {
             type: 'about',
             title: 'About',
             id: 'about',
-            content: "A dynamic professional with 5+ years of IT experience in <b>UI Development</b> looking for assignments in the domain of Software Development to deliver solutions for complex technical requirements. "
+            content: "A dynamic professional with 6+ years of IT experience in <b>UI Development</b> looking for assignments in the domain of Software Development to deliver solutions for complex technical requirements. "
             
         },
         {
@@ -73,7 +73,7 @@ var data = {
                 {
                     label: "Experiance Summary",
                     cont: [
-                        "5+ years of total IT Experience, in <b>UI development</b>",
+                        "6+ years of total IT Experience, in <b>UI development</b>",
                         "Worked extensively in designing SPAs using HTML5/CSS3/JavaScript",
                         "Experienced in multiple JavaScript library, AngularJS 1.x, Bootstrap 3, Handlebars, JQuery",
                         "Experienced in designing small web application",
@@ -102,11 +102,7 @@ var data = {
             type: 'timeline',
             title: 'Timeline',
             id: 'timeline',
-            content: [{
-                    time: { "date": "12", "month": "07", "year": "1991" },
-                    timelineEvent: 'Day I was born',
-                    icon: false
-                },
+            content: [
                 {
                     time: { "year": "2006" },
                     timelineEvent: 'Graduated from STD-X in Jawahar Navodaya Vidyalay, Belpada',
@@ -119,18 +115,37 @@ var data = {
                 },
                 {
                     time: { "year": "2012" },
-                    timelineEvent: 'Garduated from Bachelor in Veer Surendra Sai University of technology, Burla ',
+                    timelineEvent: 'Completed B.Tech in Electronics and Telecommunications from Veer Surendra Sai University of technology, Burla ',
                     icon: false
                 },
                 {
                     time: { "date": "12", "month": "9", "year": "2012" },
-                    timelineEvent: 'Joined Infosys',
+                    timelineEvent: 'Joined Infosys Pvt. Limited as trainee @Mysore, Karnataka',
                     icon: false
                 },
-                
+                {
+                    time: { "month": "3", "year": "2013" },
+                    timelineEvent: 'I was assigned to Project IPE in Infosys SEZ Pvt. Limited, Hyderabad',
+                    icon: false
+                },
+                {
+                    time: { "month": "7", "year": "2013" },
+                    timelineEvent: 'I started working for VOY in Infosys SEZ Pvt. Limited, Hyderabad',
+                    icon: false
+                },
+                {
+                    time: { "date": "6", "month": "11", "year": "2017" },
+                    timelineEvent: 'I left Infosys Pvt. Limited after 5 years',
+                    icon: false
+                },
                 {
                     time: { "date": "20", "month": "11", "year": "2017" },
-                    timelineEvent: 'Joined Riverbed',
+                    timelineEvent: 'Joined Riverbed Technology',
+                    icon: false
+                },
+                {
+                    time: { "date": "22", "month": "11", "year": "2017" },
+                    timelineEvent: 'I was assigned to SCM in Riverbed Technology',
                     icon: false
                 }
                 
@@ -172,7 +187,7 @@ var data = {
                         {
                             title : 'SCM',
                             type : 'Product Developement',
-                            env : 'HTML5, CSS3. JavaScript, JQuery, Bootstrap, Handlebars, AngularJS 1.6,GIT, Docker',
+                            env : 'HTML5, CSS3. JavaScript, JQuery, Bootstrap, Handlebars, AngularJS 1.6,Angular, Knockout JS, GIT, Docker',
                             desc : "SCM is a product developed using Handlebars, and Bootstrap, Perl to replace the CLI controller for different hardware.",
                         }
                     ]
@@ -213,14 +228,10 @@ var data = {
             title: "Personal Information",
             id: 'personalInformation',
             content: [
-                 {
-                    label: 'Permanent Address',
-                    content : 'C/O : Radhamohan Padhee <br /> AT/PO : Khairmal <br />Block: Belpada <br /> Dist: Balangir<br /> Odisha, PIN-767026',
-                    
-                },
+                 
                 {
                     label: 'Present Address',
-                    content : 'B305, SSVR TRIDAX <br />Balagere Rd, Varthur<br > Bengaluru, PIN-560087',
+                    content : 'Balagere Rd, Varthur<br > Bengaluru, PIN-560087',
                     
                 },
                 {
@@ -234,21 +245,15 @@ var data = {
                     type : 'phone' 
                     
                 },
-                {
-                    label: 'Passport',
-                    content : "<b>Passport number:</b> XXXXXXXX<br /><b>Issued on:</b> 04th June 2012<br /><b>Valid till:</b> 03rd June 2022"
-                },
+                
                 {
                     label : 'DOB',
-
-
                     content : { "date": "12", "month": "07", "year": "1991" },
-
                     type : 'date'
                 },
                 {
                     label: 'Marital Status',
-                    content: 'Single'
+                    content: 'Married'
                 }
 
             ]

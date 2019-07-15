@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Calender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../style/calender.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="calender-container">
+            <div class="calender-config">
+                <div class="input-group vertical">
+                    <label>Year<input type="number" min="1" max="31" value="1" id="inp-month"/></label>
+                    <label>Month<select id="inp-year">
+                        <option>January</option>
+                        <option>February</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>Septemeber</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                    </select></label>
+                    <label>Date<input type="number" min="1" max="31" value="1" id="inp-date"/></label>
+                    <label><button id="setDate">Set</button></label>
+                </div>
+            </div>
+        </div>
+        <div class="calender-holder">
+            <table>
+                <tr>
+                    <td>prev</td>
+                    <td colspan="5">
+
+                    </td>
+                    <td>next</td>
+                </tr>
+                <tr>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednessday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="../src/calender.js"></script>
+    <script>
+        window.onload =  function() {
+            console.log(calender.create(1991,15,1));
+        };
+    </script>
+</body>
+</html>
