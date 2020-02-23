@@ -1,77 +1,201 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        
-        <title>Chema</title>
-         
-        <style>
-            *{
-                box-sizing: border-box;
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div#canvas {
+            padding: 0px;
+            margin: 0px;
+            outline: none;
+            position: absolute;
+            left: 0px;
+            height: 500px;
+            width: 600px;
+        }
+
+        .dot {
+            position: absolute;
+            height: 10px;
+            width: 10px;
+            border-radius: 100%;
+            background-color: cadetblue;
+            transform: translateX(-5px) translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <!--<script>
+        var canvas = document.getElementById('canvas');
+        var wH, wW, cD, r;
+        var dots = [];
+        init();
+        window.onresize = function (e) {
+            e.preventDefault;
+            init();
+        };
+        function init() {
+            setCanvasDimention();
+            drawDots(readNumberFromUrl());
+        }
+        function setCanvasDimention() {
+            wH = document.documentElement.clientHeight;
+            wW = document.documentElement.clientWidth;
+            cD = wH > wW ? wW : wH;
+            canvas.style.height = cD + "px";
+            canvas.style.width = cD + "px";
+            canvas.style.top = ((wH > cD ? wH - cD : 0) / 2) + "px";
+            canvas.style.left = ((wW > cD ? wW - cD : 0) / 2) + "px";
+            r = (0.75 / 2) * cD;
+        };
+
+        function createDot(posX, posY, angle, dotNumber) {
+            let d = document.createElement('span');
+            d.style.left = posX + "px";
+            d.style.top = posY + "px";
+            d.classList.add('dot');
+            let dot = {};
+            dot.html = d;
+            dot.x = posX;
+            dot.y = posY;
+            dot.angle = angle;
+            dot.rollNumber = dotNumber;
+            canvas.appendChild(d);
+            dots.push(dot);
+
+        }
+
+        function drawDots(numberOfDots) {
+            let minAngle = (2 * Math.PI) / numberOfDots;
+            let x = 0;
+            let y = 0;
+            canvas.innerHTML = "";
+            for (let i = 1; i <= numberOfDots; i++) {
+                let angle = i * minAngle;
+                if (angle < (Math.PI) / 2) { // 1st quadrant
+                    x = (r * Math.sin(angle)) + (cD / 2);
+                    y = (cD / 2) - (r * Math.cos(angle));
+                } else if (angle <= Math.PI) { // second quadrant
+                    angle = Math.PI - angle;
+                    x = (r * Math.sin(angle)) + (cD / 2);
+                    y = (cD / 2) + (r * Math.cos(angle));
+                } else if (angle > Math.PI && angle <= (1.5 * Math.PI)) { // 3rd quadrant
+                    angle = angle - Math.PI;
+                    x = (cD / 2) - (r * Math.sin(angle));
+                    y = (cD / 2) + (r * Math.cos(angle));
+                } else { // fourth quadrant
+                    angle = (2 * Math.PI) - angle;
+                    x = (cD / 2) - (r * Math.sin(angle));
+                    y = (cD / 2) - (r * Math.cos(angle));
+                }
+                createDot(x, y, angle , i);
             }
-            div{
-                position: absolute;
-                top: calc(50% - 150px);
-                left: calc(50% - 250px);
-                width: 500px;
-                height: 300px;
-                border-radius: 5px;
-                box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.5);
+
+        }
+        function readNumberFromUrl() {
+            let search = window.location.search.match(/dots=[0-9]*/g);
+            if (!search) {
+                window.location.href += '?dots=4'
             }
-           span{
-               display: inline-block;
-               position: relative;
-               top: 10px;
-               left: 10px;
-               background-color: green;
-               height: 50px;
-               width: 100px;
-           } 
-           div#lock span{
-               background-color: yellow;
-               padding: 10px;
-               color: red;
-               font-weight: 900;
-               font-size: 18px;
-               width: auto;
-               margin-left:20px;
-           }
-           div#lock span:nth-child(2){
-               background-color: red;
-               color: white;
-           }
-           a{
-               position: relative;
-               display: inline-block;
-               top: 50px;
-               left: 300px;
-               min-height: 50px;
-               min-width: 300px;
-               text-decoration: none;
-               font-weight: 900;
-               font-size: 50px;
-               color: pink;
-           }
-           a:hover{
-               color: red;
-               background-color: blue;
-           }
-           a:visited{
-               color: yellow;
-           }
-        </style>
-    </head>
-    <body>
-        <div id="lock">
-            <span>amaterasu</span>
-            <span>kerasdadagdfjakhdah</span>
-            <span>lolwas</span>
-        </div>
-        <span></span>
-        <a href="hBeats.html" target="_blank">Valentine Day</a>
-        <img src=".jpg" alt="jihakjbajdgf" />
-        <script>
-        
-        </script>
-    </body>
+            return search ? search[0].split("=")[1] : 4;
+        } 
+    </script> -->
+    <script>
+        function createCSS(name, stle) {
+            var st = document.getElementsByTagName('style').length ? document.getElementsByTagName('style')[0] :
+                document.createElement("style");
+            st.type = 'text/css';
+            st.innerHTML += " " + name + "{" + stle + "}";
+            if (!document.getElementsByTagName('style').length) {
+                document.getElementsByTagName("head")[0].appendChild(st);
+            }
+        }
+
+        function dotsInCircle() {
+            var wH, wW, cD, r;
+            var dots = [];
+            var canvas;
+            dotsInCircle.prototype.init = function (noOfDots, targetElementId) {
+                baseSetup(targetElementId);
+                drawDots(noOfDots);
+            };
+
+            function baseSetup(targetElementId) {
+                var targ = document.getElementById(targetElementId);
+                canvas = document.createElement("DIV");
+                wH = targ.clientHeight;
+                wW = targ.clientWidth;
+                cD = wH > wW ? wW : wH;
+                canvas.style.height = cD + "px";
+                canvas.style.width = cD + "px";
+                canvas.style.top = ((wH > cD ? wH - cD : 0) / 2) + "px";
+                canvas.style.left = ((wW > cD ? wW - cD : 0) / 2) + "px";
+                r = (0.75 / 2) * cD;
+                createCSS(".canvas-hpsprmpsp", "padding: 0px;margin: 0px;outline: none;position: absolute;left: 0px;");
+                createCSS('.dot-hpsprmpsp',
+                    "position: absolute;height: 10px; width: 10px;border-radius: 100%;background-color: cadetblue;transform: translateX(-5px) translateY(-5px);"
+                    );
+                canvas.classList.add('canvas-hpsprmpsp');
+                targ.appendChild(canvas);
+            }
+
+            function createDot(posX, posY, angle, dotNumber) {
+                let d = document.createElement('span');
+                d.style.left = posX + "px";
+                d.style.top = posY + "px";
+                d.classList.add('dot-hpsprmpsp');
+                let dot = {};
+                dot.html = d;
+                dot.x = posX;
+                dot.y = posY;
+                dot.angle = angle;
+                dot.rollNumber = dotNumber;
+                canvas.appendChild(d);
+                dots.push(dot);
+            }
+
+            function drawDots(numberOfDots) {
+                let minAngle = (2 * Math.PI) / numberOfDots;
+                let x = 0;
+                let y = 0;
+                canvas.innerHTML = "";
+                for (let i = 1; i <= numberOfDots; i++) {
+                    let angle = i * minAngle;
+                    if (angle < (Math.PI) / 2) { // 1st quadrant
+                        x = (r * Math.sin(angle)) + (cD / 2);
+                        y = (cD / 2) - (r * Math.cos(angle));
+                    } else if (angle <= Math.PI) { // second quadrant
+                        angle = Math.PI - angle;
+                        x = (r * Math.sin(angle)) + (cD / 2);
+                        y = (cD / 2) + (r * Math.cos(angle));
+                    } else if (angle > Math.PI && angle <= (1.5 * Math.PI)) { // 3rd quadrant
+                        angle = angle - Math.PI;
+                        x = (cD / 2) - (r * Math.sin(angle));
+                        y = (cD / 2) + (r * Math.cos(angle));
+                    } else { // fourth quadrant
+                        angle = (2 * Math.PI) - angle;
+                        x = (cD / 2) - (r * Math.sin(angle));
+                        y = (cD / 2) - (r * Math.cos(angle));
+                    }
+                    createDot(x, y, angle, i);
+                }
+
+            }
+            dotsInCircle.prototype.dots = dots;
+
+        }
+    </script>
+    <script>
+        var dts = new dotsInCircle();
+        dts.init(1122, "canvas");
+    </script>
+</body>
+
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./video.css" />
+
+</head>
+
+<body>
+
+    <div><video id="videoBox"></video>
+        <button id="btnCapture">Capture</button>
+    </div>
+    <canvas id="canvas"></canvas>
+    <div class="output">
+        <img id="photo" alt="The screen capture will appear in this box.">
+    </div>
+    <script>
+        (function () {
+            var w = 320;
+            var h = 0;
+            var straming = false;
+            var video = null;
+            var canvas = null;
+            var photo = null;
+            var capt = null;
+
+            function startUp() {
+                video = document.getElementById('videoBox');
+                canvas = document.getElementById('canvas');
+                photo = document.getElementById('photo');
+                capt = document.getElementById('btnCapture');
+
+                navigator.mediaDevices.getUserMedia({
+                        video: true,
+                        audio: false
+                    })
+                    .then((s) => {
+                        video.srcObject = s;
+                        video.play();
+                    })
+                    .catch(e => {
+                        cosnole.error("error: " + e);
+                    });
+
+                video.addEventListener('canplay', e => {
+                    if (!straming) {
+                        h = video.videoHeight / (video.videoWidth / w);
+
+                        if (isNaN(h)) {
+                            h = w / (4 / 3);
+                        }
+
+                        video.setAttribute('width', w);
+                        video.setAttribute('height', h);
+                        canvas.setAttribute('width', w);
+                        canvas.setAttribute('height', h);
+                        straming = true;
+                    }
+                }, false);
+
+                video.addEventListener('click', e => {
+                    takePic();
+                    e.preventDefault();
+                }, false);
+                clearPic();
+            }
+
+            function takePic() {
+                var ctx = canvas.getContext('2d');
+
+                if (w & h) {
+                    canvas.height = h;
+                    canvas.width = w;
+                    ctx.drawImage(video, 0, 0, w, h);
+                    var data = canvas.toDataURL('image/png');
+                    photo.setAttribute('src', data);
+                } else {
+                    clearPic();
+                }
+            }
+
+            function clearPic() {
+                var ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#aaa';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+            }
+            window.addEventListener('load', startUp, false);
+        })();
+    </script>
+</body>
+
+</html>

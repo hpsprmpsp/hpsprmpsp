@@ -1,54 +1,26 @@
-*{
-    box-sizing: border-box;
-    outline: none;
-}
-*:focus, *:active{
-    outline:none;
-}
-html,body{
-    height:100%;
-}
-.container{
-    position: relative;
-    display: block;
-    min-height: 100px;
-    
-}
-.hidden{
-    display: none;
-}
-input['readonly']{
-    user-select: none;
-}
-.input-holder{
-    position: relative;
-    display:table-cell;
-    margin:5px;
-    padding:2px;
-}
-.input-holder *{
-    display: table-cell;
-    padding:5px;
-    min-height: 30px;
-    min-width: 30px;
-    border-radius: 5px;
-}
-.input-holder input{
-    min-width: 200px;
-}
-.input-holder button{
-    background-color: transparent;
-    
-}
-.video-container{
-    height:calc(100% - 100px);
-    margin-top:-50px;
-}
-video{
-    position:absolute;
+.video-container {
+    position: fixed;
     top:0px;
     left:0px;
-    width:100%;
-    height:100%;
-    background: black;
+    bottom: 0px;
+    right: 0px;
+    background-color: #444444;
+    z-index: 1000;
+}
+video#videoBox{
+    position: absolute;
+    z-index: 1001;
+    top: 0px;
+    height: 100%;
+    width: 400px;
+}
+div#video-controls{
+    position: relative;
+    background-color: red;
+    height: 100%;
+    opacity: 0.2;
+    display: grid;
+    grid-row-gap: 10px;
+    grid-template-columns: auto;
+    grid-template-rows: 70% 20% 10%;
 }

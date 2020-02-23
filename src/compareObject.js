@@ -101,22 +101,3 @@ function test(){
         console.log("tested okay");
     }
 }
-
-
-    function getRouteVPNUID(orgId){
-        var org = oid ? state.cacheGet(oid) : state.get('org');
-        if(!org) return false;
-        var wans = org.wans;
-        if(wans.length === 0) return false;
-        var op=[];
-        wans.forEach(function(wan){
-            //check name of the wan, it should be
-            //Internet, RouteVPN, or Underlay
-            //these are reserved names
-            var wanObj = state.cacheGet(wan);
-            if(["Internet", "RouteVPN", "Underlay"].indexOf(wanObj.name) > -1){
-                op.push(wanObj.uid);
-            }
-        });
-        return op;
-    }

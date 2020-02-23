@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="video.css"/>
-		
-	</head>
-	<body>
-		<div class='container' id="div-container-input"></div>
-		<div class="container video-container" id="div-video-container">
-			
-		</div>
-		
-		<script src="video.js"></script>
-		<button class="btn">btn</button>
-		<button class="div">div</button>
-		<script>
-			/*(function(){
-				video.inp.clear();
-				video.inp.initiate();
-			}());*/
-
-			$('body').on("click",function(event){
-				if($(event.target).is(".btn, .div")){
-					alert("lol");
-				}
-			});
-			
-		</script>
-	</body>
-</html>
+<div class="video-container" id="video-container">
+	<video id="videoBox"></video>
+	<div id="subtitle"></div>
+	<div id="control" class="video-control"></div>
+</div>
