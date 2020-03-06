@@ -47,7 +47,7 @@
                      C150 290 0 90  200 10
                      C390 90 250 290  -3 210"></path>
         </svg>
-        <div class="roll-up">Happy Diwali 2019</div>
+        <div class="roll-up"></div>
         <script>
             var p=document.getElementsByTagName('path')[0];
             var l=p.getTotalLength();
@@ -113,8 +113,10 @@
                 document.body.appendChild(c);
                 run();
                 p.setAttribute('stroke','white');
-                document.getElementsByClassName('roll-up')[0].style.backgroundColor="transparent";
-                document.getElementsByClassName('roll-up')[0].style.color="white";
+                let ro = document.getElementsByClassName('roll-up')[0];
+                ro.style.backgroundColor="transparent";
+                ro.style.color="white";
+                ro.innerHTML = 'Happy New Year ' + (new Date()).getFullYear();
                 
             }
         </script>

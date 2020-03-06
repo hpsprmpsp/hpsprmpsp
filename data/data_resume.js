@@ -2,7 +2,7 @@ var sc = document.createElement('script');
 sc.src = "../src/script_resume.js";
 sc.type = "text/javascript";
 document.getElementsByTagName('body')[0].appendChild(sc);
-
+const exp = Math.floor(((new Date()).getFullYear())  - 2013);
 var data = {
     pageMeta: {
         title: 'Soumya Padhee\'s resume',
@@ -62,7 +62,7 @@ var data = {
             type: 'about',
             title: 'About',
             id: 'about',
-            content: "A dynamic professional with 6+ years of IT experience in <b>UI Development</b> looking for assignments in the domain of Software Development to deliver solutions for complex technical requirements. "
+            content: "A dynamic professional with "+ exp + "+ years of IT experience in <b>UI Development</b> looking for assignments in the domain of Software Development to deliver solutions for complex technical requirements. "
             
         },
         {
