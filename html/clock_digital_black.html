@@ -8,16 +8,19 @@
             }
             body{
                 background-color: #000;
+                height: 90vh;
+                overflow: hidden;
+                margin:0px;
             }
             .row{
                 position: absolute;
                 display: table;
                 table-layout: fixed;
-                border-spacing: 10px;
+                border-spacing: 5px;
                 left:10%;
                 width:80%;
-                height:100%;
-                top: 0%;
+                height: 100%;
+                top: 0px;
                 padding:0px;
                 margin:0px;
                 color:#fff;
@@ -39,7 +42,7 @@
                 background-color: transparent;
                 text-align: center;
                 font-family: "Impact";
-                
+                line-height: 90vh;
                 font-size: 40vw;
             }
             .ampm{
@@ -72,16 +75,48 @@
     <body>
         <div class="row">
             <div class="col">
-                <div class="cover fontstyle">12</div>
-                <div class="ampm">AM</div>
+                <div class="cover fontstyle hour"></div>
+                <div class="ampm"></div>
             </div>
             <div class="col">
-                <div class="cover fontstyle">30</div>
-                <div class="sec">10</div>
+                <div class="cover fontstyle min"></div>
+                <div class="sec"></div>
             </div>
         </div>
         <script>
-            
+            window.onload = () => {
+                let ampm = document.getElementsByClassName('ampm')[0];
+                let hr = document.getElementsByClassName('hour')[0];
+                let mn = document.getElementsByClassName('min')[0];
+                let sc = document.getElementsByClassName('sec')[0];
+                window.setTimeout( updateTime,1000);
+                function updateTime() {
+                    
+                    const data = getTime();
+                    hr.innerHTML = data.hr;
+                    mn.innerHTML = data.mn;
+                    sc.innerHTML = data.sc;
+                    ampm.innerHTML = data.ampm;
+                    setTimeout(updateTime, 1000);
+                }
+            };
+            const getTime = () => {
+                let currDate = new Date();
+                let hr = currDate.getHours();
+                hr = hr > 12 ? (hr - 12) : hr;
+                hr = hr.toString();
+                hr = hr.length < 2 ? '0' + hr : hr;
+                let mn = currDate.getMinutes().toString();
+                mn = mn.length < 2 ? '0' + mn : mn;
+                let sc = currDate.getSeconds().toString();
+                sc = sc.length < 2 ? '0' + sc : sc;
+                return {
+                    hr: hr ,
+                    mn: mn,
+                    sc: sc,
+                    ampm: currDate.getHours() > 11 ? 'PM' : 'AM'
+                };
+            };
         </script>
     </body>
 </html>

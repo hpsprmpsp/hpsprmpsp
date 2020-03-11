@@ -73,7 +73,7 @@ var data = {
                 {
                     label: "Experiance Summary",
                     cont: [
-                        "6+ years of total IT Experience, in <b>UI development</b>",
+                        exp + "+ years of total IT Experience, in <b>UI development</b>",
                         "Worked extensively in designing SPAs using HTML5/CSS3/JavaScript",
                         "Experienced in multiple JavaScript library, AngularJS 1.x, Bootstrap 3, Handlebars, JQuery",
                         "Experienced in designing small web application",
@@ -157,6 +157,24 @@ var data = {
             id: "experiance",
             content: [
                 {
+                    company : 'Riverbed Limited',
+                    startTime : { "month":"Nov","year": "2017" },
+                    projects : [
+                        {
+                            title : 'SCM',
+                            type : 'Product Developement',
+                            env : 'HTML5, CSS3. JavaScript, JQuery, Bootstrap, Handlebars, AngularJS 1.6,Angular, Knockout JS, GIT, Docker',
+                            desc : "SCM is a product developed using Handlebars, and Bootstrap, Perl to replace the CLI controller for different hardware.",
+                        },
+                        {
+                            title: 'SCC',
+                            type: 'Product Developement',
+                            env: 'HTML5, CSS3. JavaScript, JQuery, Bootstrap, Handlebars, YUI, VLAB, GIT, Python',
+                            desc: 'SCC is a product developed using a native technology called Web3 consisting of Javascript, CSS, HTML, python'
+                        }
+                    ]
+                },
+                {
                     company : 'Infosys Limited',
                     startTime : { "month":"Sep","year": "2012" },
                     endTime : { "month":"Nov","year": "2017" },
@@ -168,29 +186,15 @@ var data = {
                             desc : "I was responsible for keeping the environments up for floor management, keeping codes up-to-date. I was responsible for designing UI for automation.",  
                         },
                         {
-                            company : 'Infosys Limited',
                             title : 'VOY',
-                            startTime : { "month":"Sep","year": "2012" },
-                            endTime : { "month":"Nov","year": "2017" },
                             type : 'Internal',
                             env : 'HTML5, CSS3. JavaScript, JQuery, Bootstrap, AngularJS 1.6',
                             desc : "VOY was responsible for organizing different events inside Infosys. I was involved in designing pages for invitations, registration, score maintenance etc. I designed a website using PHP for real-e-state ads.",
                         }
                     ]
-                },
-                
-                {
-                    company : 'Riverbed Limited',
-                    startTime : { "month":"Nov","year": "2017" },
-                    projects : [
-                        {
-                            title : 'SCM',
-                            type : 'Product Developement',
-                            env : 'HTML5, CSS3. JavaScript, JQuery, Bootstrap, Handlebars, AngularJS 1.6,Angular, Knockout JS, GIT, Docker',
-                            desc : "SCM is a product developed using Handlebars, and Bootstrap, Perl to replace the CLI controller for different hardware.",
-                        }
-                    ]
                 }
+                
+                
             ],
 
         },
@@ -211,12 +215,14 @@ var data = {
                 {
                     degree : 'Higher Secondary',
                     inst : 'Central Board of Secondary Education',
-                    mark : '78.2%'
+                    mark : '78.2%',
+                    graduated: {"year":"2008"}
                 },
                 {
                     degree : 'Secondary',
                     inst : 'Central Board of Secondary Education',
-                    mark : '81.4%'
+                    mark : '81.4%',
+                    graduated: {"year":"2006"}
                 }
             ]
 

@@ -1,64 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-IN">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>hpsprmpsp</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Soumya Sarthk Padhee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./style/index.css" />
+    <link rel="stylesheet" href="./style/index_media.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="data/index.js"></script>
-    <style>
-        
-        .card {
-            float: left;
-            margin: 10px;
-            height: 330px;
-            width: 330px;
-            box-shadow: 0px 0px 3.5px 0px rgba(0,0,0,0.5);
-            border: none;
-        }
-        .card img {
-            height: 70%;
-            width: 100%;
-            background: linear-gradient(45deg, yellow, orange, red);
-        }
-    </style>
+    <script src="https://kit.fontawesome.com/f35fe82ca9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="jumbotron" style="margin-bottom:0">
-        <h1>Soumya Sarthak Padhee</h1>
-        <p>Personal project of  Soumya Sarthak Padhee</p> 
-      </div>
-    <div class="container  text-center" id="container">
-       
-    </div>
-    <script>
-        window.onload = function () {
-            let parent = document.getElementById('container');
-            files.forEach(file => {
-                parent.appendChild(createCard(file));
-            });
-        }
-        window.onresize = function() {
-            let w = window.innerWidth;
-            if (w < 350) {
-                return;
-            }
-            w -= 20; // margins on both side
-            w -= 40; // gaps between 3 cards
-            w = w / 3;
-            const cards = document.getElementsByClassName('card');
-            for (let card of cards) {
-                card.style.width = w + 'px';
-                card.style.height =  w + 'px';
-            }
-            
-        }
-    </script>
+    <section class="introduction">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-lg-2"></div>
+                <div class="col-md-10 col-lg-8">
+                    <a href="./data/SoumyaSarthakPadhee_Profile.docx" download class="btn btn-warning download_btn" role="button"><i class="fas fa-download"></i> Download Resume</a>
+                    <div class="intro">
+                        <div class="profile_image">
+                            <img src="./images/me.png" alt="My own image" />
+                        </div>
+                        <h4><b>Soumya Sarthak Padhee</b></h4>
+                        <h4 class="font-orange">Software Developer</h4>
+                        <ul class="detail-ul">
+                            <li>
+                                <b>BORN:</b> July 1991
+                            </li>
+                            <li>
+                                <b>EMAIL:</b> soumya.sarthak.padhee@gmail.com
+                            </li>
+                            <li>
+                                <b>MARITAL STATUS: </b> Married
+                            </li>
+                        </ul>
+                        <ul class="social-ul">
+                            <li>
+                                <a href="https://www.linkedin.com/in/soumyasarthakpadhee/">
+                                    <i class="fab fa-linkedin" hover-color="red"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/hpsprmpsp">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://in.pinterest.com/soumya_sarthak/">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/soumya.sarthak.padhee/">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/hpsprmpsp">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="my-work me-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <h3 class="section_header">
+                        <b>My Work</b>
+                    </h3>
+                </div>
+                <div class="col-sm-8 col-md-9 col-lg-10">
+                    <p style="padding-left: 20px;">
+                        I have worked extensively in JavaScript, CSS, and HTML. Along with the core technologies, I have
+                        worked with
+                        AngularJS, Angular, Handlebars, React, <code data-toggle='tooltip'
+                            title="This page uses Bootstrap 4">Bootstrap</code>,
+                        NodeJS, JQuery, BackboneJS, KnockoutJS.
+                    </p>
+                    <div class="container-fluid" id="container_mw"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-me me-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <h3 class="section_header">
+                        <b>About Me</b>
+                    </h3>
+                </div>
+                <div class="col-sm-8 col-md-9 col-lg-10">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p id="aboutMe"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_js"></div>
+                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_csshtml"></div>
+                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_webdev"></div>
+                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_other"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="work-experience me-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <h4 class="section_header">
+                        <b>Work Experience</b>
+                    </h4>
+                </div>
+                <div class="col-sm-8 col-md-9 col-lg-10">
+                    <div class="container-fluid" id="container_we">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="education me-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <h3 class="section_header">
+                        <b>Education</b>
+                    </h3>
+                </div>
+                <div class="col-sm-8 col-md-9 col-lg-10">
+                    <div class="education_wrapper" id="education_wrapper">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <p>I undertake that all information provided by me in this resume is correct as per my understanding, knowledge and beliefs and originals shall be made available on request.</p>
+    </section>
+    <!--
+       START of TEMPLATEs
+    -->
+    <!--
+        FOR WORK EXPERIENCE
+    -->
+    <template id="we_each_company">
+        <div class="container-fluid margin-bottom-50 we_each_company_container">
+            <div class="we_each_header">
+                <h4></h4><h5></h5>
+            </div>
+        </div>
+    </template>
+    <template id="we_each_project_table">
+        <table class="table we_project_table">
+            <tr>
+                <td class="right-align"><b>Title</b></td>
+                <td class="title left-align"></td>
+            </tr>
+            <tr>
+                <td class="right-align"><b>Type</b></td>
+                <td class="type left-align"></td>
+            </tr>
+            <tr>
+                <td class="right-align"><b>Environment</b></td>
+                <td class="env left-align"></td>
+            </tr>
+            <tr>
+                <td class="right-align"><b>Description</b></td>
+                <td class="desc left-align"></td>
+            </tr>
+        </table>
+    </template>
+
+    <!--
+        FOR EDUCATION
+    -->
+    <template id="education_each">
+        <div class="education_box margin-bottom-50">
+            <h4 class="degree"></h4> 
+            <h5 class="font-orange institution"></h5>
+            <h5 class="major"></h5>
+            <h6 class="font-light-black margin-top-10 period"></h6>
+            <h6 class="margin-top-10 mark-scored"></h6>
+
+        </div>
+    </template>
+    <!--
+        FOR CARDS
+    -->
+    <template id="content">
+        <div class="row">
+            <div class="col-md-4" col-idx='1'></div>
+            <div class="col-md-4" col-idx='2'></div>
+            <div class="col-md-4" col-idx='3'></div>
+        </div>
+    </template>
+    <template id="cardTmp">
+        <div class="card" >
+            <img class="card-img-top" style="width:100%" />
+            <div class="card-body">
+                <h4 class="card-title"></h4>
+                <p class="card-text"></p>
+           </div>
+        </div>
+    </template>
+    <!--
+        END of TEMPLATES
+    -->
+    <script src="data/index.js"></script>
+    <script src="src/index.js"></script>
+    <script src="data/data_resume.js "></script>
+    <script src="src/svgchart.js "></script>
 </body>
 
 </html>

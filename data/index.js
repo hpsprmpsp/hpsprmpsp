@@ -105,43 +105,13 @@ var files = [{
 		name: 'My Resume',
 		href: 'Resume.html',
 		thumbnail: 'resume'
+	},
+	{
+		name: 'Digital Clock',
+		href: 'clock_digital_black.html',
+		thumbnail: 'digital_clock_dark_1'
 	}
 
 ].sort( (a, b) => a.name.localeCompare(b.name)  );
 
-const createCard = (data) => {
-	// Outer body
-	let outDiv = document.createElement('DIV');
-	outDiv.classList.add('card');
-	
-	// Image
-	let img = document.createElement('IMG');
-	img.classList.add('card-img-top');
-	img.setAttribute('src', './snapshot/' +  (data.thumbnail) + '.png');
-	img.setAttribute('alt', data.name + "; href:  " + data.href);
-	outDiv.appendChild(img);
-	img = null;
-	// card body
-	let bodyDiv = document.createElement('DIV');
-	bodyDiv.classList.add('card-body');
-	let h4 = document.createElement('H4');
-	h4.innerText = data.name;
-	h4.classList.add('card-title');
-	bodyDiv.appendChild(h4);
-	h4 = null;
-	if (data.detail) {
-		let p = document.createElement('p');
-		p.classList.add('card-tex');
-		p.innerText = data.detail;
-		bodyDiv.appendChild(p);
-		p = null;
-	}
-	outDiv.appendChild(bodyDiv);
-	// set width
 
-	// add event
-	outDiv.addEventListener('click', (e) => {
-		window.open('./html/' +  data.href, '_blank');
-	});
-	return outDiv;
-};

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>hpsprmpsp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="data/index.js"></script>
+    <style>
+        .card {
+            float: left;
+            margin: 10px;
+            height: 330px;
+            box-shadow: 0px 0px 3.5px 0px rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+        }
+
+        .card img {
+            height: 70%;
+            width: 100%;
+            background: linear-gradient(45deg, yellow, orange, red);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container"></div>
+    <template id="content">
+        <div class="row">
+            <div class="col-md-4" col-idx='1'></div>
+            <div class="col-md-4" col-idx='2'></div>
+            <div class="col-md-4" col-idx='3'></div>
+        </div>
+    </template>
+    <template id="cardTmp">
+        <div class="card" >
+            <img class="card-img-top" style="width:100%" />
+            <div class="card-body">
+                <h4 class="card-title"></h4>
+                <p class="card-text"></p>
+           </div>
+        </div>
+    </template>
+    <script>
+        window.onload = function() {
+            let container = document.getElementById('container');
+            populateBody(files, container);
+        };
+    </script>
+</body>
+
+</html>

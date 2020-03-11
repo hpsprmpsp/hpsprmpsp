@@ -1,0 +1,10 @@
+@media only screen and (max-width: 768px) {
+    .download_btn{
+        margin-top: 30px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .section_header{
+        text-align: right;
+    }
+}
