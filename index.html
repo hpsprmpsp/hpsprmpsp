@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Soumya Sarthk Padhee</title>
+    <link rel="icon" href="./images/me.png"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./style/index.css" />
     <link rel="stylesheet" href="./style/index_media.css" />
@@ -15,144 +16,195 @@
 </head>
 
 <body>
-    <section class="introduction">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1 col-lg-2"></div>
-                <div class="col-md-10 col-lg-8">
-                    <a href="./data/SoumyaSarthakPadhee_Profile.docx" download class="btn btn-warning download_btn" role="button"><i class="fas fa-download"></i> Download Resume</a>
-                    <div class="intro">
-                        <div class="profile_image">
-                            <img src="./images/me.png" alt="My own image" />
-                        </div>
-                        <h4><b>Soumya Sarthak Padhee</b></h4>
-                        <h4 class="font-orange">Software Developer</h4>
-                        <ul class="detail-ul">
-                            <li>
-                                <b>BORN:</b> July 1991
-                            </li>
-                            <li>
-                                <b>EMAIL:</b> soumya.sarthak.padhee@gmail.com
-                            </li>
-                            <li>
-                                <b>MARITAL STATUS: </b> Married
-                            </li>
-                        </ul>
-                        <ul class="social-ul">
-                            <li>
-                                <a href="https://www.linkedin.com/in/soumyasarthakpadhee/">
-                                    <i class="fab fa-linkedin" hover-color="red"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/hpsprmpsp">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://in.pinterest.com/soumya_sarthak/">
-                                    <i class="fab fa-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/soumya.sarthak.padhee/">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/hpsprmpsp">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <nav class="navbar navbar-expand-md fixed-top bg-light navbar-light">
+        <a class="navbar-brand" href="#">Soumya Padhee</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#aboutMe">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#workExp">Experience</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#edu">Education</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#myWork">My Work</a>
+                </li>
+                
+              </ul>
         </div>
-    </section>
-    <section class="my-work me-detail">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2">
-                    <h3 class="section_header">
-                        <b>My Work</b>
-                    </h3>
-                </div>
-                <div class="col-sm-8 col-md-9 col-lg-10">
-                    <p style="padding-left: 20px;">
-                        I have worked extensively in JavaScript, CSS, and HTML. Along with the core technologies, I have
-                        worked with
-                        AngularJS, Angular, Handlebars, React, <code data-toggle='tooltip'
-                            title="This page uses Bootstrap 4">Bootstrap</code>,
-                        NodeJS, JQuery, BackboneJS, KnockoutJS.
-                    </p>
-                    <div class="container-fluid" id="container_mw"></div>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="about-me me-detail">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2">
-                    <h3 class="section_header">
-                        <b>About Me</b>
-                    </h3>
-                </div>
-                <div class="col-sm-8 col-md-9 col-lg-10">
+        
+      </nav>
+    <div class="container-fluid content-holder ">
+        <div class="row pad-0">
+            <div class="col-lg-3 pad-0">
+                <section class="introduction" id="introduction">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p id="aboutMe"></p>
+                        <div class="row pad-0">
+                            <div class="col-sm-12 pad-0">
+                                <img src="./images/me2.png" alt="My own image" class="profile_image" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_js"></div>
-                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_csshtml"></div>
-                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_webdev"></div>
-                            <div class="col-sm-6 col-md-6 col-lg-3" id="abt_other"></div>
+                            <div class="detail">
+                                <h4><b>Soumya Sarthak Padhee</b></h4>
+                            <h4 class="font-orange">Software Developer</h4>
+                            <ul class="detail-ul">
+                                <li>
+                                    <b>BORN:</b> July 1991
+                                </li>
+                                <li>
+                                    <b>EMAIL:</b> soumya.sarthak.padhee@gmail.com
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <ul class="social-ul">
+                                <li>
+                                    <a href="https://www.linkedin.com/in/soumyasarthakpadhee/" target="_blank">
+                                        <i class="fab fa-linkedin" hover-color="red"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/hpsprmpsp" target="_blank">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://in.pinterest.com/soumya_sarthak/" target="_blank">
+                                        <i class="fab fa-pinterest"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/soumya.sarthak.padhee/" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/hpsprmpsp" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./data/SoumyaSarthakPadhee_Profile.docx" download="download" target="_blank" title="Download Resume" data-toggle="tooltip">
+                                        <i class="fas fa-file-download"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
-    </section>
-    <section class="work-experience me-detail">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2">
-                    <h4 class="section_header">
-                        <b>Work Experience</b>
-                    </h4>
-                </div>
-                <div class="col-sm-8 col-md-9 col-lg-10">
-                    <div class="container-fluid" id="container_we">
 
+            <div class="col-lg-9 content-container pad-right-0 " id="contentContainer">
+                
+                
+               
+                <section class="about-me me-detail" id="aboutMe">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 class="section_header">
+                                    <b>About Me</b>
+                                </h2>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p id="aboutMe"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-3" id="abt_js"></div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3" id="abt_csshtml"></div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3" id="abt_webdev"></div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3" id="abt_other"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
+                <section class="work-experience me-detail" id="workExp">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 class="section_header">
+                                    <b>Work Experience</b>
+                                </h2>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="container-fluid" id="container_we">
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="education me-detail" id="edu">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="section_header">
+                                    <b>Education</b>
+                                </h4>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="education_wrapper" id="education_wrapper">
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="my-work me-detail" id="myWork">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="section_header">
+                                    <b>My Work</b>
+                                </h4>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                             <div class="col-sm-12">
+                                <p style="padding-left: 20px;">
+                                    I have worked extensively in JavaScript, CSS, and HTML. Along with the core technologies, I have
+                                    worked with
+                                    AngularJS, Angular, Handlebars, React, <code data-toggle='tooltip'
+                                        title="This page uses Bootstrap 4">Bootstrap</code>,
+                                    NodeJS, JQuery, BackboneJS, KnockoutJS.
+                                </p>
+                                <div class="container-fluid" id="container_mw"></div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer">
+                    <p>I undertake that all information provided by me in this resume is correct as per my understanding, knowledge
+                        and beliefs and originals shall be made available on request.</p>
+                </section>
             </div>
         </div>
-    </section>
-    <section class="education me-detail">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-md-3 col-lg-2">
-                    <h3 class="section_header">
-                        <b>Education</b>
-                    </h3>
-                </div>
-                <div class="col-sm-8 col-md-9 col-lg-10">
-                    <div class="education_wrapper" id="education_wrapper">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="footer">
-        <p>I undertake that all information provided by me in this resume is correct as per my understanding, knowledge and beliefs and originals shall be made available on request.</p>
-    </section>
+    </div>
     <!--
        START of TEMPLATEs
     -->
@@ -162,7 +214,8 @@
     <template id="we_each_company">
         <div class="container-fluid margin-bottom-50 we_each_company_container">
             <div class="we_each_header">
-                <h4></h4><h5></h5>
+                <h4></h4>
+                <h5></h5>
             </div>
         </div>
     </template>
@@ -192,7 +245,7 @@
     -->
     <template id="education_each">
         <div class="education_box margin-bottom-50">
-            <h4 class="degree"></h4> 
+            <h4 class="degree"></h4>
             <h5 class="font-orange institution"></h5>
             <h5 class="major"></h5>
             <h6 class="font-light-black margin-top-10 period"></h6>
@@ -211,12 +264,12 @@
         </div>
     </template>
     <template id="cardTmp">
-        <div class="card" >
+        <div class="card">
             <img class="card-img-top" style="width:100%" />
             <div class="card-body">
                 <h4 class="card-title"></h4>
                 <p class="card-text"></p>
-           </div>
+            </div>
         </div>
     </template>
     <!--

@@ -1,8 +1,10 @@
 // import * as resumeData from '../data/data_resume';
-
+window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
 window.onload = function() {
+    
     $('[data-toggle="tooltip"]').tooltip();
-    $('a').attr('target','_blank');
     
     $('#updateWork').on('click', () => {
        // getWorkTpl($('#load_work'));
@@ -49,7 +51,7 @@ window.onload = function() {
     // populate education
     let ed = document.getElementById('education_wrapper');
     educationExp(myData[4].content, ed);
-    
+    window.scrollTo(0, 0);
     
     function workExp(weData, parent){
         let tmplt_each_comp = document.getElementById('we_each_company');
