@@ -1,0 +1,22 @@
+<div class="slideCards">
+    <div class="prev" ng-click="prev()">
+        <span><i class="fas fa-angle-left"></i></span>
+    </div>
+    <div class="next" ng-click="next()">
+        <span><i class="fas fa-angle-right"></i></span>
+    </div>
+<div class="content-holder" style="width:{{contentHolderWidth}}px; left: {{contentHolderLeft}}px;" 
+ng-swipe-left="next()" ng-swipe-right="prev()" ng-swipe-left="next()"
+>
+        <div class="slide-card-one slide-item-{{$index}} "  ng-repeat="d in  data track by $index"
+    style="height:{{cardHeight}}px; width:{{cardWidth}}px;">
+            <img src="../../image/{{d.thumbnail}}.png" alt="Screenshot  of {{d.name}}" />
+            <div class="footer">
+                 <h4>{{d.name}}</h4>
+                 <a href="{{d.href}}" target="_blank">Go</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,59 @@
+:root{
+    --button-primary-background-color: #0066bb;
+    --card-body-color: #0047B3;
+    --card-border-color: #0047B3;
+    --card-background: linear-gradient(45deg, yellow, orange, red);
+    --social-icon-color: #182153;
+    --about-me-background-color: #f3e4f1;
+    --work-experience-background-color: #0910ecd1;
+    --work-experience-font-color: #eee;
+    --work-experience-headers-color:  #444;
+    --education-background-color: #f1f2f1;
+    --education-timeline-bar-color: #ccc;
+    --education-timeline-point-color-1: orange;
+    --education-timeline-point-color-2: rgba(243, 186, 72, 0.4);
+    --footer-border-color: rgba(255, 165, 0, 0.4);
+}
+
+.bg-dark{
+    background-color: #2c2b32!important;
+}
+.bg-light{
+    background-color: #ccc;
+}
+.bg-light-dirty{
+    background-color: rgb(245, 245, 245) ;
+}
+.font-light{
+    color: #eee;
+}
+.font-dark{
+    color: #333;
+}
+.font-dark-fade{
+    color: #747474;
+}
+.font-blue{
+    color: #0098FF;
+}
+
+
+.no-pad{
+    padding: 0px!important;
+}
+.no-bottom-pad{
+    padding-bottom: 0px!important;
+}
+.no-top-pad{
+    padding-top: 0px!important;
+}
+.centered{
+    text-align: center;
+}
+
+
+
+/*
+ANIMATIONS
+*/
+

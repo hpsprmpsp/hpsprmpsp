@@ -1,0 +1,58 @@
+.edu-slide{
+    min-width: 200px;
+    height: 200px;
+}
+.inst {
+    display: block;
+    font-weight: 900;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    height: 5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.degree{
+    display: block;
+    opacity: 0.4;
+    font-style: italic;
+    min-height: 1rem;
+}
+.major{
+    display: block;
+    margin-bottom: 10px;
+    min-height: 1rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+.edu-card .time{
+    display: inline-flex;
+    float: left;
+    margin-top: 5px;
+}
+.edu-card .markobt{
+    display: inline-flex;
+    float: left;
+    margin-top: 5px;
+}
+.time{
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: 450;
+}
+.markobt{
+    display: block;
+    text-align: left;
+}
+@media only screen and (min-width: 800px) {
+    .time{
+        text-align: right;
+    }
+    .edu-card .markobt{
+        float: right;
+    }
+    .markobt{
+        text-align: right;
+    }
+}

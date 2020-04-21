@@ -1,0 +1,16 @@
+<div class="carousel">
+    <!--<div class="prev" ng-click="prev()">
+        <span><i class="fas fa-angle-left"></i></span>
+    </div>
+    <div class="next" ng-click="next()">
+        <span><i class="fas fa-angle-right"></i></span>
+    </div>-->
+    <div class="content" ng-swipe-left="next()" ng-swipe-right="prev()">
+        <div class="slide" ng-repeat="d in data"  ng-show="d.visible">
+            <edu-slide data='d'></edu-slide>
+        </div>
+    </div>
+    <ul class="indicators">
+        <li class="indicator" ng-click="setIndex($index)" ng-repeat="dt in data track by $index" ng-class="{active: $index === currentIndex}"></li>
+    </ul>
+</div>

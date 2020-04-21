@@ -1,4 +1,4 @@
-var svgchart = {
+export const svgchart = {
     create: function (svgParameter) {
         if (!svgParameter) {
             console.warn("ccsvgchart---Invalid arguements. Moving on with default values");
@@ -37,7 +37,7 @@ var svgchart = {
             "d = 'M 100,100 m " + sp + "a  75,75 0 0,1 " + xc + "," + yc + "'  />";
     },
     drawSVG : function () {
-        percentage = this.current / this.total;
+        let percentage = this.current / this.total;
         //create svg string
         var svg = '<svg viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
             '<path purpose="background" stroke="#dde1e2" stroke-width="4" fill="none" d="M 100 100 m -75 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0 " />';

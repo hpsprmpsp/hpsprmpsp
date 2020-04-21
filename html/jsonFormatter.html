@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Soumya Sarthak Padhee" />
+    <title>JSON Formatter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/jsonFormatter.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+        <a class="navbar-brand" href="#">JSON Formatter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/soumyasarthakpadhee/" target="_blank">
+                        <i class="fab fa-linkedin" style="color:#007bb6;"></i> LinkedIn
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/hpsprmpsp" target="_blank">
+                        <i class="fab fa-github" style="color: #6a737d;"></i> Github
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.instagram.com/soumya.sarthak.padhee/" target="_blank">
+                        <i class="fab fa-instagram" style="color: #8a3fbd;"></i> Instagram
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/hpsprmpsp" target="_blank">
+                        <i class="fab fa-twitter" style="color:rgb(29, 161, 242);"></i> Twitter
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://hpsprmpsp.github.io/hpsprmpsp" target="_blank">
+                        <i class="fas fa-address-card" style="color:#0052CC;"></i> About author
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="errorBox" style="padding-top: 10px;">
+    </div>
+    <section class="jumbotron padding-bottom-7">
+        <h3 class="section-header margin-bottom-20">
+            Input
+            <i class="far fa-minus-square" data-toggle="collapse" data-target="#rawInputdiv"></i>
+        </h3>
+        <div class="container-fluid collapse show" id="rawInputdiv">
+            <div class="row">
+                <div class="col-12">
+                    <form id='rawForm'>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="browsedJSON">
+                            <label class="custom-file-label" for="browsedJSON">Choose file</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="rawJson">Enter Raw JSON here:</label>
+                            <textarea class="form-control" id="rawJson"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Format</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="jumbotron padding-0">
+        <h3 class="section-header margin-bottom-0">
+            Output
+            <i class="far fa-plus-square" data-toggle="collapse" data-target="#rawOutputDiv"></i>
+        </h3>
+        <div class="container-fluid collapse" id="rawOutputDiv">
+            <div class="row">
+                <div class="col-12" id="divFormatted">
+                    <h4 class="italic-light" style="text-align: center;"><i class="far fa-sad-cry"></i>&nbsp;No Data</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../src/jsonFormatter.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+.img_rnd_row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.img_rnd_col {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.img_rnd_col img {
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+@media (max-width: 800px) {
+    .img_rnd_col {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .img_rnd_col {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
