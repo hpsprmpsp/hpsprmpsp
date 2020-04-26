@@ -11,7 +11,7 @@ export const data = {
             briefDetail: {
                 'born': 'July 1991',
                 'email': 'soumya.sarthak.padhee@gmail.com',
-                'phone': '+91-9652147435'
+                'phone': '+91-123456789'
             },
             resume: {
                 src: './data/SoumyaSarthakPadhee_Profile.docx',
