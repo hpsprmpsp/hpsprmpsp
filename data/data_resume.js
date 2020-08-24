@@ -100,20 +100,30 @@ export const data = {
         ],
 
     },
-    workExp: [{
+    workExp: [
+        {
+            company: 'Riverbed Pvt Limited',
+            location: 'Bengaluru, India',
+            start: 'March 2020',
+            end: 'Present',
+            designation: 'Member of Technical Group',
+            project: 'Maldives',
+            summary: 'A product was required to build from scratch to handle security configurations using React, NodeJs, MangoDb, Bootstrap 4'
+        },
+        {
             company: 'Riverbed Pvt Limited',
             location: 'Bengaluru, India',
             start: 'November 2019',
             end: 'Present',
             designation: 'Member of Technical Group',
-            project: 'SCC',
-            summary: 'SCC is a product developed using a native technology called Web3 consisting of Javascript, CSS, HTML, python'
+            project: 'SNCF',
+            summary: 'SNCF is an enhancement on already existing product for appliance management demanded by few customers using a native technology called Web3 consisting of Javascript, CSS, HTML, python'
         },
         {
             company: 'Riverbed Pvt Limited',
             location: 'Bengaluru, India',
             start: 'NOV 2017',
-            end: 'Present',
+            end: 'OCT 2019',
             designation: 'Member of Technical Group',
             project: 'SCM',
             summary: 'SCM is a product developed using Handlebars, and Bootstrap, Perl to replace the CLI controller for different hardware.'
@@ -183,13 +193,13 @@ export const data = {
             title: 'Bootstrap'
         },
         {
-            current: 85,
+            current: 90,
             total: 100,
             color: '#e4c91d',
             title: 'JS Libraries'
         },
         {
-            current: 90,
+            current: 93,
             total: 100,
             color: '#1db4e4',
             title: 'NodeJS'
