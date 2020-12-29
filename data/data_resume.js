@@ -114,7 +114,7 @@ export const data = {
             company: 'Riverbed Pvt Limited',
             location: 'Bengaluru, India',
             start: 'October 2019',
-            end: 'August 2019',
+            end: 'August 2020',
             designation: 'Member of Technical Group',
             project: 'SNCF',
             summary: 'SNCF is an enhancement on already existing product for appliance management demanded by few customers using a native technology called Web3 consisting of Javascript, CSS, HTML, python'
