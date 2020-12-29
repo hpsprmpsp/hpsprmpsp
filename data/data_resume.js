@@ -169,13 +169,13 @@ export const data = {
 
     ],
     skills: [{
-            current: 92,
+            current: 94,
             total: 100,
             color: '#3951cb',
             title: 'HTML'
         },
         {
-            current: 90,
+            current: 93,
             total: 100,
             color: '#ed5f97',
             title: 'CSS'
@@ -187,13 +187,13 @@ export const data = {
             title: 'Javascript'
         },
         {
-            current: 90,
+            current: 95,
             total: 100,
             color: '#dc46f0',
             title: 'Bootstrap'
         },
         {
-            current: 90,
+            current: 95,
             total: 100,
             color: '#e4c91d',
             title: 'JS Libraries'
