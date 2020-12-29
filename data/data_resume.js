@@ -104,7 +104,7 @@ export const data = {
         {
             company: 'Riverbed Pvt Limited',
             location: 'Bengaluru, India',
-            start: 'March 2020',
+            start: 'August 2020',
             end: 'Present',
             designation: 'Member of Technical Group',
             project: 'Maldives',
@@ -113,8 +113,8 @@ export const data = {
         {
             company: 'Riverbed Pvt Limited',
             location: 'Bengaluru, India',
-            start: 'November 2019',
-            end: 'Present',
+            start: 'October 2019',
+            end: 'August 2019',
             designation: 'Member of Technical Group',
             project: 'SNCF',
             summary: 'SNCF is an enhancement on already existing product for appliance management demanded by few customers using a native technology called Web3 consisting of Javascript, CSS, HTML, python'
@@ -122,8 +122,8 @@ export const data = {
         {
             company: 'Riverbed Pvt Limited',
             location: 'Bengaluru, India',
-            start: 'NOV 2017',
-            end: 'OCT 2019',
+            start: 'November 2017',
+            end: 'October 2019',
             designation: 'Member of Technical Group',
             project: 'SCM',
             summary: 'SCM is a product developed using Handlebars, and Bootstrap, Perl to replace the CLI controller for different hardware.'
